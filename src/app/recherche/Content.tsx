@@ -26,11 +26,11 @@ export default function SearchPageContent({
 
   useEffect(() => {
     const query = searchParams.get('q');
-    if (query && query !== searchTerm) {
+    if (query) {
       setSearchTerm(query);
       performSearch(query);
     }
-  }, [searchParams, searchTerm]);
+  }, [searchParams]);
 
   const performSearch = (term: string) => {
     const results = allPosts.filter(
@@ -43,8 +43,14 @@ export default function SearchPageContent({
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/recherche?q=${encodeURIComponent(searchTerm)}`);
-    performSearch(searchTerm);
+    if (searchTerm.trim()) {
+      router.push(`/recherche?q=${encodeURIComponent(searchTerm.trim())}`);
+      performSearch(searchTerm);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
@@ -59,7 +65,7 @@ export default function SearchPageContent({
               type="search"
               placeholder="Rechercher des articles..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={handleInputChange}
               className="w-full"
             />
             <Button type="submit">
@@ -77,11 +83,13 @@ export default function SearchPageContent({
                 <PostCard key={post.id} post={post} />
               ))}
             </div>
-            <DynamicPagination
-              currentPage={1}
-              totalPages={20}
-              onPageChange={() => {}}
-            />
+            <div className="mt-8">
+              <DynamicPagination
+                currentPage={1}
+                totalPages={Math.ceil(searchResults.length / 9)}
+                onPageChange={() => {}}
+              />
+            </div>
           </>
         ) : searchTerm ? (
           <p className="text-center text-gray-600 dark:text-gray-400">
