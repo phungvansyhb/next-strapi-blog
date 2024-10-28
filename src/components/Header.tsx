@@ -23,13 +23,13 @@ const NavItems = React.forwardRef<
       href="/"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      Home
+      Accueil
     </Link>
     <Link
       href="/a-propos"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      About
+      À-Propos
     </Link>
     <Link
       href="/contact"
@@ -38,16 +38,22 @@ const NavItems = React.forwardRef<
       Contact
     </Link>
     <Link
+      href="/blog"
+      className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
+    >
+      Blog
+    </Link>
+    <Link
       href="/categorie"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
       Categories
     </Link>
     <Link
-      href="/resources"
+      href="/recherche"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      Resources
+      Rechercher
     </Link>
   </div>
 ));
@@ -120,7 +126,7 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[200px] rounded-tl-md rounded-bl-md"
+                className="w-[200px] rounded-tl-lg rounded-bl-lg"
               >
                 <SheetTitle className="sr-only">Menu</SheetTitle>
                 <NavItems />
@@ -135,7 +141,7 @@ export default function Header() {
               Blog
             </Link>
             <Link
-              href="/categorie"
+              href="/categories"
               className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
             >
               Categories
