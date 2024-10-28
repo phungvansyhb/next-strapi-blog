@@ -39,7 +39,7 @@ export default function NewsletterOptin() {
               className="w-full"
             />
             <Button type="submit" className="w-full sm:w-auto">
-              S'inscrire
+              S&apos;inscrire
             </Button>
           </form>
         </div>

@@ -5,14 +5,14 @@ import type { Metadata } from 'next';
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
-  const query = await searchParams.q;
+  const { q: query } = await searchParams;
 
   return {
     title: `Recherche : ${query}`,
@@ -23,20 +23,23 @@ export async function generateMetadata({
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q: string };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const query = (await searchParams.q) || '';
+  const { q: query } = await searchParams;
   const initialResults = query
     ? allPosts.filter(
         (post) =>
-          post.title.toLowerCase().includes(query.toLowerCase()) ||
-          post.excerpt.toLowerCase().includes(query.toLowerCase())
+          post.title.toLowerCase().includes((query as string).toLowerCase()) ||
+          post.excerpt.toLowerCase().includes((query as string).toLowerCase())
       )
     : [];
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <SearchPageContent initialQuery={query} initialResults={initialResults} />
+      <SearchPageContent
+        initialQuery={query as string}
+        initialResults={initialResults}
+      />
     </Suspense>
   );
 }

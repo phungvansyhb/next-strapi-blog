@@ -5,14 +5,17 @@ import { sitemetaData } from '@/constants/sitemetaData';
 import { Article, Post, Category } from '@/lib/types';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function fetchArticle(slug: string): Promise<Article> {
+  console.log(slug);
   return article;
 }
 
 async function fetchRelatedPosts(slug: string): Promise<Post[]> {
+  console.log(slug);
   return relatedPosts;
 }
 
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${article.title} | ${sitemetaData.title}`,
-    description: ``,
+    description: `Read about ${article.title} on ${sitemetaData.title}`,
   };
 }
 

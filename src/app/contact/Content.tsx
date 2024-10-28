@@ -42,6 +42,7 @@ export default function ContactPageContent() {
       });
       reset();
     } catch (error) {
+      console.log((error as Error).message);
       toast({
         title: 'Erreur',
         description: "Une erreur est survenue lors de l'envoi du message.",
@@ -123,7 +124,7 @@ export default function ContactPageContent() {
             </h2>
             <p className="mb-6 text-sm">
               Notre équipe est à votre disposition pour répondre à toutes vos
-              questions. N'hésitez pas à nous contacter, nous nous efforçons de
+              questions. N&apos;hésitez pas à nous contacter, nous nous efforçons de
               répondre dans les plus brefs délais.
             </p>
             <div className="space-y-4">

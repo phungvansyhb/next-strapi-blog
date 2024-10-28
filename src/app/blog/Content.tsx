@@ -2,7 +2,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Post } from '@/lib/types';
 import PostList from '@/components/PostList';
 import DynamicPagination from '@/components/Pagination';
 import { allPosts, popularPosts, recentPosts } from '@/constants/posts';

@@ -19,7 +19,7 @@ export default function CategoriesPage() {
           Catégories
         </h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Explorez notre collection d'articles soigneusement organisés par
+          Explorez notre collection d&apos;articles soigneusement organisés par
           thèmes. Chaque catégorie vous offre une perspective unique sur les
           sujets qui vous passionnent.
         </p>

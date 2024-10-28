@@ -50,7 +50,7 @@ export default function AboutPage() {
               Chez Gederooney, notre mission est de créer des solutions
               innovantes qui simplifient la vie quotidienne. Nous croyons en la
               puissance de la technologie pour résoudre des problèmes complexes
-              et améliorer l'expérience utilisateur.
+              et améliorer l&apos;expérience utilisateur.
             </p>
           </section>
 
@@ -60,7 +60,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-sm font-light text-gray-600 dark:text-gray-400">
               Fondée en 2020, Gederooney est née de la passion de ses fondateurs
-              pour l'innovation technologique. Depuis, nous avons grandi pour
+              pour l&apos;innovation technologique. Depuis, nous avons grandi pour
               devenir une équipe diversifiée de créatifs et de techniciens, tous
               unis par notre désir de repousser les limites du possible.
             </p>

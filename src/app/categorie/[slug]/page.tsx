@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { allPosts } from '@/constants/posts';
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({

@@ -85,7 +85,7 @@ export default function SearchPageContent({
           </>
         ) : searchTerm ? (
           <p className="text-center text-gray-600 dark:text-gray-400">
-            Aucun résultat trouvé pour "{searchTerm}".
+            Aucun résultat trouvé pour &quot;{searchTerm}&quot;.
           </p>
         ) : (
           <p className="text-center text-gray-600 dark:text-gray-400">
