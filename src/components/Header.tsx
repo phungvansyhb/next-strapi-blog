@@ -23,19 +23,19 @@ const NavItems = React.forwardRef<
       href="/"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      Accueil
+      Trang chủ
     </Link>
     <Link
       href="/a-propos"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      À-Propos
+      Về tác giả
     </Link>
     <Link
       href="/contact"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      Contact
+      Liên hệ
     </Link>
     <Link
       href="/blog"
@@ -53,7 +53,7 @@ const NavItems = React.forwardRef<
       href="/recherche"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
-      Rechercher
+      Tìm kiếm
     </Link>
   </div>
 ));
@@ -78,25 +78,25 @@ export default function Header() {
               href="/"
               className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
             >
-              Accueil
+              Trang chủ
             </Link>
             <Link
               href="/a-propos"
               className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
             >
-              A-Propos
+              Về tác giả
             </Link>
             <Link
               href="/contact"
               className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
             >
-              Contact
+              Liên hệ
             </Link>
           </div>
           <div className="flex w-full items-center justify-between md:w-auto">
             <Link href="/" className="flex items-center space-x-2">
               <span className="font-bold text-xl dark:text-white">
-                gederooney
+                LOGO
               </span>
             </Link>
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -141,7 +141,7 @@ export default function Header() {
               Blog
             </Link>
             <Link
-              href="/categories"
+              href="/categorie"
               className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
             >
               Categories
@@ -153,7 +153,7 @@ export default function Header() {
               <span>
                 <Search className="h-4 w-4" />
               </span>
-              Recherche
+              Tìm kiếm
             </Link>
           </div>
         </div>
