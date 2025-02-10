@@ -42,7 +42,7 @@ export default function ArticlePage({
       <div className="">
         <div className="relative w-full h-[50vh] mb-8">
           <div className="absolute inset-0">
-            <Image
+            <img
               src={article.imageUrl}
               alt={article.title}
               layout="fill"
@@ -185,7 +185,7 @@ export default function ArticlePage({
                       className="flex items-center space-x-4 group"
                     >
                       <div className="relative w-16 h-16 flex-shrink-0">
-                        <Image
+                        <img
                           src={post.imageUrl}
                           alt={post.title}
                           layout="fill"

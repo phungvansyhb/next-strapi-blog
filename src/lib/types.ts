@@ -11,7 +11,7 @@ export interface Post {
   date: string;
   category: string;
   author: Author;
-  readTime: string;
+  // readTime: string;
   slug: string;
 }
 
@@ -29,11 +29,11 @@ export interface Article {
   category: string;
   author: {
     name: string;
-    position: string;
     avatar: string;
-    twitter: string;
-    linkedin: string;
-    github: string;
+    // position: string;
+    // twitter: string;
+    // linkedin: string;
+    // github: string;
   };
   imageUrl: string;
   content: string;

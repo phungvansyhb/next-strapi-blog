@@ -8,11 +8,11 @@ const PostCard = ({ post }: { post: Post }) => {
     <article className="flex flex-col">
       <Link href={`/article/${post.slug}`} className="block">
         <div className="relative w-full h-[300px] aspect-auto lg:h-auto lg:aspect-square">
-          <Image
+          <img
             src={post.imageUrl}
             alt={post.title}
-            layout="fill"
-            objectFit="cover"
+            // layout="fill"
+            // objectFit="cover"
             objectPosition="center"
             className="transition-transform duration-200 ease-in-out hover:scale-[1.02] w-full h-[300px] object-cover object-top lg:aspect-square rounded-md"
           />
@@ -27,7 +27,7 @@ const PostCard = ({ post }: { post: Post }) => {
           </div>
           <div className="flex items-center justify-between my-2">
             <div className="flex items-center">
-              <Image
+              <img
                 src={post.author.avatar}
                 alt={post.author.name}
                 width={24}
