@@ -1,17 +1,23 @@
 export interface Author {
   name: string;
   avatar: string;
+  altText:string
+}
+export interface Media{
+  fileUrl : string ,
+  altText : string
 }
 
 export interface Post {
   id: number;
   title: string;
-  excerpt: string;
+  description: string;
   imageUrl: string;
+  cover : Media;
   date: string;
   category: string;
   author: Author;
-  // readTime: string;
+  readTime: string;
   slug: string;
 }
 
@@ -24,17 +30,12 @@ export interface Category {
 
 export interface Article {
   title: string;
+  description: string;
   date: string;
   readTime: string;
   category: string;
-  author: {
-    name: string;
-    avatar: string;
-    // position: string;
-    // twitter: string;
-    // linkedin: string;
-    // github: string;
-  };
+  author: Author;
+  cover : Media;
   imageUrl: string;
   content: string;
 }

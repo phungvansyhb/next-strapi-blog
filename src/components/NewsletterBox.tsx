@@ -27,19 +27,19 @@ export default function NewsletterOptin() {
             Restez informé
           </h2> */}
           <p className="mb-6 text-sm text-gray-600  dark:text-gray-400">
-            Inscrivez-vous à notre newsletter pour recevoir nos articles par mail.
+            Đăng ký nhận bản tin của chúng tôi để nhận các bài viết mới nhất qua email
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 w-full max-w-md mx-auto">
             <Input
               type="email"
-              placeholder="Entrez votre email"
+              placeholder="Email của bạn"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full"
             />
             <Button type="submit" className="w-full sm:w-auto">
-              S&apos;inscrire
+              Đăng ký
             </Button>
           </form>
         </div>
