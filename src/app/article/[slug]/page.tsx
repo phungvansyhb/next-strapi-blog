@@ -1,23 +1,21 @@
 import {Metadata} from 'next';
 import ArticlePageContent from './Content';
-import {article, relatedPosts} from '@/constants/posts';
+import {relatedPosts} from '@/constants/posts';
 import {Article, Category, Post} from '@/lib/types';
 import {getListCategory} from "@/service/categoryService";
 import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
+import {getDetailArticle} from "@/service/postService";
+import {convertRawArticleToArticle} from "@/service/postDTO";
+import {appInfo} from "@/constants/sitemetaData";
 
 type Props = {
-  params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+    params: Promise<{ slug: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function fetchArticle(slug: string): Promise<Article> {
-  console.log(slug);
-  return article;
-}
-
-async function fetchRelatedPosts(slug: string): Promise<Post[]> {
-  console.log(slug);
-  return relatedPosts;
+    const rawArticle = await getDetailArticle(slug)
+    return convertRawArticleToArticle(rawArticle);
 }
 
 async function fetchCategories(): Promise<Category[]> {
@@ -25,44 +23,93 @@ async function fetchCategories(): Promise<Category[]> {
     return convertRawCategoriesToCategories(categoriesRaw.data, 'article')
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-
-  if (!slug) return {};
-
-  const article = await fetchArticle(slug);
-
-  return {
-      title: article.title,
-      description: 'Website chuyên tin tức nổi bật, chia sẻ phần mềm hay, các tool tiện ích.\n Xem ngày, giờ hoàng đạo.\n Xem tỷ giá ngoại tệ, giá vàng',
-      keywords: 'software, tiện ích, blog, xem ngày hoàng đạo',
-      viewport: 'width=device-width, initial-scale=1',
-      robots: 'index, follow',
-      openGraph: {
-          title: article.title,
-          description: 'Website chuyên tin tức nổi bật, chia sẻ phần mềm hay, các tool tiện ích.\n Xem ngày, giờ hoàng đạo.\n Xem tỷ giá ngoại tệ, giá vàng',
-          images: 'https://example.com/image.jpg',
-          type: 'website',
-          url: 'https://example.com',
-      },
-      twitter: {
-          card: 'summary_large_image',
-          images: 'https://example.com/image.jpg',
-          title: article.title,
-          description: 'Website chuyên tin tức nổi bật, chia sẻ phần mềm hay, các tool tiện ích.\n Xem ngày, giờ hoàng đạo.\n Xem tỷ giá ngoại tệ, giá vàng',
-      },
-  };
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+    const {slug} = await params;
+    if (!slug) return {};
+    const article = await fetchArticle(slug);
+    const seoMeta = article.seo
+    const facebookSocial = article.seo.metaSocial.find(item => item.socialNetwork === 'Facebook')
+    const twitterSocial = article.seo.metaSocial.find(item => item.socialNetwork === 'Twitter')
+    return {
+        metadataBase: new URL(appInfo.siteURL),
+        title: seoMeta.metaTitle,
+        description: seoMeta.metaDescription,
+        keywords: seoMeta.keywords,
+        applicationName: appInfo.siteName,
+        referrer: "origin",
+        alternates: {
+            canonical: appInfo.siteURL + '/article/' + article.slug,
+        },
+        robots: seoMeta.metaRobots,
+        authors: {
+            name: article.author.name,
+            url: process.env.NEXT_PUBLIC_SERVER_URL + article.author.avatar
+        },
+        category: article.category,
+        icons: seoMeta.metaImage.data.attributes.url,
+        openGraph: {
+            title: facebookSocial?.title,
+            description: facebookSocial?.description,
+            images: [{
+                url: process.env.NEXT_PUBLIC_SERVER_URL + facebookSocial?.image.data.attributes.formats.thumbnail.url!,
+                width: facebookSocial?.image.data.attributes.formats.thumbnail.width,
+                height: facebookSocial?.image.data.attributes.formats.thumbnail.height,
+            }],
+            url: appInfo.siteURL + '/article/' + article.slug,
+            type: 'website',
+            siteName: appInfo.siteName,
+        },
+        twitter: {
+            site: appInfo.siteName,
+            images: [{
+                url: process.env.NEXT_PUBLIC_SERVER_URL + facebookSocial?.image.data.attributes.formats.thumbnail.url!,
+                width: facebookSocial?.image.data.attributes.formats.thumbnail.width,
+                height: facebookSocial?.image.data.attributes.formats.thumbnail.height,
+            }],
+            title: twitterSocial?.title,
+            description: twitterSocial?.description,
+        },
+    };
 }
 
-export default async function ArticlePage({ params }: Props) {
-  const { slug } = await params;
+export default async function ArticlePage({params}: Props) {
+    const {slug} = await params;
 
-  const [article, relatedPosts, categories] = await Promise.all([
-    fetchArticle(slug),
-    fetchRelatedPosts(slug),
-    fetchCategories(),
-  ]);
+    const [article, categories] = await Promise.all([
+        fetchArticle(slug),
+        fetchCategories(),
+    ]);
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": article.title,
+        "description": article.description,
+        // "image": article.imageUrl,
+        "image": [
+            {
+                "@type": "ImageObject",
+                "url": article.imageUrl,
+                "width": article.cover.width,
+                "height": article.cover.height
+            }
+        ],
+        "datePublished": new Date(article.createdAt).toISOString(),
+        "dateModified": new Date(article.modifiedAt).toISOString(),
+        "author": [{
+            "@type": "Person",
+            "name": article.author.name,
+            "url": process.env.NEXT_PUBLIC_SERVER_URL + article.author.avatar,
+        }],
+        "keywords": article.seo.keywords
+    }
 
-  const props = { article, relatedPosts, categories: categories.slice(0, 5) };
-  return <ArticlePageContent {...props} />;
+
+    const props = {article, categories: categories.slice(0, 5)};
+    return (<>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+        />
+        <ArticlePageContent {...props} />
+    </>)
 }

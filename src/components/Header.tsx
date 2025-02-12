@@ -50,7 +50,7 @@ const NavItems = React.forwardRef<
       Categories
     </Link>
     <Link
-      href="/recherche"
+      href="/search"
       className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
     >
       Tìm kiếm
@@ -147,7 +147,7 @@ export default function Header() {
               Categories
             </Link>
             <Link
-              href="/recherche"
+              href="/search"
               className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2 flex items-center gap-1"
             >
               <span>

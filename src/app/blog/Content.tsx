@@ -12,7 +12,7 @@ export default function Content() {
       <section className="px-4 sm:px-6 lg:px-8 my-8">
         <div className="max-w-screen-lg mx-auto">
           <h2 className="text-2xl font-medium mb-6 sr-only">
-            Articles Populaires
+              Bài viết phổ biến
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {popularPosts.map((post) => (
@@ -30,7 +30,7 @@ export default function Content() {
                   {post.title}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-3 font-light">
-                  {post.excerpt}
+                  {post.description}
                 </p>
                 <div className="flex items-center mt-auto">
                   <Image
@@ -56,7 +56,7 @@ export default function Content() {
       {/* Section 2: Articles récents */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 mb-8">
         <div className="max-w-screen-lg mx-auto">
-          <h2 className="text-2xl font-semibold mb-6">Articles Récents</h2>
+          <h2 className="text-2xl font-semibold mb-6">Bài viết mới nhất</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {recentPosts.map((post) => (
               <Link href={`/post/${post.id}`} key={post.id} className="group">
@@ -80,7 +80,7 @@ export default function Content() {
                   {post.title}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-3 font-light">
-                  {post.excerpt}
+                  {post.description}
                 </p>
                 <div className="flex items-center mt-auto">
                   <Image
@@ -105,7 +105,7 @@ export default function Content() {
 
       {/* Section 3: Tous les articles */}
       <section>
-        <PostList posts={allPosts} header={'Tous les Articles'} />
+        <PostList posts={allPosts} header={'Tất cả các bài viết'} />
         <DynamicPagination
           currentPage={1}
           totalPages={5}

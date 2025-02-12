@@ -15,3 +15,5 @@ export function convertRawCategoriesToCategories(rawCaties: RawCate[], type: 'ar
     if (!rawCaties) return []
     return rawCaties.filter(item => item.type === type).map(item => convertRawCategoryToCategory(item))
 }
+
+

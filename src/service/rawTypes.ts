@@ -8,7 +8,7 @@ const rawPostData = {
         "publishedAt": "2025-02-11T06:54:35.626Z",
         "description": "Sáng ngày 6/2/2025 ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
         "slug": "ron-rang-giai-vat-truyen-thong-thon-quang-yen-xuan-at-ty",
-        readingTime:6,
+        "readingTime":6,
         "cover": {
             "data":
                 {
@@ -143,10 +143,178 @@ const rawPostData = {
                     }
                 }
             }
+        } ,
+        "related_article" : {data : []},
+        "comment": {
+            "data": []
+        },
+        "seo": {
+            "id": 2,
+            "metaTitle": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "metaDescription": " ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
+            "keywords": "vật truyền thống, lễ hội khai xuân, hôi làng Quảng yên",
+            "metaRobots": "index, follow",
+            "structuredData": null,
+            "metaViewport": "width=device-width, initial-scale=1.0",
+            "canonicalURL": "currentURL",
+            "metaImage": {
+                "data": {
+                    "id": 7,
+                    "attributes": {
+                        "name": "hoivat.jpg",
+                        "alternativeText": "hội vật",
+                        "caption": "hội vật",
+                        "width": 2000,
+                        "height": 1333,
+                        "formats": {
+                            "large": {
+                                "ext": ".jpg",
+                                "url": "/uploads/large_hoivat_abec5d22ff.jpg",
+                                "hash": "large_hoivat_abec5d22ff",
+                                "mime": "image/jpeg",
+                                "name": "large_hoivat.jpg",
+                                "path": null,
+                                "size": 129.47,
+                                "width": 1000,
+                                "height": 667,
+                                "sizeInBytes": 129468
+                            },
+                            "small": {
+                                "ext": ".jpg",
+                                "url": "/uploads/small_hoivat_abec5d22ff.jpg",
+                                "hash": "small_hoivat_abec5d22ff",
+                                "mime": "image/jpeg",
+                                "name": "small_hoivat.jpg",
+                                "path": null,
+                                "size": 43.23,
+                                "width": 500,
+                                "height": 333,
+                                "sizeInBytes": 43229
+                            },
+                            "medium": {
+                                "ext": ".jpg",
+                                "url": "/uploads/medium_hoivat_abec5d22ff.jpg",
+                                "hash": "medium_hoivat_abec5d22ff",
+                                "mime": "image/jpeg",
+                                "name": "medium_hoivat.jpg",
+                                "path": null,
+                                "size": 83.25,
+                                "width": 750,
+                                "height": 500,
+                                "sizeInBytes": 83248
+                            },
+                            "thumbnail": {
+                                "ext": ".jpg",
+                                "url": "/uploads/thumbnail_hoivat_abec5d22ff.jpg",
+                                "hash": "thumbnail_hoivat_abec5d22ff",
+                                "mime": "image/jpeg",
+                                "name": "thumbnail_hoivat.jpg",
+                                "path": null,
+                                "size": 12.74,
+                                "width": 234,
+                                "height": 156,
+                                "sizeInBytes": 12737
+                            }
+                        },
+                        "hash": "hoivat_abec5d22ff",
+                        "ext": ".jpg",
+                        "mime": "image/jpeg",
+                        "size": 379.72,
+                        "url": "/uploads/hoivat_abec5d22ff.jpg",
+                        "previewUrl": null,
+                        "provider": "local",
+                        "provider_metadata": null,
+                        "createdAt": "2025-02-12T03:16:29.387Z",
+                        "updatedAt": "2025-02-12T03:16:38.909Z"
+                    }
+                }
+            },
+            "metaSocial": [
+                {
+                    "id": 2,
+                    "socialNetwork": "Facebook",
+                    "title": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+                    "description": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+                    "image" : {
+                        "data": {
+                            "id": 7,
+                            "attributes": {
+                                "name": "hoivat.jpg",
+                                "alternativeText": "hội vật",
+                                "caption": "hội vật",
+                                "width": 2000,
+                                "height": 1333,
+                                "formats": {
+                                    "large": {
+                                        "ext": ".jpg",
+                                        "url": "/uploads/large_hoivat_abec5d22ff.jpg",
+                                        "hash": "large_hoivat_abec5d22ff",
+                                        "mime": "image/jpeg",
+                                        "name": "large_hoivat.jpg",
+                                        "path": null,
+                                        "size": 129.47,
+                                        "width": 1000,
+                                        "height": 667,
+                                        "sizeInBytes": 129468
+                                    },
+                                    "small": {
+                                        "ext": ".jpg",
+                                        "url": "/uploads/small_hoivat_abec5d22ff.jpg",
+                                        "hash": "small_hoivat_abec5d22ff",
+                                        "mime": "image/jpeg",
+                                        "name": "small_hoivat.jpg",
+                                        "path": null,
+                                        "size": 43.23,
+                                        "width": 500,
+                                        "height": 333,
+                                        "sizeInBytes": 43229
+                                    },
+                                    "medium": {
+                                        "ext": ".jpg",
+                                        "url": "/uploads/medium_hoivat_abec5d22ff.jpg",
+                                        "hash": "medium_hoivat_abec5d22ff",
+                                        "mime": "image/jpeg",
+                                        "name": "medium_hoivat.jpg",
+                                        "path": null,
+                                        "size": 83.25,
+                                        "width": 750,
+                                        "height": 500,
+                                        "sizeInBytes": 83248
+                                    },
+                                    "thumbnail": {
+                                        "ext": ".jpg",
+                                        "url": "/uploads/thumbnail_hoivat_abec5d22ff.jpg",
+                                        "hash": "thumbnail_hoivat_abec5d22ff",
+                                        "mime": "image/jpeg",
+                                        "name": "thumbnail_hoivat.jpg",
+                                        "path": null,
+                                        "size": 12.74,
+                                        "width": 234,
+                                        "height": 156,
+                                        "sizeInBytes": 12737
+                                    }
+                                },
+                                "hash": "hoivat_abec5d22ff",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 379.72,
+                                "url": "/uploads/hoivat_abec5d22ff.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2025-02-12T03:16:29.387Z",
+                                "updatedAt": "2025-02-12T03:16:38.909Z"
+                            }
+                        }
+                    },
+                }
+            ]
         }
     }
 }
 export type RawPost = typeof rawPostData
+
+export type SEO = RawPost['attributes']['seo']
 
 const rawCategoryData =    {
     "id": 1,
@@ -229,10 +397,8 @@ const rawCategoryData =    {
 }
 export type RawCate = typeof rawCategoryData
 
-
-
 export type Pagination = {
     page: number, pageSize: number, pageCount: number, total: number
 }
 
-export type RawArticle = RawPost & { body: string }
+export type RawArticle = RawPost

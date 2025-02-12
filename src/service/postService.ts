@@ -10,12 +10,20 @@ export async function getListPost(): Promise<{data : RawPost[],meta:{pagination 
         }).then(res=>res.json())
 }
 
-export async function getDetailArticle(slug: string) {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles/?filters[slug][$eq]='+slug ,
+export async function getDetailArticle(slug: string):Promise<RawPost> {
+    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles/' +
+        '?populate[author][populate]=avatar' +
+        '&populate[category][populate]=cover' +
+        '&populate[related_article][populate]=*' +
+        '&populate[comment][populate]=*' +
+        '&populate[cover][populate]=*' +
+        '&populate[seo][populate][metaSocial][populate]=*' +
+        '&populate[seo][populate][metaImage]=*' +
+        '&filters[slug][$eq]='+slug ,
         {
             headers: {
                 "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
             }
-        })
+        }).then(res => res.json()).then(data=>data.data[0])
 }
 

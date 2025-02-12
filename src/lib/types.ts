@@ -1,3 +1,5 @@
+import {SEO} from "@/service/rawTypes";
+
 export interface Author {
   name: string;
   avatar: string;
@@ -5,7 +7,9 @@ export interface Author {
 }
 export interface Media{
   fileUrl : string ,
-  altText : string
+  altText : string ,
+  width : number ,
+  height : number
 }
 
 export interface Post {
@@ -18,6 +22,8 @@ export interface Post {
   category: string;
   author: Author;
   readTime: string;
+  createdAt : string;
+  modifiedAt : string;
   slug: string;
 }
 
@@ -30,6 +36,7 @@ export interface Category {
 
 export interface Article {
   title: string;
+  slug : string ;
   description: string;
   date: string;
   readTime: string;
@@ -37,5 +44,10 @@ export interface Article {
   author: Author;
   cover : Media;
   imageUrl: string;
+  createdAt : string;
+  modifiedAt : string;
   content: string;
+  related_post: Partial<Post>[],
+  comment : any[],
+  seo : SEO
 }

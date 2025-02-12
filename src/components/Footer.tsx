@@ -1,20 +1,23 @@
 import Link from 'next/link';
+import * as React from "react";
 
 const footerLinks = [
   { name: 'Trang chủ', href: '/' },
   { name: 'Về tác giả', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
-  { name: 'Phần mềm', href: '/legal' },
+  { name: 'Phần mềm', href: '/application' },
 ];
 
 export default function Footer() {
   return (
     <footer className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto flex flex-col items-center space-y-4 text-center">
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">
-          LOGO
-        </div>
+        <Link href="/" className="flex items-center space-x-2">
+          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            LOGO
+          </div>
+        </Link>
         <nav className="flex flex-wrap justify-center gap-4">
           {footerLinks.map((link) => (
               <Link
