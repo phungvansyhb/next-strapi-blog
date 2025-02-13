@@ -46,14 +46,14 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
             url: process.env.NEXT_PUBLIC_SERVER_URL + article.author.avatar
         },
         category: article.category,
-        icons: seoMeta.metaImage.data.attributes.url,
+        icons: seoMeta.metaImage.url,
         openGraph: {
             title: facebookSocial?.title,
             description: facebookSocial?.description,
             images: [{
-                url: process.env.NEXT_PUBLIC_SERVER_URL + facebookSocial?.image.data.attributes.formats.thumbnail.url!,
-                width: facebookSocial?.image.data.attributes.formats.thumbnail.width,
-                height: facebookSocial?.image.data.attributes.formats.thumbnail.height,
+                url: process.env.NEXT_PUBLIC_SERVER_URL + facebookSocial?.image.formats.thumbnail.url!,
+                width: facebookSocial?.image.formats.thumbnail.width,
+                height: facebookSocial?.image.formats.thumbnail.height,
             }],
             url: appInfo.siteURL + '/article/' + article.slug,
             type: 'website',
@@ -62,9 +62,9 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
         twitter: {
             site: appInfo.siteName,
             images: [{
-                url: process.env.NEXT_PUBLIC_SERVER_URL + facebookSocial?.image.data.attributes.formats.thumbnail.url!,
-                width: facebookSocial?.image.data.attributes.formats.thumbnail.width,
-                height: facebookSocial?.image.data.attributes.formats.thumbnail.height,
+                url: process.env.NEXT_PUBLIC_SERVER_URL + facebookSocial?.image.formats.thumbnail.url!,
+                width: facebookSocial?.image.formats.thumbnail.width,
+                height: facebookSocial?.image.formats.thumbnail.height,
             }],
             title: twitterSocial?.title,
             description: twitterSocial?.description,

@@ -57,6 +57,8 @@ export default function ArticlePage({
                             <span className="hidden sm:inline">•</span>
                             <span>{article.date}</span>
                             <span className="hidden sm:inline">•</span>
+                            <span>{article.viewCount} lượt xem</span>
+                            <span className="hidden sm:inline">•</span>
                             <span>{article.readTime}</span>
                         </div>
                     </div>

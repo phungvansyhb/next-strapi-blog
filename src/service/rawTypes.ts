@@ -8,7 +8,7 @@ const rawPostData = {
         "publishedAt": "2025-02-11T06:54:35.626Z",
         "description": "Sáng ngày 6/2/2025 ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
         "slug": "ron-rang-giai-vat-truyen-thong-thon-quang-yen-xuan-at-ty",
-        "readingTime":6,
+        "readingTime": 6,
         "cover": {
             "data":
                 {
@@ -143,8 +143,8 @@ const rawPostData = {
                     }
                 }
             }
-        } ,
-        "related_article" : {data : []},
+        },
+        "related_article": {data: []},
         "comment": {
             "data": []
         },
@@ -235,7 +235,7 @@ const rawPostData = {
                     "socialNetwork": "Facebook",
                     "title": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
                     "description": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
-                    "image" : {
+                    "image": {
                         "data": {
                             "id": 7,
                             "attributes": {
@@ -314,9 +314,9 @@ const rawPostData = {
 }
 export type RawPost = typeof rawPostData
 
-export type SEO = RawPost['attributes']['seo']
 
-const rawCategoryData =    {
+
+const rawCategoryData = {
     "id": 1,
     "name": "công nghệ",
     "slug": "cong-nghe",
@@ -396,9 +396,518 @@ const rawCategoryData =    {
     "numberArticles": 0
 }
 export type RawCate = typeof rawCategoryData
-
 export type Pagination = {
     page: number, pageSize: number, pageCount: number, total: number
 }
 
-export type RawArticle = RawPost
+const rawArticle = {
+    "id": 2,
+    "name": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+    "content": "<p>&nbsp; Lễ hội Vật truyền thống đình làng thôn Quảng Yên là nét văn hóa phi vật thể của xã Phượng Sơn để gắn kết cộng đồng, tạo dựng không gian văn hoá trang trọng, tưng bừng, náo nhiệt. Lễ hội trở thành nơi Nhân dân trở về cội nguồn dân tộc, tưởng nhớ công ơn những người đi trước, cầu mong những điều tốt lành, bình an đến với mỗi người. Đây là một lễ hội dân gian truyền thống có từ lâu đời. Được diễn ra từ ngày 9 đến ngày 11 tháng Giêng hàng năm, thu hút các cụ bô lão, thanh niên trai tráng và các cháu nhi đồng trong và ngoài địa phương tham gia.</p><h2>Kết bài</h2><p>Sau keo vật thờ, các keo vật của lễ hội chính thức diễn ra. Tại lễ hội Vật truyền thống đình làng Quảng Yên năm nay dự kiến đón hơn 200 đô vật đến từ các câu lạc bộ trong huyện, các huyện bạn và các tỉnh thành như : Bắc Giang, Bắc Ninh, các câu lạc bộ Quân đội, Công an…</p><p>&nbsp; &nbsp; Theo thể thức thi đấu, các đô vật đến đăng ký tham gia Hội vật đều phải thi đấu từ các giải lèo thường, sau khi dành phần thắng mới được vào thi đấu các đầu lèo giải, sau đó tiến hành giữ và phá các đầu lèo. Khi thắng các đầu lèo, đô vật có quyền thi đấu giữ và phá các giải Nhất, Nhì, Ba.</p><p>&nbsp; &nbsp; Kết thúc giải, ban tổ chức sẽ trao giải nhất, nhì, ba dành cho nam, 1 giải dành cho nữ và 2 giải thiếu niên. Trong đó có 1 giải thiếu niên và giải Ba dành riêng cho các đô vận người thôn Quảng Yên. Dự kiến phần thưởng của giải nhất là 20.000.000 đồng.</p><p>&nbsp; &nbsp; Hội vật truyền thống làng Quảng Yên được tổ chức vào dịp đầu Xuân nhằm gìn giữ, phát huy những giá trị văn hóa truyền thống tốt đẹp; đồng thời phát hiện, bồi dưỡng tài năng cho bộ môn vật của huyện. Thông qua lễ hội thể hiện tinh thần thượng võ và là hình thức cổ vũ tinh thần, rèn luyện sức khỏe để xây dựng, bảo vệ quê hương, đất nước.</p>",
+    "description": "Sáng ngày 6/2/2025 ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
+    "slug": "ron-rang-giai-vat-truyen-thong-thon-quang-yen-xuan-at-ty",
+    "readingTime": 4,
+    "createdAt": "2025-02-11T06:54:04.021Z",
+    "updatedAt": "2025-02-13T03:08:57.263Z",
+    "publishedAt": "2025-02-11T06:54:35.626Z",
+    "viewCount": 2,
+    "author": {
+        "id": 1,
+        "name": "Phùng Văn Sỹ",
+        "email": "phungvansyhb@gmail.com",
+        "createdAt": "2025-02-11T07:00:46.658Z",
+        "updatedAt": "2025-02-12T03:19:21.527Z",
+        "publishedAt": "2025-02-11T07:00:49.597Z",
+        "avatar": {
+            "id": 2,
+            "name": "menauthor.jpg",
+            "alternativeText": "Phung Van Sy Author",
+            "caption": "Phung Van Sy Author",
+            "width": 1000,
+            "height": 563,
+            "formats": {
+                "small": {
+                    "ext": ".jpg",
+                    "url": "/uploads/small_menauthor_2e83e0c4ae.jpg",
+                    "hash": "small_menauthor_2e83e0c4ae",
+                    "mime": "image/jpeg",
+                    "name": "small_menauthor.jpg",
+                    "path": null,
+                    "size": 25.73,
+                    "width": 500,
+                    "height": 282,
+                    "sizeInBytes": 25734
+                },
+                "medium": {
+                    "ext": ".jpg",
+                    "url": "/uploads/medium_menauthor_2e83e0c4ae.jpg",
+                    "hash": "medium_menauthor_2e83e0c4ae",
+                    "mime": "image/jpeg",
+                    "name": "medium_menauthor.jpg",
+                    "path": null,
+                    "size": 45.69,
+                    "width": 750,
+                    "height": 422,
+                    "sizeInBytes": 45694
+                },
+                "thumbnail": {
+                    "ext": ".jpg",
+                    "url": "/uploads/thumbnail_menauthor_2e83e0c4ae.jpg",
+                    "hash": "thumbnail_menauthor_2e83e0c4ae",
+                    "mime": "image/jpeg",
+                    "name": "thumbnail_menauthor.jpg",
+                    "path": null,
+                    "size": 9.17,
+                    "width": 245,
+                    "height": 138,
+                    "sizeInBytes": 9166
+                }
+            },
+            "hash": "menauthor_2e83e0c4ae",
+            "ext": ".jpg",
+            "mime": "image/jpeg",
+            "size": 66.48,
+            "url": "/uploads/menauthor_2e83e0c4ae.jpg",
+            "previewUrl": null,
+            "provider": "local",
+            "provider_metadata": null,
+            "folderPath": "/",
+            "createdAt": "2025-02-12T03:11:29.294Z",
+            "updatedAt": "2025-02-12T03:11:46.576Z"
+        }
+    },
+    "category": {
+        "id": 2,
+        "name": "văn hóa",
+        "slug": "van-hoa",
+        "type": "article",
+        "createdAt": "2025-02-11T06:43:44.380Z",
+        "updatedAt": "2025-02-12T03:17:52.373Z",
+        "publishedAt": "2025-02-11T06:43:45.677Z",
+        "cover": {
+            "id": 4,
+            "name": "cuture.jpg",
+            "alternativeText": "văn hóa",
+            "caption": "văn hóa",
+            "width": 1000,
+            "height": 842,
+            "formats": {
+                "small": {
+                    "ext": ".jpg",
+                    "url": "/uploads/small_cuture_d3b49ee183.jpg",
+                    "hash": "small_cuture_d3b49ee183",
+                    "mime": "image/jpeg",
+                    "name": "small_cuture.jpg",
+                    "path": null,
+                    "size": 26.22,
+                    "width": 500,
+                    "height": 421,
+                    "sizeInBytes": 26218
+                },
+                "medium": {
+                    "ext": ".jpg",
+                    "url": "/uploads/medium_cuture_d3b49ee183.jpg",
+                    "hash": "medium_cuture_d3b49ee183",
+                    "mime": "image/jpeg",
+                    "name": "medium_cuture.jpg",
+                    "path": null,
+                    "size": 46.34,
+                    "width": 750,
+                    "height": 632,
+                    "sizeInBytes": 46335
+                },
+                "thumbnail": {
+                    "ext": ".jpg",
+                    "url": "/uploads/thumbnail_cuture_d3b49ee183.jpg",
+                    "hash": "thumbnail_cuture_d3b49ee183",
+                    "mime": "image/jpeg",
+                    "name": "thumbnail_cuture.jpg",
+                    "path": null,
+                    "size": 6.26,
+                    "width": 186,
+                    "height": 156,
+                    "sizeInBytes": 6264
+                }
+            },
+            "hash": "cuture_d3b49ee183",
+            "ext": ".jpg",
+            "mime": "image/jpeg",
+            "size": 69.38,
+            "url": "/uploads/cuture_d3b49ee183.jpg",
+            "previewUrl": null,
+            "provider": "local",
+            "provider_metadata": null,
+            "folderPath": "/",
+            "createdAt": "2025-02-12T03:14:37.381Z",
+            "updatedAt": "2025-02-12T03:15:23.772Z"
+        }
+    },
+    "related_article": [],
+    "comment": [],
+    "cover": {
+        "id": 7,
+        "name": "hoivat.jpg",
+        "alternativeText": "hội vật",
+        "caption": "hội vật",
+        "width": 2000,
+        "height": 1333,
+        "formats": {
+            "large": {
+                "ext": ".jpg",
+                "url": "/uploads/large_hoivat_abec5d22ff.jpg",
+                "hash": "large_hoivat_abec5d22ff",
+                "mime": "image/jpeg",
+                "name": "large_hoivat.jpg",
+                "path": null,
+                "size": 129.47,
+                "width": 1000,
+                "height": 667,
+                "sizeInBytes": 129468
+            },
+            "small": {
+                "ext": ".jpg",
+                "url": "/uploads/small_hoivat_abec5d22ff.jpg",
+                "hash": "small_hoivat_abec5d22ff",
+                "mime": "image/jpeg",
+                "name": "small_hoivat.jpg",
+                "path": null,
+                "size": 43.23,
+                "width": 500,
+                "height": 333,
+                "sizeInBytes": 43229
+            },
+            "medium": {
+                "ext": ".jpg",
+                "url": "/uploads/medium_hoivat_abec5d22ff.jpg",
+                "hash": "medium_hoivat_abec5d22ff",
+                "mime": "image/jpeg",
+                "name": "medium_hoivat.jpg",
+                "path": null,
+                "size": 83.25,
+                "width": 750,
+                "height": 500,
+                "sizeInBytes": 83248
+            },
+            "thumbnail": {
+                "ext": ".jpg",
+                "url": "/uploads/thumbnail_hoivat_abec5d22ff.jpg",
+                "hash": "thumbnail_hoivat_abec5d22ff",
+                "mime": "image/jpeg",
+                "name": "thumbnail_hoivat.jpg",
+                "path": null,
+                "size": 12.74,
+                "width": 234,
+                "height": 156,
+                "sizeInBytes": 12737
+            }
+        },
+        "hash": "hoivat_abec5d22ff",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "size": 379.72,
+        "url": "/uploads/hoivat_abec5d22ff.jpg",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "folderPath": "/",
+        "createdAt": "2025-02-12T03:16:29.387Z",
+        "updatedAt": "2025-02-12T03:16:38.909Z",
+        "related": [{
+            "__type": "shared.meta-social",
+            "id": 2,
+            "socialNetwork": "Facebook",
+            "title": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "description": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ"
+        }, {
+            "__type": "shared.meta-social",
+            "id": 3,
+            "socialNetwork": "Twitter",
+            "title": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "description": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ"
+        }, {
+            "__type": "shared.seo",
+            "id": 2,
+            "metaTitle": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "metaDescription": " ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
+            "keywords": "vật truyền thống, lễ hội khai xuân, hôi làng Quảng yên",
+            "metaRobots": "index, follow",
+            "structuredData": null,
+            "metaViewport": "width=device-width, initial-scale=1.0",
+            "canonicalURL": "currentURL"
+        }, {
+            "__type": "api::article.article",
+            "id": 2,
+            "name": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "content": "<p>&nbsp; Lễ hội Vật truyền thống đình làng thôn Quảng Yên là nét văn hóa phi vật thể của xã Phượng Sơn để gắn kết cộng đồng, tạo dựng không gian văn hoá trang trọng, tưng bừng, náo nhiệt. Lễ hội trở thành nơi Nhân dân trở về cội nguồn dân tộc, tưởng nhớ công ơn những người đi trước, cầu mong những điều tốt lành, bình an đến với mỗi người. Đây là một lễ hội dân gian truyền thống có từ lâu đời. Được diễn ra từ ngày 9 đến ngày 11 tháng Giêng hàng năm, thu hút các cụ bô lão, thanh niên trai tráng và các cháu nhi đồng trong và ngoài địa phương tham gia.</p><h2>Kết bài</h2><p>Sau keo vật thờ, các keo vật của lễ hội chính thức diễn ra. Tại lễ hội Vật truyền thống đình làng Quảng Yên năm nay dự kiến đón hơn 200 đô vật đến từ các câu lạc bộ trong huyện, các huyện bạn và các tỉnh thành như : Bắc Giang, Bắc Ninh, các câu lạc bộ Quân đội, Công an…</p><p>&nbsp; &nbsp; Theo thể thức thi đấu, các đô vật đến đăng ký tham gia Hội vật đều phải thi đấu từ các giải lèo thường, sau khi dành phần thắng mới được vào thi đấu các đầu lèo giải, sau đó tiến hành giữ và phá các đầu lèo. Khi thắng các đầu lèo, đô vật có quyền thi đấu giữ và phá các giải Nhất, Nhì, Ba.</p><p>&nbsp; &nbsp; Kết thúc giải, ban tổ chức sẽ trao giải nhất, nhì, ba dành cho nam, 1 giải dành cho nữ và 2 giải thiếu niên. Trong đó có 1 giải thiếu niên và giải Ba dành riêng cho các đô vận người thôn Quảng Yên. Dự kiến phần thưởng của giải nhất là 20.000.000 đồng.</p><p>&nbsp; &nbsp; Hội vật truyền thống làng Quảng Yên được tổ chức vào dịp đầu Xuân nhằm gìn giữ, phát huy những giá trị văn hóa truyền thống tốt đẹp; đồng thời phát hiện, bồi dưỡng tài năng cho bộ môn vật của huyện. Thông qua lễ hội thể hiện tinh thần thượng võ và là hình thức cổ vũ tinh thần, rèn luyện sức khỏe để xây dựng, bảo vệ quê hương, đất nước.</p>",
+            "description": "Sáng ngày 6/2/2025 ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
+            "slug": "ron-rang-giai-vat-truyen-thong-thon-quang-yen-xuan-at-ty",
+            "readingTime": 4,
+            "createdAt": "2025-02-11T06:54:04.021Z",
+            "updatedAt": "2025-02-13T03:08:57.263Z",
+            "publishedAt": "2025-02-11T06:54:35.626Z",
+            "viewCount": 2
+        }],
+        "folder": null,
+        "createdBy": {
+            "id": 1,
+            "firstname": "phung",
+            "lastname": "van sy",
+            "username": null,
+            "email": "phungvansyhb@gmail.com",
+            "password": "$2a$10$HhWTXXwYl32XaNDvxGoGjeA8ZfRd6SUv9iJPMaVbSjBG3.dYq3Tnm",
+            "resetPasswordToken": null,
+            "registrationToken": null,
+            "isActive": true,
+            "blocked": false,
+            "preferedLanguage": null,
+            "createdAt": "2025-02-12T02:50:41.226Z",
+            "updatedAt": "2025-02-12T02:50:41.226Z"
+        },
+        "updatedBy": {
+            "id": 1,
+            "firstname": "phung",
+            "lastname": "van sy",
+            "username": null,
+            "email": "phungvansyhb@gmail.com",
+            "password": "$2a$10$HhWTXXwYl32XaNDvxGoGjeA8ZfRd6SUv9iJPMaVbSjBG3.dYq3Tnm",
+            "resetPasswordToken": null,
+            "registrationToken": null,
+            "isActive": true,
+            "blocked": false,
+            "preferedLanguage": null,
+            "createdAt": "2025-02-12T02:50:41.226Z",
+            "updatedAt": "2025-02-12T02:50:41.226Z"
+        }
+    },
+    "seo": {
+        "id": 2,
+        "metaTitle": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+        "metaDescription": " ( từ ngày mùng 9 tháng Giêng), thôn Quảng Yên – xã Phượng Sơn đã tổ chức khai mạc Giải Vật truyền thống lễ hội Đình làng xuân Ất Tỵ 2025.",
+        "keywords": "vật truyền thống, lễ hội khai xuân, hôi làng Quảng yên",
+        "metaRobots": "index, follow",
+        "structuredData": null,
+        "metaViewport": "width=device-width, initial-scale=1.0",
+        "canonicalURL": "currentURL",
+        "metaSocial": [{
+            "id": 2,
+            "socialNetwork": "Facebook",
+            "title": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "description": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "image": {
+                "id": 7,
+                "name": "hoivat.jpg",
+                "alternativeText": "hội vật",
+                "caption": "hội vật",
+                "width": 2000,
+                "height": 1333,
+                "formats": {
+                    "large": {
+                        "ext": ".jpg",
+                        "url": "/uploads/large_hoivat_abec5d22ff.jpg",
+                        "hash": "large_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "large_hoivat.jpg",
+                        "path": null,
+                        "size": 129.47,
+                        "width": 1000,
+                        "height": 667,
+                        "sizeInBytes": 129468
+                    },
+                    "small": {
+                        "ext": ".jpg",
+                        "url": "/uploads/small_hoivat_abec5d22ff.jpg",
+                        "hash": "small_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "small_hoivat.jpg",
+                        "path": null,
+                        "size": 43.23,
+                        "width": 500,
+                        "height": 333,
+                        "sizeInBytes": 43229
+                    },
+                    "medium": {
+                        "ext": ".jpg",
+                        "url": "/uploads/medium_hoivat_abec5d22ff.jpg",
+                        "hash": "medium_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "medium_hoivat.jpg",
+                        "path": null,
+                        "size": 83.25,
+                        "width": 750,
+                        "height": 500,
+                        "sizeInBytes": 83248
+                    },
+                    "thumbnail": {
+                        "ext": ".jpg",
+                        "url": "/uploads/thumbnail_hoivat_abec5d22ff.jpg",
+                        "hash": "thumbnail_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "thumbnail_hoivat.jpg",
+                        "path": null,
+                        "size": 12.74,
+                        "width": 234,
+                        "height": 156,
+                        "sizeInBytes": 12737
+                    }
+                },
+                "hash": "hoivat_abec5d22ff",
+                "ext": ".jpg",
+                "mime": "image/jpeg",
+                "size": 379.72,
+                "url": "/uploads/hoivat_abec5d22ff.jpg",
+                "previewUrl": null,
+                "provider": "local",
+                "provider_metadata": null,
+                "folderPath": "/",
+                "createdAt": "2025-02-12T03:16:29.387Z",
+                "updatedAt": "2025-02-12T03:16:38.909Z"
+            }
+        }, {
+            "id": 3,
+            "socialNetwork": "Twitter",
+            "title": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "description": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
+            "image": {
+                "id": 7,
+                "name": "hoivat.jpg",
+                "alternativeText": "hội vật",
+                "caption": "hội vật",
+                "width": 2000,
+                "height": 1333,
+                "formats": {
+                    "large": {
+                        "ext": ".jpg",
+                        "url": "/uploads/large_hoivat_abec5d22ff.jpg",
+                        "hash": "large_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "large_hoivat.jpg",
+                        "path": null,
+                        "size": 129.47,
+                        "width": 1000,
+                        "height": 667,
+                        "sizeInBytes": 129468
+                    },
+                    "small": {
+                        "ext": ".jpg",
+                        "url": "/uploads/small_hoivat_abec5d22ff.jpg",
+                        "hash": "small_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "small_hoivat.jpg",
+                        "path": null,
+                        "size": 43.23,
+                        "width": 500,
+                        "height": 333,
+                        "sizeInBytes": 43229
+                    },
+                    "medium": {
+                        "ext": ".jpg",
+                        "url": "/uploads/medium_hoivat_abec5d22ff.jpg",
+                        "hash": "medium_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "medium_hoivat.jpg",
+                        "path": null,
+                        "size": 83.25,
+                        "width": 750,
+                        "height": 500,
+                        "sizeInBytes": 83248
+                    },
+                    "thumbnail": {
+                        "ext": ".jpg",
+                        "url": "/uploads/thumbnail_hoivat_abec5d22ff.jpg",
+                        "hash": "thumbnail_hoivat_abec5d22ff",
+                        "mime": "image/jpeg",
+                        "name": "thumbnail_hoivat.jpg",
+                        "path": null,
+                        "size": 12.74,
+                        "width": 234,
+                        "height": 156,
+                        "sizeInBytes": 12737
+                    }
+                },
+                "hash": "hoivat_abec5d22ff",
+                "ext": ".jpg",
+                "mime": "image/jpeg",
+                "size": 379.72,
+                "url": "/uploads/hoivat_abec5d22ff.jpg",
+                "previewUrl": null,
+                "provider": "local",
+                "provider_metadata": null,
+                "folderPath": "/",
+                "createdAt": "2025-02-12T03:16:29.387Z",
+                "updatedAt": "2025-02-12T03:16:38.909Z"
+            }
+        }],
+        "metaImage": {
+            "id": 7,
+            "name": "hoivat.jpg",
+            "alternativeText": "hội vật",
+            "caption": "hội vật",
+            "width": 2000,
+            "height": 1333,
+            "formats": {
+                "large": {
+                    "ext": ".jpg",
+                    "url": "/uploads/large_hoivat_abec5d22ff.jpg",
+                    "hash": "large_hoivat_abec5d22ff",
+                    "mime": "image/jpeg",
+                    "name": "large_hoivat.jpg",
+                    "path": null,
+                    "size": 129.47,
+                    "width": 1000,
+                    "height": 667,
+                    "sizeInBytes": 129468
+                },
+                "small": {
+                    "ext": ".jpg",
+                    "url": "/uploads/small_hoivat_abec5d22ff.jpg",
+                    "hash": "small_hoivat_abec5d22ff",
+                    "mime": "image/jpeg",
+                    "name": "small_hoivat.jpg",
+                    "path": null,
+                    "size": 43.23,
+                    "width": 500,
+                    "height": 333,
+                    "sizeInBytes": 43229
+                },
+                "medium": {
+                    "ext": ".jpg",
+                    "url": "/uploads/medium_hoivat_abec5d22ff.jpg",
+                    "hash": "medium_hoivat_abec5d22ff",
+                    "mime": "image/jpeg",
+                    "name": "medium_hoivat.jpg",
+                    "path": null,
+                    "size": 83.25,
+                    "width": 750,
+                    "height": 500,
+                    "sizeInBytes": 83248
+                },
+                "thumbnail": {
+                    "ext": ".jpg",
+                    "url": "/uploads/thumbnail_hoivat_abec5d22ff.jpg",
+                    "hash": "thumbnail_hoivat_abec5d22ff",
+                    "mime": "image/jpeg",
+                    "name": "thumbnail_hoivat.jpg",
+                    "path": null,
+                    "size": 12.74,
+                    "width": 234,
+                    "height": 156,
+                    "sizeInBytes": 12737
+                }
+            },
+            "hash": "hoivat_abec5d22ff",
+            "ext": ".jpg",
+            "mime": "image/jpeg",
+            "size": 379.72,
+            "url": "/uploads/hoivat_abec5d22ff.jpg",
+            "previewUrl": null,
+            "provider": "local",
+            "provider_metadata": null,
+            "folderPath": "/",
+            "createdAt": "2025-02-12T03:16:29.387Z",
+            "updatedAt": "2025-02-12T03:16:38.909Z"
+        }
+    }
+}
+
+export type RawArticle = typeof rawArticle
+export type SEO = RawArticle['seo']

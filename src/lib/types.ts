@@ -49,5 +49,6 @@ export interface Article {
   content: string;
   related_post: Partial<Post>[],
   comment : any[],
-  seo : SEO
+  seo : SEO,
+  viewCount : number
 }

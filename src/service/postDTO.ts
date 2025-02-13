@@ -36,28 +36,29 @@ export function convertRawPostsToPosts(rawPosts : RawPost[]):Post[]{
 export function convertRawArticleToArticle(rawPost: RawArticle):Article{
     return  {
         author : {
-            name : rawPost.attributes.author.data.attributes.name,
-            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.attributes.author.data.attributes.avatar.data.attributes.url,
-            altText : rawPost.attributes.author.data.attributes.avatar.data.attributes.alternativeText
+            name : rawPost.author.name,
+            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.author.avatar.url,
+            altText : rawPost.author.avatar.alternativeText
         },
-        description : rawPost.attributes.description,
-        title : rawPost.attributes.name,
-        slug : rawPost.attributes.slug,
-        date :  rawPost.attributes.publishedAt,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.attributes.cover.data.attributes.url,
+        description : rawPost.description,
+        title : rawPost.name,
+        slug : rawPost.slug,
+        date :  rawPost.publishedAt,
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url,
         cover : {
-            altText : rawPost.attributes.cover.data.attributes.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.attributes.cover.data.attributes.url,
-            width : rawPost.attributes.cover.data.attributes.width,
-            height : rawPost.attributes.cover.data.attributes.height,
+            altText : rawPost.cover.alternativeText,
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url,
+            width : rawPost.cover.width,
+            height : rawPost.cover.height,
         },
-        category : rawPost.attributes.category.data.attributes.name,
-        readTime : readingTime(rawPost.attributes.content).text,
-        content : rawPost.attributes.content,
-        related_post : rawPost.attributes.related_article.data,
-        comment : rawPost.attributes.comment.data,
-        seo : rawPost.attributes.seo,
-        createdAt : rawPost.attributes.createdAt,
-        modifiedAt : rawPost.attributes.publishedAt,
+        category : rawPost.category.name,
+        readTime : readingTime(rawPost.content).text,
+        content : rawPost.content,
+        related_post : rawPost.related_article,
+        comment : rawPost.comment,
+        seo : rawPost.seo,
+        createdAt : rawPost.createdAt,
+        modifiedAt : rawPost.publishedAt,
+        viewCount : rawPost.viewCount
     }
 }

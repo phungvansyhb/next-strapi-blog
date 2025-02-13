@@ -11,7 +11,7 @@ export default function Content() {
     <div className="">
       <section className="px-4 sm:px-6 lg:px-8 my-8">
         <div className="max-w-screen-lg mx-auto">
-          <h2 className="text-2xl font-medium mb-6 sr-only">
+          <h2 className="text-2xl font-semibold mb-6 ">
               Bài viết phổ biến
           </h2>
           <div className="grid md:grid-cols-2 gap-8">

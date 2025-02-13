@@ -1,4 +1,4 @@
-import {Pagination, RawPost} from "@/service/rawTypes";
+import {Pagination, RawArticle, RawPost} from "@/service/rawTypes";
 
 export async function getListPost(): Promise<{data : RawPost[],meta:{pagination : Pagination}}> {
     return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles?select=documentId&select[1]=title&populate[0]=cover&populate[1]=category&populate[2]=author&select[2]=description' +
@@ -10,8 +10,8 @@ export async function getListPost(): Promise<{data : RawPost[],meta:{pagination 
         }).then(res=>res.json())
 }
 
-export async function getDetailArticle(slug: string):Promise<RawPost> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles/' +
+export async function getDetailArticle(slug: string):Promise<RawArticle> {
+    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/find-art-by-slug/' +
         '?populate[author][populate]=avatar' +
         '&populate[category][populate]=cover' +
         '&populate[related_article][populate]=*' +
@@ -24,6 +24,6 @@ export async function getDetailArticle(slug: string):Promise<RawPost> {
             headers: {
                 "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
             }
-        }).then(res => res.json()).then(data=>data.data[0])
+        }).then(res => res.json())
 }
 
