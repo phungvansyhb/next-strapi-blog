@@ -8,3 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 
 dayjs.extend(relativeTime)
 export const Dayjs = dayjs
+export const DateFormatUtil = {
+  'HH:mmDD/MM/YYYY' : "HH:mm DD/MM/YYYY"
+}

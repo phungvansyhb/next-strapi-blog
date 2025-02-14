@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,15 +14,25 @@ import NewsletterOptin from '@/components/NewsletterBox';
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
 import {Article, Category} from '@/lib/types';
 import rehypeRaw from "rehype-raw";
+import {DateFormatUtil, Dayjs} from "@/lib/utils";
+import Comment from "@/components/Comment";
+import CreateCommentForm from "@/components/CreateCommentForm";
+import {Pagination} from "@/service/rawTypes";
+import DynamicPagination from "@/components/Pagination";
 
 interface ArticlePageContentProps {
     article: Article;
     categories: Category[];
+    comments: {
+        data: { id: string, attributes: Comment }[],
+        meta: { pagination: Pagination }
+    }
 }
 
 export default function ArticlePage({
                                         article,
                                         categories,
+                                        comments
                                     }: ArticlePageContentProps) {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -55,7 +64,7 @@ export default function ArticlePage({
                         <div className="flex flex-wrap items-center text-sm sm:text-base text-white gap-2 sm:gap-4">
                             <span>{article.author.name}</span>
                             <span className="hidden sm:inline">•</span>
-                            <span>{article.date}</span>
+                            <span>{Dayjs(article.date).format(DateFormatUtil['HH:mmDD/MM/YYYY'])}</span>
                             <span className="hidden sm:inline">•</span>
                             <span>{article.viewCount} lượt xem</span>
                             <span className="hidden sm:inline">•</span>
@@ -72,7 +81,7 @@ export default function ArticlePage({
                             className="prose dark:prose-invert max-w-none prose-headings:mb-4 prose-p:mb-4 prose-ul:mb-4 prose-ol:mb-4">
                             <ReactMarkdown
                                 rehypePlugins={[rehypeRaw]}
-                                remarkPlugins={[remarkGfm ]}
+                                remarkPlugins={[remarkGfm]}
                                 components={{
                                     code({className, children, ...props}) {
                                         const match = /language-(\w+)/.exec(className || '');
@@ -145,6 +154,18 @@ export default function ArticlePage({
                                 </div>
                             </div>
                         </div>
+                        <h3 className="text-lg font-semibold mt-10">Bình luận</h3>
+                        <div className='max-h-[500px] overflow-y-auto'>
+                            {comments.data.map(item => <Comment data={item.attributes} key={item.id}/>)}
+                        </div>
+                        <DynamicPagination currentPage={comments.meta.pagination.page}
+                                           totalPages={comments.meta.pagination.pageCount}
+                                           onPageChange={(page) => {
+                                               if (page !== comments.meta.pagination.page) {
+                                                   router.push(`/article/${article.slug}?pageComment=${page}`)
+                                               }
+                                           }}/>
+                        <CreateCommentForm articleId={article.id}/>
                     </div>
 
                     {/* Sidebar */}
@@ -177,14 +198,14 @@ export default function ArticlePage({
                                 <div className="space-y-4">
                                     {article.related_post.map((post) => (
                                         <Link
-                                            href={`/article/${post.id}`}
-                                            key={post.id}
+                                            href={`/article/${post.slug}`}
+                                            key={post.slug}
                                             className="flex items-center space-x-4 group"
                                         >
                                             <div className="relative w-16 h-16 flex-shrink-0">
                                                 <Image
-                                                    src={post.imageUrl || ''}
-                                                    alt={post.title!}
+                                                    src={post.cover.url || ''}
+                                                    alt={post.cover.alternativeText!}
                                                     fill
                                                     objectFit="cover"
                                                     className="rounded-md"
@@ -192,10 +213,9 @@ export default function ArticlePage({
                                             </div>
                                             <div>
                                                 <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
-                                                    {post.title}
+                                                    {post.name}
                                                 </h4>
                                                 <span className="text-xs text-gray-500 dark:text-gray-400">
-                          #{post.category}
                         </span>
                                             </div>
                                         </Link>
@@ -227,6 +247,7 @@ export default function ArticlePage({
                     </div>
                 </div>
             </div>
+
             <div className="mt-6">
                 <NewsletterOptin/>
             </div>

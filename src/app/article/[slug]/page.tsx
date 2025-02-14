@@ -4,9 +4,10 @@ import {relatedPosts} from '@/constants/posts';
 import {Article, Category, Post} from '@/lib/types';
 import {getListCategory} from "@/service/categoryService";
 import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
-import {getDetailArticle} from "@/service/postService";
+import {getDetailArticle, getListCommentBySlug} from "@/service/postService";
 import {convertRawArticleToArticle} from "@/service/postDTO";
 import {appInfo} from "@/constants/sitemetaData";
+import {Comment, Pagination, RawPost} from "@/service/rawTypes";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -21,6 +22,13 @@ async function fetchArticle(slug: string): Promise<Article> {
 async function fetchCategories(): Promise<Category[]> {
     const categoriesRaw = await getListCategory()
     return convertRawCategoriesToCategories(categoriesRaw.data, 'article')
+}
+
+async function fetchComments(slug: string): Promise<{
+    data: { id: string, attributes: Comment }[],
+    meta: { pagination: Pagination }
+}>{
+    return getListCommentBySlug(slug)
 }
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
@@ -75,9 +83,10 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function ArticlePage({params}: Props) {
     const {slug} = await params;
 
-    const [article, categories] = await Promise.all([
+    const [article, categories , comments] = await Promise.all([
         fetchArticle(slug),
         fetchCategories(),
+        fetchComments(slug),
     ]);
     const jsonLd = {
         "@context": "https://schema.org",
@@ -104,7 +113,7 @@ export default async function ArticlePage({params}: Props) {
     }
 
 
-    const props = {article, categories: categories.slice(0, 5)};
+    const props = {article, categories: categories.slice(0, 5) , comments};
     return (<>
         <script
             type="application/ld+json"

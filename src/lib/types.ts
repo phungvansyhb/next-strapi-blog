@@ -1,4 +1,4 @@
-import {SEO} from "@/service/rawTypes";
+import {Comment, SEO} from "@/service/rawTypes";
 
 export interface Author {
   name: string;
@@ -35,6 +35,7 @@ export interface Category {
 }
 
 export interface Article {
+  id : number;
   title: string;
   slug : string ;
   description: string;
@@ -47,8 +48,16 @@ export interface Article {
   createdAt : string;
   modifiedAt : string;
   content: string;
-  related_post: Partial<Post>[],
-  comment : any[],
+  related_post: {
+    slug : string ,
+    name : string,
+    cover : {
+      name : string ,
+      alternativeText : string ,
+      url : string
+    }
+  }[],
+  comments : Comment[],
   seo : SEO,
   viewCount : number
 }

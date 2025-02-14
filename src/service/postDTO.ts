@@ -7,9 +7,9 @@ export function convertRawPostToPost(rawPost : RawPost):Post{
     return {
         id : rawPost.id,
         author : {
-            name : rawPost.attributes.author.data.attributes.name,
-            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.attributes.author.data.attributes.avatar.data.attributes.formats?.thumbnail?.url,
-            altText : rawPost.attributes.author.data.attributes.avatar.data.attributes.alternativeText
+            name : rawPost.attributes.author?.data?.attributes?.name,
+            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes.formats?.thumbnail?.url,
+            altText : rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.alternativeText
         },
         title : rawPost.attributes.name,
         slug : rawPost.attributes.slug,
@@ -22,7 +22,7 @@ export function convertRawPostToPost(rawPost : RawPost):Post{
             width : rawPost.attributes.cover.data.attributes.width,
             height : rawPost.attributes.cover.data.attributes.height,
         },
-        category : rawPost.attributes.category.data.attributes.name,
+        category : rawPost.attributes?.category?.data?.attributes?.name,
         createdAt : rawPost.attributes.createdAt,
         modifiedAt : rawPost.attributes.publishedAt,
         readTime : 'khoảng '+ rawPost.attributes.readingTime + ' phút'
@@ -35,6 +35,7 @@ export function convertRawPostsToPosts(rawPosts : RawPost[]):Post[]{
 }
 export function convertRawArticleToArticle(rawPost: RawArticle):Article{
     return  {
+        id : rawPost.id,
         author : {
             name : rawPost.author.name,
             avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.author.avatar.url,
@@ -54,9 +55,9 @@ export function convertRawArticleToArticle(rawPost: RawArticle):Article{
         category : rawPost.category.name,
         readTime : readingTime(rawPost.content).text,
         content : rawPost.content,
-        related_post : rawPost.related_article,
-        comment : rawPost.comment,
+        related_post : rawPost.related_article.map(item=>({...item, cover : {...item.cover , url : process.env.NEXT_PUBLIC_SERVER_URL+item.cover.url}})),
         seo : rawPost.seo,
+        comments : rawPost.comments,
         createdAt : rawPost.createdAt,
         modifiedAt : rawPost.publishedAt,
         viewCount : rawPost.viewCount

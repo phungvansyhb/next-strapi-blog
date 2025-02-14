@@ -47,7 +47,7 @@ const DynamicPagination: React.FC<PaginationProps> = ({
         disabled={currentPage === 1}
       >
         <ChevronLeft className="h-4 w-4" />
-        <span className="sr-only">Page précédente</span>
+        <span className="sr-only">Trang trước</span>
       </Button>
 
       {getPageNumbers().map((number) => (
@@ -73,7 +73,7 @@ const DynamicPagination: React.FC<PaginationProps> = ({
         disabled={currentPage === totalPages}
       >
         <ChevronRight className="h-4 w-4" />
-        <span className="sr-only">Page suivante</span>
+        <span className="sr-only">Trang sau</span>
       </Button>
     </nav>
   );

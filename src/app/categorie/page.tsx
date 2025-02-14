@@ -66,8 +66,8 @@ export default async function CategoriesPage() {
                     cho
                     bạn một góc nhìn độc đáo về những chủ đề mà bạn đam mê.
                 </p>
-                <RenderList title={'Bài viết'} data={categoriesArt}/>
-                <RenderList title={'Ứng dụng'} data={categoriesApp}/>
+                <RenderList title={'Danh mục bài viết'} data={categoriesArt}/>
+                <RenderList title={'Danh mục ứng dụng'} data={categoriesApp}/>
             </div>
             <NewsletterOptin/>
         </>
