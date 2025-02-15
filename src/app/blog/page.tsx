@@ -4,7 +4,10 @@ import {Post} from "@/lib/types";
 import {getListLatestPost, getListPopularPost, getListPost} from "@/service/postService";
 import {convertRawPostsToPosts} from "@/service/postDTO";
 import {Pagination} from "@/service/rawTypes";
+import {Metadata} from "next";
+import {genSiteMetaData} from "@/constants/sitemetaData";
 
+export const metadata: Metadata = genSiteMetaData('blog')
 
 /*TODO : fetch pagination*/
 async function fetchArticle(): Promise<{data : Post[] , pagination : Pagination}> {

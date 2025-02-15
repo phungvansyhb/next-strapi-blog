@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Mail } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import {Metadata} from "next";
+import {genSiteMetaData} from "@/constants/sitemetaData";
 
 interface TeamMember {
   name: string;
