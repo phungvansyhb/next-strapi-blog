@@ -939,3 +939,136 @@ const commentData =  {
 export type RawArticle = typeof rawArticle
 export type SEO = RawArticle['seo']
 export type Comment = typeof commentData
+
+
+
+const rawGoldPriceData = {
+    "GoldList":{
+        "DGPlist": {
+            "DateTime": "07:00 01/01/1970",
+            "Row": [
+                {
+                    "Name": "DOJI HN lẻ",
+                    "Key": "dojihanoile",
+                    "Sell": "90,300",
+                    "Buy": "87,300"
+                },
+                {
+                    "Name": "DOJI HN buôn",
+                    "Key": "dojihanoile",
+                    "Sell": "90,300",
+                    "Buy": "87,300"
+                },
+                {
+                    "Name": "DOJI HCM lẻ",
+                    "Key": "dojihanoile",
+                    "Sell": "9,030",
+                    "Buy": "8,730"
+                },
+                {
+                    "Name": "DOJI HCM buôn",
+                    "Key": "dojihanoile",
+                    "Sell": "9,030",
+                    "Buy": "8,730"
+                }
+            ]
+        },
+        "IGPList": {
+            "DateTime": "08:31 15/02/2025",
+            "Row": {
+                "Name": "USD/VND",
+                "Key": "usdvnd",
+                "Sell": "22,611",
+                "Buy": "22,517"
+            }
+        },
+        "IGPChart": {
+            "Row": {
+                "Name": "Biểu đồ quốc tế",
+                "Key": "Kitco",
+                "Url": "http://www.kitco.com/images/live/gold.gif?token=1646374431"
+            }
+        },
+        "JewelryList": {
+            "DateTime": "07:00 01/01/1970",
+            "Row": [
+                {
+                    "Name": "DOJI HN lẻ",
+                    "Key": "dojihanoile",
+                    "Sell": "90,300",
+                    "Buy": "87,300"
+                },
+                {
+                    "Name": "DOJI HCM lẻ",
+                    "Key": "dojihanoile",
+                    "Sell": "90,300",
+                    "Buy": "87,300"
+                },
+                {
+                    "Name": "DOJI HCM buôn",
+                    "Key": "dojihanoile",
+                    "Sell": "90,300",
+                    "Buy": "87,300"
+                },
+                {
+                    "Name": "Vàng 24k (nghìn/chỉ)",
+                    "Key": "vang24k",
+                    "Sell": "9,020",
+                    "Buy": "8,810"
+                },
+                {
+                    "Name": "Giá Nguyên Liệu 18K",
+                    "Key": "vang18k",
+                    "Sell": "-",
+                    "Buy": "6,566"
+                },
+                {
+                    "Name": "Giá Nguyên Liệu 16K",
+                    "Key": "vang16k",
+                    "Sell": "-",
+                    "Buy": "5,802"
+                },
+                {
+                    "Name": "Giá Nguyên Liệu 15K",
+                    "Key": "vang15k",
+                    "Sell": "-",
+                    "Buy": "5,320"
+                },
+                {
+                    "Name": "Giá Nguyên Liệu 14K",
+                    "Key": "vang14k",
+                    "Sell": "-",
+                    "Buy": "5,119"
+                },
+                {
+                    "Name": "Giá Nguyên Liệu 10K",
+                    "Key": "vang10k",
+                    "Sell": "-",
+                    "Buy": "3,875"
+                },
+                {
+                    "Name": "Nhẫn Tròn 9999 Hưng Thịnh Vượng",
+                    "Key": "nhanhung1chi",
+                    "Sell": "9,030",
+                    "Buy": "8,830"
+                },
+                {
+                    "Name": "Âu Vàng Phúc Long",
+                    "Key": "auvangphuclong",
+                    "Sell": "90,300",
+                    "Buy": "87,300"
+                }
+            ]
+        },
+        "GPChart": {
+            "Row": {
+                "Name": "Biểu đồ giá vàng",
+                "Key": "DojiChart",
+                "Url": "http://giavang.doji.vn/bieudo/view?token=1646374431"
+            }
+        },
+        "Source": "DOJI GOLD : http://giavang.doji.vn"
+    }
+}
+
+export type PriceGold = typeof rawGoldPriceData

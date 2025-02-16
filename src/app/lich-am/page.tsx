@@ -1,16 +1,15 @@
 import {genSiteMetaData} from "@/constants/sitemetaData";
 import {Dayjs} from "@/lib/utils";
 import {Metadata} from "next";
-import { SolarDate, LunarDate } from "@nghiavuive/lunar_date_vi";
-import {ArrowRightLeft, Moon, Sun, Sunrise} from "lucide-react";
+import {SolarDate} from "@nghiavuive/lunar_date_vi";
+import {Moon, Sun} from "lucide-react";
 
-const solar = new SolarDate(new Date());
-const lunarDate = solar.toLunarDate();
 
-export const metadata: Metadata = genSiteMetaData(`Lịch âm ngày ${solar['day']} tháng ${solar['month']} năm ${solar['year']}`)
+export const metadata: Metadata = genSiteMetaData(`Lịch âm ngày ${Dayjs().date()} tháng ${Dayjs().month()+1} năm ${Dayjs().year()}`)
 
 export default function LichAmPage() {
-
+    const solar = new SolarDate(new Date());
+    const lunarDate = solar.toLunarDate();
     return <div>
         <section className="px-4 sm:px-6 lg:px-8 my-8">
             <div className="max-w-screen-lg mx-auto">

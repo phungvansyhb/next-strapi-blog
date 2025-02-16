@@ -53,7 +53,7 @@ const NavItems = React.forwardRef<
             Xem lịch âm
         </Link>
         <Link
-            href="/contact"
+            href="/gia-vang"
             className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
         >
             Giá vàng
@@ -129,7 +129,7 @@ export default function Header() {
                                 <DropdownMenuItem>
                                     <CircleDollarSign/>
                                     <Link
-                                        href="/contact"
+                                        href="/gia-vang"
 
                                     >
                                         Giá vàng hôm nay
