@@ -110,3 +110,7 @@ export async function createComment(data: CreateComment) {
         body: JSON.stringify({data})
     })
 }
+
+export async function searchArticle(query:string){
+
+}

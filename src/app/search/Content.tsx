@@ -44,7 +44,7 @@ export default function SearchPageContent({
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      router.push(`/recherche?q=${encodeURIComponent(searchTerm.trim())}`);
+      router.push(`/tim-kiem?q=${encodeURIComponent(searchTerm.trim())}`);
       performSearch(searchTerm);
     }
   };
@@ -57,20 +57,20 @@ export default function SearchPageContent({
     <div className="py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-md mx-auto">
         <h1 className="text-xl font-medium text-gray-900 dark:text-white mb-8 text-center">
-          Recherche
+          Tìm kiếm
         </h1>
         <form onSubmit={handleSearch} className="mb-8">
           <div className="flex gap-2">
             <Input
               type="search"
-              placeholder="Rechercher des articles..."
+              placeholder="Tìm kiếm tài nguyên..."
               value={searchTerm}
               onChange={handleInputChange}
               className="w-full"
             />
             <Button type="submit">
               <Search className="h-4 w-4 mr-2" />
-              Rechercher
+              Tìm kiếm
             </Button>
           </div>
         </form>
@@ -93,11 +93,11 @@ export default function SearchPageContent({
           </>
         ) : searchTerm ? (
           <p className="text-center text-gray-600 dark:text-gray-400">
-            Aucun résultat trouvé pour &quot;{searchTerm}&quot;.
+            Không tìm thấy kết quả nào cho &quot;{searchTerm}&quot;.
           </p>
         ) : (
           <p className="text-center text-gray-600 dark:text-gray-400">
-            Commencez votre recherche pour voir les résultats.
+            Bắt đầu tìm kiếm của bạn để xem kết quả.
           </p>
         )}
       </div>

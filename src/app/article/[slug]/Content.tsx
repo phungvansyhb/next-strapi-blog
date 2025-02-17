@@ -19,6 +19,16 @@ import Comment from "@/components/Comment";
 import CreateCommentForm from "@/components/CreateCommentForm";
 import {Pagination} from "@/service/rawTypes";
 import DynamicPagination from "@/components/Pagination";
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    LinkedinIcon,
+    LinkedinShareButton,
+    TelegramIcon,
+    TelegramShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+} from 'next-share'
 
 interface ArticlePageContentProps {
     article: Article;
@@ -77,6 +87,32 @@ export default function ArticlePage({
                 <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
                     {/* Main content */}
                     <div className="md:w-2/3">
+                        <div className='flex gap-2 items-center mb-4 justify-end'>
+                            <h3 className='text-slate-400'>Chia sẻ </h3>
+                            <FacebookShareButton
+                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
+                                quote={article.title}
+                                hashtag={article.seo.keywords}
+                            >
+                                <FacebookIcon size={32} round/>
+                            </FacebookShareButton>
+                            <TelegramShareButton
+                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
+                                title={article.title}
+                            >
+                                <TelegramIcon size={32} round/>
+                            </TelegramShareButton>
+                            <TwitterShareButton
+                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
+                                title={article.title}
+                            >
+                                <TwitterIcon size={32} round/>
+                            </TwitterShareButton>
+                            <LinkedinShareButton url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}>
+                                <LinkedinIcon size={32} round />
+                            </LinkedinShareButton>
+
+                        </div>
                         <article
                             className="prose dark:prose-invert max-w-none prose-headings:mb-4 prose-p:mb-4 prose-ul:mb-4 prose-ol:mb-4">
                             <ReactMarkdown

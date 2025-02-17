@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { allPosts } from '@/constants/posts';
 import SearchPageContent from './Content';
 import type { Metadata } from 'next';
+import {genSiteMetaData} from "@/constants/sitemetaData";
 export const dynamic = 'force-dynamic';
 
 type Props = {
@@ -13,11 +14,7 @@ export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
   const { q: query } = await searchParams;
-
-  return {
-    title: `Recherche : ${query}`,
-    description: `Résultats de recherche pour "${query}".`,
-  };
+  return genSiteMetaData(query ? `Tìm kiếm ${query}` : 'Tìm kiếm')
 }
 
 export default async function SearchPage({
@@ -26,6 +23,7 @@ export default async function SearchPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { q: query } = await searchParams;
+
   const initialResults = query
     ? allPosts.filter(
         (post) =>
