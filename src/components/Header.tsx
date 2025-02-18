@@ -2,82 +2,76 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import {AArrowDown, Calendar1Icon, ChevronDown, CircleDollarSign, DollarSignIcon, Search} from 'lucide-react';
+import {Calendar1Icon, ChevronDown, CircleDollarSign, Search} from 'lucide-react';
 import {useMediaQuery} from 'react-responsive';
 
 import {cn} from '@/lib/utils';
 import {Button} from '@/components/ui/button';
-import {
-    Sheet,
-    SheetContent,
-    SheetTitle,
-    SheetTrigger,
-} from '@/components/ui/sheet';
-import {
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle
-} from "@/components/ui/navigation-menu";
+import {Sheet, SheetContent, SheetTitle, SheetTrigger,} from '@/components/ui/sheet';
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem, DropdownMenuLabel,
+    DropdownMenuItem,
+    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import {usePathname} from "next/navigation";
 
 const NavItems = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
->(({className, ...props}, ref) => (
-    <div ref={ref} className={cn('flex flex-col gap-4', className)} {...props}>
-        <Link
-            href="/"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Trang chủ
-        </Link>
-        <Link
-            href="/a-propos"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Về tác giả
-        </Link>
+>(({className, ...props}, ref) => {
+    const pathName = usePathname()
+    const linkClassName = 'text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2'
+    return (
+        <div ref={ref} className={cn('flex flex-col gap-4', className)} {...props}>
+            <Link
+                href="/"
+                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
+            >
+                Trang chủ
+            </Link>
+            <Link
+                href="/ung-dung"
+                className={cn(linkClassName, { "font-bold":pathName === '/ung-dung' })}
+            >
+                Ứng dụng
+            </Link>
 
-        <Link
-            href="/lich-am"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Xem lịch âm
-        </Link>
-        <Link
-            href="/gia-vang"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Giá vàng
-        </Link>
-        <Link
-            href="/blog"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Blog
-        </Link>
-        <Link
-            href="/categorie"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Categories
-        </Link>
-        <Link
-            href="/search"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-        >
-            Tìm kiếm
-        </Link>
-    </div>
-));
+            <Link
+                href="/lich-am"
+                className={cn(linkClassName, { "font-bold":pathName === '/lich-am' })}
+            >
+                Xem lịch âm
+            </Link>
+            {/*<Link*/}
+            {/*    href="/gia-vang"*/}
+            {/*    className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"*/}
+            {/*>*/}
+            {/*    Giá vàng*/}
+            {/*</Link>*/}
+            <Link
+                href="/blog"
+                className={cn(linkClassName, { "font-bold":pathName === '/blog' })}
+            >
+                Blog
+            </Link>
+            <Link
+                href="/categorie"
+                className={cn(linkClassName, { "font-bold":pathName === '/categorie' })}
+            >
+                Categories
+            </Link>
+            <Link
+                href="/search"
+                className={cn(linkClassName, { "font-bold":pathName === '/search' })}
+            >
+                Tìm kiếm
+            </Link>
+        </div>
+    )
+});
 NavItems.displayName = 'NavItems';
 
 export default function Header() {
@@ -89,7 +83,7 @@ export default function Header() {
             setIsOpen(false);
         }
     }, [isDesktop]);
-
+    const pathName = usePathname()
     return (
         <header className="container px-8 mx-auto xl:px-5 max-w-screen-lg py-3 lg:py-5">
             <nav>
@@ -103,14 +97,14 @@ export default function Header() {
                             Trang chủ
                         </Link>
                         <Link
-                            href="/a-propos"
-                            className={linkClassName}
+                            href="/ung-dung"
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/ung-dung'})}
                         >
-                            Về tác giả
+                            Phần mềm
                         </Link>
                         <DropdownMenu>
                             <DropdownMenuTrigger>
-                                <div className={linkClassName + " flex gap-2 items-center"}>Tiện ích <ChevronDown size={14}/></div>
+                                <div className={cn(linkClassName + " flex gap-2 items-center", {"font-bold underline":pathName === '/lich-am'}) }>Tiện ích <ChevronDown size={14}/></div>
 
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className='w-56'>
@@ -126,15 +120,15 @@ export default function Header() {
                                     </Link>
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem>
-                                    <CircleDollarSign/>
-                                    <Link
-                                        href="/gia-vang"
+                                {/*<DropdownMenuItem>*/}
+                                {/*    <CircleDollarSign/>*/}
+                                {/*    <Link*/}
+                                {/*        href="/gia-vang"*/}
 
-                                    >
-                                        Giá vàng hôm nay
-                                    </Link>
-                                </DropdownMenuItem>
+                                {/*    >*/}
+                                {/*        Giá vàng hôm nay*/}
+                                {/*    </Link>*/}
+                                {/*</DropdownMenuItem>*/}
 
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -184,19 +178,19 @@ export default function Header() {
                         className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
                         <Link
                             href="/blog"
-                            className={linkClassName}
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/blog'})}
                         >
                             Blog
                         </Link>
                         <Link
                             href="/categorie"
-                            className={linkClassName}
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/categorie'})}
                         >
                             Categories
                         </Link>
                         <Link
                             href="/search"
-                            className={linkClassName + " flex items-center gap-1"}
+                            className={cn(linkClassName + " flex items-center gap-1", {"font-bold underline":pathName === '/search'})}
                         >
                               <span>
                                 <Search className="h-4 w-4"/>

@@ -1,4 +1,4 @@
-import {Comment, SEO} from "@/service/rawTypes";
+import { Comment, SEO} from "@/service/rawTypes";
 
 export interface Author {
   name: string;
@@ -25,6 +25,36 @@ export interface Post {
   createdAt : string;
   modifiedAt : string;
   slug: string;
+}
+
+export interface App {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  cover : Media;
+  date: string;
+  category: string;
+  createdAt : string;
+  modifiedAt : string;
+  slug: string;
+}
+
+export interface AppDetail {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  cover : Media;
+  date: string;
+  category: string;
+  createdAt : string;
+  modifiedAt : string;
+  slug: string;
+  seo : SEO,
+  content : string,
+  viewCount : number,
+  src_url :string
 }
 
 export interface Category {
@@ -57,7 +87,7 @@ export interface Article {
       url : string
     }
   }[],
-  comments : Comment[],
+  // comments : Comment[],
   seo : SEO,
   viewCount : number
 }

@@ -1,4 +1,5 @@
-import {Pagination, RawArticle, RawPost, Comment} from "@/service/rawTypes";
+import {Pagination, RawArticle, RawPost, Comment, RawAuthor} from "@/service/rawTypes";
+import {Author} from "@/lib/types";
 
 export async function getListPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
     return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles?select=documentId' +
@@ -76,14 +77,17 @@ export async function getListPopularPost(): Promise<{ data: RawPost[], meta: { p
 }
 
 export type CreateComment = {
-    authorName: string,
-    email?: string,
-    phone?: string,
-    content: string,
-    article: {
-        connect: number[]
-    }
-}
+    app?: {
+        connect: number[];
+    };
+    article?: {
+        connect: number[];
+    };
+    authorName: string;
+    email?: string;
+    phone?: string;
+    content: string;
+};
 
 export async function getListCommentBySlug(slug: string): Promise<{
     data: { id: string, attributes: Comment }[],
@@ -112,5 +116,14 @@ export async function createComment(data: CreateComment) {
 }
 
 export async function searchArticle(query:string){
+}
 
+
+export async function getListAuthor(): Promise<{ data: RawAuthor[], meta: { pagination: Pagination } }> {
+    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/authors/',
+        {
+            headers: {
+                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
+            }
+        }).then(res => res.json())
 }

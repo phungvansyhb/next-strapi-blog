@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PostList from '@/components/PostList';
 import DynamicPagination from '@/components/Pagination';
-import {Post} from "@/lib/types";
+import {Author, Category, Post} from "@/lib/types";
 import {Pagination} from "@/service/rawTypes";
 import {DateFormatUtil, Dayjs} from "@/lib/utils";
 import {useRouter} from "next/navigation";
@@ -17,10 +17,12 @@ type Props = {
         data: Post[],
         pagination: Pagination
     },
-    fetchAllPost: Function
+    fetchAllPost: Function,
+    categories : Category[]
+    authors : Author[]
 }
 
-export default function Content({popularPosts, latestPosts, allPost, fetchAllPost}: Props) {
+export default function Content({popularPosts, latestPosts, allPost, fetchAllPost, categories , authors}: Props) {
     const router = useRouter()
     return (
         <div className="">
@@ -75,7 +77,7 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                     <div className="grid md:grid-cols-3 gap-8">
                         {latestPosts.map((post) => (
                             <Link href={`/article/${post.slug}`} key={post.id} className="group">
-                                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
+                                <div className="relative w-full aspect-square md:aspect-video mb-4 overflow-hidden rounded-md">
                                     <Image
                                         src={post.imageUrl}
                                         alt={post.title}
@@ -119,8 +121,8 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                 </div>
             </section>
 
-            <section>
-                <PostList posts={allPost.data} header={'Tất cả các bài viết'}/>
+            <section >
+                <PostList posts={allPost.data} authors={authors} categories={categories} header={'Tất cả các bài viết'}/>
                 <DynamicPagination
                     currentPage={allPost.pagination.page}
                     totalPages={allPost.pagination.pageCount}

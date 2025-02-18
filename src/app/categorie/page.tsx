@@ -15,12 +15,12 @@ function RenderList({title, data}: { title: string, data: Category[] }) {
     if (data.length === 0) return <></>
     return (
         <>
-            <h3 className="text-3xl mb-2 font-medium text-gray-900 dark:text-white ">
+            <h3 className="text-lg font-semibold mb-4 dark:text-white ">
                 {title}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {data.map((category) => (
-                    <Link key={category.slug} href={`/categorie/${category.slug}`}>
+                    <Link key={category.slug} href={`/danh-muc/${category.slug}`}>
                         <Card className="overflow-hidden border-none">
                             <div className="relative aspect-square">
                                 <Image
@@ -67,6 +67,7 @@ export default async function CategoriesPage() {
                     bạn một góc nhìn độc đáo về những chủ đề mà bạn đam mê.
                 </p>
                 <RenderList title={'Danh mục bài viết'} data={categoriesArt}/>
+                <br/>
                 <RenderList title={'Danh mục ứng dụng'} data={categoriesApp}/>
             </div>
             <NewsletterOptin/>

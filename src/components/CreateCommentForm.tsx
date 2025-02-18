@@ -15,18 +15,31 @@ type CreateComment = {
 }
 
 
-function CreateCommentForm({articleId}: { articleId: number }) {
+function CreateCommentForm({articleId, type = 'post'}: { articleId: number, type?: 'app' | 'post' }) {
 
-    const [_state, dispatch, isPending] = useActionState<CreateComment , FormData>( async (state, payload) => {
-        if(!payload.get('content') || !payload.get('authorName') || !articleId){
+    const [_state, dispatch, isPending] = useActionState<CreateComment, FormData>(async (state, payload) => {
+        if (!payload.get('content') || !payload.get('authorName') || !articleId) {
             return state
         }
-        await createComment({authorName : payload.get('authorName') as string,
-            content: payload.get('content') as string,
-            email : payload.get('email') as string,
-            phone : payload.get('phone') as string,
-            article: {connect: [articleId]}})
-            await revalidateComment()
+        if (type === 'app') {
+            await createComment({
+                authorName: payload.get('authorName') as string,
+                content: payload.get('content') as string,
+                email: payload.get('email') as string,
+                phone: payload.get('phone') as string,
+                app: {connect: [articleId]}
+            })
+        } else {
+            await createComment({
+                authorName: payload.get('authorName') as string,
+                content: payload.get('content') as string,
+                email: payload.get('email') as string,
+                phone: payload.get('phone') as string,
+                article: {connect: [articleId]}
+            })
+        }
+
+        await revalidateComment()
         return state
     }, {authorName: '', email: '', phone: '', content: ''})
     return (
@@ -53,7 +66,8 @@ function CreateCommentForm({articleId}: { articleId: number }) {
                               id='content'></Textarea>
                 </div>
                 <div className='mt-4 text-sm'>
-                    <Button disabled={isPending} >{isPending && <Loader2Icon className='animate-spin' />} Đăng bình luận</Button>
+                    <Button disabled={isPending}>{isPending && <Loader2Icon className='animate-spin'/>} Đăng bình
+                        luận</Button>
                 </div>
             </form>
         </>

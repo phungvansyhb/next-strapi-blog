@@ -5,14 +5,13 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
-import {Facebook, Instagram, Mail, Search} from 'lucide-react';
+import {DownloadIcon, Search} from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {atomDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import NewsletterOptin from '@/components/NewsletterBox';
-import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
-import {Article, Category} from '@/lib/types';
+import {AppDetail, Category} from '@/lib/types';
 import rehypeRaw from "rehype-raw";
 import {DateFormatUtil, Dayjs} from "@/lib/utils";
 import Comment from "@/components/Comment";
@@ -30,8 +29,8 @@ import {
     TwitterShareButton,
 } from 'next-share'
 
-interface ArticlePageContentProps {
-    article: Article;
+interface appDetailPageContentProps {
+    appDetail: AppDetail;
     categories: Category[];
     comments: {
         data: { id: string, attributes: Comment }[],
@@ -39,11 +38,11 @@ interface ArticlePageContentProps {
     }
 }
 
-export default function ArticlePage({
-                                        article,
-                                        categories,
-                                        comments
-                                    }: ArticlePageContentProps) {
+export default function AppPage({
+                                    appDetail,
+                                    categories,
+                                    comments
+                                }: appDetailPageContentProps) {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = React.useState('');
 
@@ -60,8 +59,8 @@ export default function ArticlePage({
                 <div className="relative w-full h-[50vh] mb-8">
                     <div className="absolute inset-0">
                         <Image
-                            src={article.imageUrl}
-                            alt={article.title}
+                            src={appDetail.imageUrl}
+                            alt={appDetail.title}
                             layout="fill"
                             objectFit="cover"
                             className="brightness-50 object-center"
@@ -69,16 +68,12 @@ export default function ArticlePage({
                     </div>
                     <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 max-w-screen-lg mx-auto">
                         <h1 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4 text-white">
-                            {article.title}
+                            {appDetail.title}
                         </h1>
                         <div className="flex flex-wrap items-center text-sm sm:text-base text-white gap-2 sm:gap-4">
-                            <span>{article.author.name}</span>
+                            <span>{Dayjs(appDetail.date).format(DateFormatUtil['HH:mmDD/MM/YYYY'])}</span>
                             <span className="hidden sm:inline">•</span>
-                            <span>{Dayjs(article.date).format(DateFormatUtil['HH:mmDD/MM/YYYY'])}</span>
-                            <span className="hidden sm:inline">•</span>
-                            <span>{article.viewCount} lượt xem</span>
-                            <span className="hidden sm:inline">•</span>
-                            <span>{article.readTime}</span>
+                            <span>{appDetail.viewCount} lượt xem</span>
                         </div>
                     </div>
                 </div>
@@ -87,32 +82,41 @@ export default function ArticlePage({
                 <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
                     {/* Main content */}
                     <div className="md:w-2/3">
-                        <div className='flex gap-2 items-center mb-4 justify-end'>
-                            <h3 className='text-slate-400'>Chia sẻ </h3>
-                            <FacebookShareButton
-                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
-                                quote={article.title}
-                                hashtag={article.seo.keywords}
-                            >
-                                <FacebookIcon size={32} round/>
-                            </FacebookShareButton>
-                            <TelegramShareButton
-                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
-                                title={article.title}
-                            >
-                                <TelegramIcon size={32} round/>
-                            </TelegramShareButton>
-                            <TwitterShareButton
-                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
-                                title={article.title}
-                            >
-                                <TwitterIcon size={32} round/>
-                            </TwitterShareButton>
-                            <LinkedinShareButton url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}>
-                                <LinkedinIcon size={32} round />
-                            </LinkedinShareButton>
+                        <div className='flex justify-between items-center'>
+                            <Link
+                                target='_blank'
+                                href={appDetail.src_url}>
+                                <span className='underline inline-flex gap-2 items-center'>Tải xuống phần mềm <DownloadIcon size={14}/></span>
+                            </Link>
+                            <div className='flex gap-2 items-center mb-4 justify-end'>
+                                <h3 className='text-slate-400'>Chia sẻ </h3>
+                                <FacebookShareButton
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}
+                                    quote={appDetail.title}
+                                    hashtag={appDetail.seo.keywords}
+                                >
+                                    <FacebookIcon size={32} round/>
+                                </FacebookShareButton>
+                                <TelegramShareButton
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}
+                                    title={appDetail.title}
+                                >
+                                    <TelegramIcon size={32} round/>
+                                </TelegramShareButton>
+                                <TwitterShareButton
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}
+                                    title={appDetail.title}
+                                >
+                                    <TwitterIcon size={32} round/>
+                                </TwitterShareButton>
+                                <LinkedinShareButton
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}>
+                                    <LinkedinIcon size={32} round/>
+                                </LinkedinShareButton>
 
+                            </div>
                         </div>
+
                         <article
                             className="prose dark:prose-invert max-w-none prose-headings:mb-4 prose-p:mb-4 prose-ul:mb-4 prose-ol:mb-4">
                             <ReactMarkdown
@@ -139,69 +143,31 @@ export default function ArticlePage({
                                     },
                                 }}
                             >
-                                {article.content}
+                                {appDetail.content}
                             </ReactMarkdown>
                         </article>
-                        <div className="mt-12 pt-8 border-t border-border">
-                            <div className="flex items-center space-x-4">
-                                <Avatar className="h-16 w-16">
-                                    <AvatarImage
-                                        src={article.author.avatar}
-                                        alt={article.author.name}
-                                    />
-                                    <AvatarFallback>
-                                        {article.author.name
-                                            .split(' ')
-                                            .map((n) => n[0])
-                                            .join('')}
-                                    </AvatarFallback>
-                                </Avatar>
-                                <div>
-                                    <h3 className="text-lg font-semibold">
-                                        {article.author.name}
-                                    </h3>
-
-                                    <div className="flex space-x-2 mt-2">
-                                        <Link
-                                            href='#'
-                                            rel="noopener noreferrer"
-                                            className="text-muted-foreground hover:text-primary"
-                                        >
-                                            <Facebook className="h-5 w-5"/>
-                                            <span className="sr-only">Facebook</span>
-                                        </Link>
-                                        <Link
-                                            href='#'
-                                            rel="noopener noreferrer"
-                                            className="text-muted-foreground hover:text-primary"
-                                        >
-                                            <Instagram className="h-5 w-5"/>
-                                            <span className="sr-only">Instagram</span>
-                                        </Link>
-                                        <Link
-                                            href='#'
-                                            rel="noopener noreferrer"
-                                            className="text-muted-foreground hover:text-primary"
-                                        >
-                                            <Mail className="h-5 w-5"/>
-                                            <span className="sr-only">Email</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className='flex gap-2 items-center'>
+                            <h3 className="text-lg font-semibold ">Download phần mềm </h3>
+                            <Link
+                                target='_blank'
+                                href={appDetail.src_url}>
+                                <Button type='button' variant='outline'><DownloadIcon/> Download</Button>
+                            </Link>
                         </div>
                         <h3 className="text-lg font-semibold mt-10">Bình luận</h3>
                         <div className='max-h-[500px] overflow-y-auto'>
+                            {comments.data.length === 0 &&
+                                <div className='text-center text-slate-400 text-sm'>Chưa có bình luận nào</div>}
                             {comments.data.map(item => <Comment data={item.attributes} key={item.id}/>)}
                         </div>
                         <DynamicPagination currentPage={comments.meta.pagination.page}
                                            totalPages={comments.meta.pagination.pageCount}
                                            onPageChange={(page) => {
                                                if (page !== comments.meta.pagination.page) {
-                                                   router.push(`/article/${article.slug}?pageComment=${page}`)
+                                                   router.push(`/appDetail/${appDetail.slug}?pageComment=${page}`)
                                                }
                                            }}/>
-                        <CreateCommentForm articleId={article.id}/>
+                        <CreateCommentForm articleId={appDetail.id} type='app'/>
                     </div>
 
                     {/* Sidebar */}
@@ -214,7 +180,7 @@ export default function ArticlePage({
                                     <Input
                                         type="search"
                                         name="q"
-                                        placeholder="Tìm kiếm bài viết..."
+                                        placeholder="Tìm kiếm ứng dụng..."
                                         className="rounded-r-none"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -224,39 +190,6 @@ export default function ArticlePage({
                                         <span className="sr-only">Nhập từ khóa</span>
                                     </Button>
                                 </form>
-                            </div>
-
-                            {/* Related posts */}
-                            <div className="mb-8">
-                                <h3 className="text-lg font-semibold mb-4">
-                                    Bài viết liên quan
-                                </h3>
-                                <div className="space-y-4">
-                                    {article.related_post.map((post) => (
-                                        <Link
-                                            href={`/article/${post.slug}`}
-                                            key={post.slug}
-                                            className="flex items-center space-x-4 group"
-                                        >
-                                            <div className="relative w-16 h-16 flex-shrink-0">
-                                                <Image
-                                                    src={post.cover.url || ''}
-                                                    alt={post.cover.alternativeText!}
-                                                    fill
-                                                    objectFit="cover"
-                                                    className="rounded-md"
-                                                />
-                                            </div>
-                                            <div>
-                                                <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
-                                                    {post.name}
-                                                </h4>
-                                                <span className="text-xs text-gray-500 dark:text-gray-400">
-                        </span>
-                                            </div>
-                                        </Link>
-                                    ))}
-                                </div>
                             </div>
 
                             {/* Categories */}
