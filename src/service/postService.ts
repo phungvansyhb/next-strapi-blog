@@ -1,79 +1,115 @@
 import {Pagination, RawArticle, RawPost, Comment, RawAuthor} from "@/service/rawTypes";
-import {Author} from "@/lib/types";
+import qs from 'qs';
 
-export async function getListPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles?select=documentId' +
-        '&select[1]=title' +
-        '&populate[0]=cover' +
-        '&populate[1]=category' +
-        '&populate[2]=author' +
-        '&select[2]=description' +
-        '&select[3]=slug' +
-        '&select[4]=publishedAt' +
-        '&populate[3]=author.avatar' +
-        '&select[5]=readingTime',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+const API_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+const API_TOKEN = process.env.NEXT_PUBLIC_SERVER_TOKEN;
+
+if (!API_URL || !API_TOKEN) {
+    throw new Error('Server URL or token is not defined');
+}
+
+const headers = {
+    Authorization: `Bearer ${API_TOKEN}`,
+};
+
+const fetchApi = async (url: string, options: any = {}) => {
+    try {
+        const response = await fetch(`${API_URL}${url}`, { headers, ...options });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+};
+
+export async function getListPost({
+                                      title,
+                                      author,
+                                      category,
+                                  }: {
+    title?: string;
+    author?: string;
+    category?: string;
+}): Promise<{ data: RawPost[]; meta: { pagination: Pagination } }> {
+    const query = qs.stringify({
+        populate: ['cover', 'category', 'author', 'author.avatar'],
+        select: ['documentId', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        filters: {
+            name: title ? { $contains: title } : undefined,
+            author: author ? { name: { $contains: author } } : undefined,
+            category: category ? { slug: { $contains: category } } : undefined,
+        },
+    });
+    return fetchApi('/api/articles?'+ query );
 }
 
 export async function getDetailArticle(slug: string): Promise<RawArticle> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/find-art-by-slug/' +
-        '?populate[author][populate]=avatar' +
-        '&populate[category][populate]=cover' +
-        '&populate[related_article][populate]=*' +
-        '&populate[comment][populate]=*' +
-        '&populate[cover][populate]=*' +
-        '&populate[seo][populate][metaSocial][populate]=*' +
-        '&populate[seo][populate][metaImage]=*' +
-        '&filters[slug][$eq]=' + slug,
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
+    const query = qs.stringify({
+        populate: {
+            author: {
+                populate: 'avatar'
+            },
+            category: {
+                populate: 'cover'
+            },
+            related_article: {
+                populate: '*'
+            },
+            comment: {
+                populate: '*'
+            },
+            cover: {
+                populate: '*'
+            },
+            seo: {
+                populate: {
+                    metaSocial: {
+                        populate: '*'
+                    },
+                    metaImage: {
+                        populate: '*'
+                    }
+                }
             }
-        }).then(res => res.json())
+        },
+        filters: {
+            slug: {
+                $eq: slug
+            }
+        }
+    });
+    return fetchApi('/api/find-art-by-slug?'+  query );
 }
 
 export async function getListLatestPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles?select=documentId' +
-        '&select[1]=title' +
-        '&populate[0]=cover' +
-        '&populate[1]=category' +
-        '&populate[2]=author' +
-        '&select[2]=description' +
-        '&select[3]=slug' +
-        '&select[4]=publishedAt' +
-        '&populate[3]=author.avatar' +
-        '&select[5]=readingTime' +
-        '&sort[publishedAt]=desc' +
-        '&pagination[limit]=4',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+    const query = qs.stringify({
+        populate: ['cover', 'category', 'author', 'author.avatar'],
+        select: ['id', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        sort: {
+            publishedAt: 'desc'
+        },
+        pagination: {
+            limit: 4
+        }
+    });
+    return fetchApi('/api/articles?'+  query );
 }
 
 export async function getListPopularPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/articles?select=documentId' +
-        '&select[1]=title' +
-        '&populate[0]=cover' +
-        '&populate[1]=category' +
-        '&populate[2]=author' +
-        '&select[2]=description' +
-        '&select[3]=slug' +
-        '&select[4]=publishedAt' +
-        '&populate[3]=author.avatar' +
-        '&select[5]=readingTime' +
-        '&sort[viewCount]=desc' +
-        '&pagination[limit]=4',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+    const query = qs.stringify({
+        populate: ['cover', 'category', 'author', 'author.avatar'],
+        select: ['id', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        sort: {
+            viewCount: 'desc'
+        },
+        pagination: {
+            limit: 4
+        }
+    });
+    return fetchApi('/api/articles?'+ query );
 }
 
 export type CreateComment = {
@@ -93,37 +129,28 @@ export async function getListCommentBySlug(slug: string): Promise<{
     data: { id: string, attributes: Comment }[],
     meta: { pagination: Pagination }
 }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `/api/comments?filters[article][slug]=${slug}&sort[createdAt]=desc`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
+    const query = qs.stringify({
+        filters: {
+            article: {
+                slug: {
+                    $eq: slug
+                }
+            }
         },
-        next: { tags: ['comment'] }
-
-    }).then(res => res.json())
+        sort: {
+            createdAt: 'desc'
+        }
+    });
+    return fetchApi('/api/comments?'+ query );
 }
-
 
 export async function createComment(data: CreateComment) {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/comments', {
+    return fetchApi('/api/comments', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-        },
-        body: JSON.stringify({data})
-    })
+        body: JSON.stringify({ data }),
+    });
 }
-
-export async function searchArticle(query:string){
-}
-
 
 export async function getListAuthor(): Promise<{ data: RawAuthor[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/authors/',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+    return fetchApi('/api/authors');
 }

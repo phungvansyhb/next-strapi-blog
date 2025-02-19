@@ -8,6 +8,7 @@ import {Author, Category, Post} from "@/lib/types";
 import {Pagination} from "@/service/rawTypes";
 import {DateFormatUtil, Dayjs} from "@/lib/utils";
 import {useRouter} from "next/navigation";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 
 
 type Props = {
@@ -31,93 +32,110 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                     <h2 className="text-2xl font-semibold mb-6 ">
                         Bài viết phổ biến
                     </h2>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {popularPosts.map((post) => (
-                            <Link href={`/article/${post.slug}`} key={post.id} className="flex flex-col group">
-                                <div className="relative w-full aspect-square md:aspect-video mb-4 overflow-hidden rounded-md">
-                                    <Image
-                                        src={post.imageUrl}
-                                        alt={post.title}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        className="transition-transform duration-300 group-hover:scale-105"
-                                    />
-                                </div>
-                                <h3 className="text-base font-medium text-gray-900 dark:text-white mb-2">
-                                    {post.title}
-                                </h3>
 
-                                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-3 font-light">
-                                    {post.description}
-                                </p>
-                                <div className="flex items-center mt-auto">
-                                    <Image
-                                        src={post.author.avatar}
-                                        alt={post.author.name}
-                                        width={40}
-                                        height={40}
-                                        className="rounded-full mr-3 object-cover h-10"
-                                    />
-                                    <div>
-                                        <p className="font-medium">{post.author.name}</p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                                            {Dayjs(post.date).format(DateFormatUtil["HH:mmDD/MM/YYYY"])} · {post.readTime}
-                                        </p>
+                    <Carousel className="w-full">
+                        <CarouselContent className="-ml-1">
+                            {popularPosts.map((post, index) => (
+                                <CarouselItem key={index} className="pl-1 md:basis-1 lg:basis-1/2">
+                                    <div className="p-1">
+                                        <Link href={`/article/${post.slug}`} key={post.id} className="flex flex-col group">
+                                            <div className="relative w-full aspect-square md:aspect-video mb-4 overflow-hidden rounded-md">
+                                                <Image
+                                                    src={post.imageUrl}
+                                                    alt={post.title}
+                                                    layout="fill"
+                                                    objectFit="cover"
+                                                    className="transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                            </div>
+                                            <h3 className="text-base font-medium text-gray-900 dark:text-white mb-2">
+                                                {post.title}
+                                            </h3>
+
+                                            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-3 font-light">
+                                                {post.description}
+                                            </p>
+                                            <div className="flex items-center mt-auto">
+                                                <Image
+                                                    src={post.author.avatar}
+                                                    alt={post.author.name}
+                                                    width={40}
+                                                    height={40}
+                                                    className="rounded-full mr-3 object-cover h-10"
+                                                />
+                                                <div>
+                                                    <p className="font-medium">{post.author.name}</p>
+                                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                        {Dayjs(post.date).format(DateFormatUtil["HH:mmDD/MM/YYYY"])} · {post.readTime}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </Link>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </div>
             </section>
 
             <section className="py-12 px-4 sm:px-6 lg:px-8 mb-8">
                 <div className="max-w-screen-lg mx-auto">
                     <h2 className="text-2xl font-semibold mb-6">Bài viết mới nhất</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {latestPosts.map((post) => (
-                            <Link href={`/article/${post.slug}`} key={post.id} className="group">
-                                <div className="relative w-full aspect-square md:aspect-video mb-4 overflow-hidden rounded-md">
-                                    <Image
-                                        src={post.imageUrl}
-                                        alt={post.title}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        className="transition-transform duration-300 group-hover:scale-105"
-                                    />
-                                </div>
-                                <div
-                                    className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 my-2">
-                                    <span>#{post.category}</span>
-                                    <span>
+                    <Carousel className="w-full">
+                        <CarouselContent className="-ml-1">
+                            {latestPosts.map((post, index) => (
+                                <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+                                    <div className="p-1">
+                                        <Link href={`/article/${post.slug}`} key={post.id} className="group">
+                                            <div className="relative w-full aspect-square md:aspect-video mb-4 overflow-hidden rounded-md">
+                                                <Image
+                                                    src={post.imageUrl}
+                                                    alt={post.title}
+                                                    layout="fill"
+                                                    objectFit="cover"
+                                                    className="transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                            </div>
+                                            <div
+                                                className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 my-2">
+                                                <span>#{post.category}</span>
+                                                <span>
                                         <span>Thời gian đọc: </span>
                                         <span>{post.readTime}</span>
                                       </span>
-                                </div>
-                                <h3 className="text-base font-medium text-gray-900 dark:text-white mb-2">
-                                    {post.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-3 font-light">
-                                    {post.description}
-                                </p>
-                                <div className="flex items-center mt-auto">
-                                    <Image
-                                        src={post.author.avatar}
-                                        alt={post.author.name}
-                                        width={40}
-                                        height={40}
-                                        className="rounded-full mr-6 object-cover h-10"
-                                    />
-                                    <div>
-                                        <p className="font-medium">{post.author.name}</p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                                            {Dayjs(post.date).format(DateFormatUtil["HH:mmDD/MM/YYYY"])} · {post.readTime}
-                                        </p>
+                                            </div>
+                                            <h3 className="text-base font-medium text-gray-900 dark:text-white mb-2">
+                                                {post.title}
+                                            </h3>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-3 font-light">
+                                                {post.description}
+                                            </p>
+                                            <div className="flex items-center mt-auto">
+                                                <Image
+                                                    src={post.author.avatar}
+                                                    alt={post.author.name}
+                                                    width={40}
+                                                    height={40}
+                                                    className="rounded-full mr-6 object-cover h-10"
+                                                />
+                                                <div>
+                                                    <p className="font-medium">{post.author.name}</p>
+                                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                        {Dayjs(post.date).format(DateFormatUtil["HH:mmDD/MM/YYYY"])} · {post.readTime}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </Link>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </div>
             </section>
 

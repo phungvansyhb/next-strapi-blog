@@ -11,8 +11,7 @@ export async function getListCategory(): Promise<{data : RawCate[]}> {
 
 
 export async function getDetailCategory(documentId: string) {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/categories/' + documentId
-        ,
+    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/categories/' + documentId,
         {
             headers: {
                 "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN

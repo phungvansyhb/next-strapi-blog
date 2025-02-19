@@ -1,6 +1,6 @@
 import NewsletterOptin from '@/components/NewsletterBox';
 import Content from './Content';
-import {App, Author, Category} from "@/lib/types";
+import {App, Author, Category, PageProps} from "@/lib/types";
 import {Pagination} from "@/service/rawTypes";
 import {Metadata} from "next";
 import {genSiteMetaData} from "@/constants/sitemetaData";
@@ -13,9 +13,9 @@ import {getListAuthor} from "@/service/postService";
 export const metadata: Metadata = genSiteMetaData('blog')
 
 /*TODO : fetch pagination*/
-async function fetchApp(): Promise<{data : App[] , pagination : Pagination}> {
+async function fetchApp({title , author , category}:{title? : string, author?:string , category? : string}): Promise<{data : App[] , pagination : Pagination}> {
     'use server'
-    const rawApps = await getListApps()
+    const rawApps = await getListApps({author , category , title})
     return {data : convertRawAppsToApps(rawApps.data), pagination : rawApps.meta.pagination }
 }
 
@@ -45,11 +45,13 @@ async function fetchAuthors(): Promise<Author[]> {
     }))
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({params , searchParams} : PageProps) {
+    const searchParamsObj = await searchParams
+
     const [latestApps, popularApps , apps , categories , authors] = await Promise.all([
         fetchLatestApps(),
         fetchPopularApps(),
-        fetchApp(),
+        fetchApp({title : searchParamsObj['title'] as string , category : searchParamsObj['category'] as string , author : searchParamsObj['author'] as string}),
         fetchCategories(),
         fetchAuthors()
     ]);

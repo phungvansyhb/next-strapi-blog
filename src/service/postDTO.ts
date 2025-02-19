@@ -4,24 +4,23 @@ import  readingTime from 'reading-time'
 
 export function convertRawPostToPost(rawPost : RawPost):Post{
     if(!rawPost) throw Error("require parameter type RawPost")
-    console.log(rawPost)
     return {
         id : rawPost.id,
         author : {
             name : rawPost.attributes.author?.data?.attributes?.name,
-            avatar : process.env.NEXT_PUBLIC_SERVER_URL+ rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes.url || '',
+            avatar : process.env.NEXT_PUBLIC_SERVER_URL+ rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.url || '',
             altText : rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.alternativeText
         },
         title : rawPost.attributes.name,
         slug : rawPost.attributes.slug,
         date : rawPost.attributes.publishedAt,
         description : rawPost.attributes.description,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL + (rawPost.attributes.cover.data.attributes.formats.large?.url || rawPost.attributes.cover.data.attributes.url),
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL + (rawPost.attributes.cover?.data?.attributes?.formats?.large?.url || rawPost.attributes.cover?.data?.attributes?.url),
         cover : {
-            altText : rawPost.attributes.cover.data.attributes.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.attributes.cover.data.attributes.formats.large?.url || rawPost.attributes.cover.data.attributes.url),
-            width : rawPost.attributes.cover.data.attributes.width,
-            height : rawPost.attributes.cover.data.attributes.height,
+            altText : rawPost.attributes.cover?.data?.attributes?.alternativeText,
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.attributes.cover?.data?.attributes?.formats?.large?.url  || rawPost.attributes.cover?.data?.attributes?.url),
+            width : rawPost.attributes.cover?.data?.attributes?.width,
+            height : rawPost.attributes.cover?.data?.attributes?.height,
         },
         category : rawPost.attributes?.category?.data?.attributes?.name,
         createdAt : rawPost.attributes.createdAt,

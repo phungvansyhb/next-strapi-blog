@@ -1,93 +1,132 @@
-import {Comment, Pagination, RawApp, RawAppDetail, RawArticle, RawPost} from "@/service/rawTypes";
-import {Author} from "@/lib/types";
+import {Comment, Pagination, RawAppDetail, RawPost} from "@/service/rawTypes";
+import qs from 'qs';
 
-export async function getListApps(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/apps?select=documentId' +
-        '&select[1]=title' +
-        '&populate[0]=cover' +
-        '&populate[1]=category' +
-        '&populate[2]=author' +
-        '&select[2]=description' +
-        '&select[3]=slug' +
-        '&select[4]=publishedAt' +
-        '&populate[3]=author.avatar' +
-        '&select[5]=readingTime',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+const API_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+const API_TOKEN = process.env.NEXT_PUBLIC_SERVER_TOKEN;
+
+if (!API_URL || !API_TOKEN) {
+    throw new Error('Server URL or token is not defined');
 }
 
+const headers = {
+    Authorization: `Bearer ${API_TOKEN}`,
+};
+
+const fetchApi = async (url: string, options: any = {}) => {
+    try {
+        const response = await fetch(`${API_URL}${url}`, { headers, ...options });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+};
+
+export async function getListApps({
+                                      title,
+                                      author,
+                                      category,
+                                  }: {
+    title?: string;
+    author?: string;
+    category?: string;
+}): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
+    const query = qs.stringify({
+        select: ['id', 'name','description', 'slug', 'publishedAt','cover'],
+        populate: ['cover', 'category', 'author', 'author.avatar'],
+        filters: {
+            name: title ? { $contains: title } : undefined,
+            author: author ? { name: { $contains: author } } : undefined,
+            category: category ? { slug: { $contains: category } } : undefined,
+        },
+    } , {encode : false});
+    return fetchApi('/api/apps?'+ query );
+}
 
 export async function getListLatestApp(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/apps?select=documentId' +
-        '&select[1]=title' +
-        '&populate[0]=cover' +
-        '&populate[1]=category' +
-        '&populate[2]=author' +
-        '&select[2]=description' +
-        '&select[3]=slug' +
-        '&select[4]=publishedAt' +
-        '&populate[3]=author.avatar' +
-        '&select[5]=readingTime' +
-        '&sort[publishedAt]=desc' +
-        '&pagination[limit]=4',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+    const query = qs.stringify({
+        populate: ['cover', 'category', 'author', 'author.avatar'],
+        select: ['id', 'name','description', 'slug', 'publishedAt'],
+        sort: {
+            publishedAt: 'desc'
+        },
+        pagination: {
+            limit: 4
+        }
+    },{encode : false});
+    return fetchApi('/api/apps?' +query );
 }
 
 export async function getListPopularApp(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/apps?select=documentId' +
-        '&select[1]=title' +
-        '&populate[0]=cover' +
-        '&populate[1]=category' +
-        '&populate[2]=author' +
-        '&select[2]=description' +
-        '&select[3]=slug' +
-        '&select[4]=publishedAt' +
-        '&populate[3]=author.avatar' +
-        '&select[5]=readingTime' +
-        '&sort[viewCount]=desc' +
-        '&pagination[limit]=4',
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
-            }
-        }).then(res => res.json())
+    const query = qs.stringify({
+        populate: ['cover', 'category', 'author', 'author.avatar'],
+        select: ['id', 'name','description', 'slug', 'publishedAt'],
+        sort: {
+            viewCount: 'desc'
+        },
+        pagination: {
+            limit: 4
+        }
+    },{encode : false});
+    return fetchApi('/api/apps?'+ query );
 }
 
 export async function getDetailApp(slug: string): Promise<RawAppDetail> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/find-app-by-slug/' +
-        '?populate[author][populate]=avatar' +
-        '&populate[category][populate]=cover' +
-        '&populate[related_article][populate]=*' +
-        '&populate[comment][populate]=*' +
-        '&populate[cover][populate]=*' +
-        '&populate[seo][populate][metaSocial][populate]=*' +
-        '&populate[seo][populate][metaImage]=*' +
-        '&filters[slug][$eq]=' + slug,
-        {
-            headers: {
-                "Authorization": "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
+    const query = qs.stringify({
+        populate: {
+            author: {
+                populate: 'avatar'
+            },
+            category: {
+                populate: 'cover'
+            },
+            related_article: {
+                populate: '*'
+            },
+            comment: {
+                populate: '*'
+            },
+            cover: {
+                populate: '*'
+            },
+            seo: {
+                populate: {
+                    metaSocial: {
+                        populate: '*'
+                    },
+                    metaImage: {
+                        populate: '*'
+                    }
+                }
             }
-        }).then(res => res.json())
+        },
+        filters: {
+            slug: {
+                $eq: slug
+            }
+        }
+    });
+    return fetchApi('/api/find-app-by-slug?' + query );
 }
 
 export async function getListAppCommentBySlug(slug: string): Promise<{
     data: { id: string, attributes: Comment }[],
     meta: { pagination: Pagination }
 }> {
-    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `/api/comments?filters[app][slug]=${slug}&sort[createdAt]=desc`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "Bearer " + process.env.NEXT_PUBLIC_SERVER_TOKEN
+    const query = qs.stringify({
+        filters: {
+            app: {
+                slug: {
+                    $eq: slug
+                }
+            }
         },
-        next: { tags: ['comment'] }
-
-    }).then(res => res.json())
+        sort: {
+            createdAt: 'desc'
+        }
+    });
+    return fetchApi('/api/comments?'+ query );
 }
-

@@ -4,18 +4,19 @@ import  readingTime from 'reading-time'
 
 export function convertRawAppToApp(rawPost : RawApp):App{
     if(!rawPost) throw Error("require parameter type RawApp")
+
     return {
         id : rawPost.id,
         title : rawPost.attributes.name,
         slug : rawPost.attributes.slug,
         date : rawPost.attributes.publishedAt,
         description : rawPost.attributes.description,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL + (rawPost.attributes.cover.data.attributes.url || ''),
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL + (rawPost.attributes?.cover?.data?.attributes?.url || ''),
         cover : {
-            altText : rawPost.attributes.cover.data.attributes.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.attributes.cover.data.attributes?.url || ''),
-            width : rawPost.attributes.cover.data.attributes.width,
-            height : rawPost.attributes.cover.data.attributes.height,
+            altText : rawPost.attributes?.cover?.data?.attributes?.alternativeText,
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.attributes?.cover?.data?.attributes?.url  || ''),
+            width : rawPost.attributes?.cover?.data?.attributes?.width,
+            height : rawPost.attributes?.cover?.data?.attributes?.height,
         },
         category : rawPost.attributes?.category?.data?.attributes?.name,
         createdAt : rawPost.attributes.createdAt,

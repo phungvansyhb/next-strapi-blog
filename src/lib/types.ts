@@ -91,3 +91,8 @@ export interface Article {
   seo : SEO,
   viewCount : number
 }
+
+export type PageProps = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};

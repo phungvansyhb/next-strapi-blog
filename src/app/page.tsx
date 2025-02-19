@@ -4,12 +4,11 @@ import {Metadata} from 'next';
 import {getListPost} from "@/service/postService";
 import {convertRawPostsToPosts} from "@/service/postDTO";
 import {appInfo, genSiteMetaData} from "@/constants/sitemetaData";
-import Head from "next/head";
 
 export const metadata: Metadata = genSiteMetaData('Trang chủ')
 
 export default async function Home() {
-    const posts = await getListPost()
+    const posts = await getListPost({})
     const allPosts = convertRawPostsToPosts(posts.data)
     const jsonLd = {
         "@context": "https://schema.org",

@@ -10,7 +10,6 @@ export const metadata: Metadata = genSiteMetaData(`Giá vàng ngày ${Dayjs().da
 export default async function GoldPrice() {
     const data = await getGoldPriceByDoji()
     const data2 = await getGoldPriceByGemini()
-    console.log(data , data2)
     return <div>
         <section className="px-4 sm:px-6 lg:px-8 my-8">
             <div className="max-w-screen-lg mx-auto">

@@ -7,7 +7,7 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
 import {cn} from "@/lib/utils";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-
+import qs from 'qs'
 type Options = { value: string, label: string }
 
 // const authors = [
@@ -32,17 +32,22 @@ export default function PostSearchBar({categories = [] , authors = []}: { catego
     const router= useRouter()
     const pathName = usePathname()
     function onSearch(){
-        router.push(encodeURI(pathName+`?title=${title}&author=${author?.value}&category=${cate?.value}`) , {scroll : false})
+        const searchParams = qs.stringify({
+            title : title||null,
+            author: author?.value,
+            category : cate?.value
+        },{ skipNulls: true , encode : false })
+        router.push(encodeURI(pathName+`?${searchParams}`) , {scroll : false})
     }
 
     return (
-        <div className='flex gap-4 mb-8 justify-between'>
-            <div className='w-full flex gap-4 items-end'>
-                <h3 className='text-slate-400'>Tìm kiếm</h3>
-                <Input className='w-[200px]' placeholder='Tìm theo tên bài viết' defaultValue={title} onChange={e=>setTitle(e.target.value) } />
+        <div className='flex flex-wrap gap-4 mb-8 justify-between'>
+            <div className='flex-grow flex flex-wrap gap-4 items-end'>
+                <h3 className='text-slate-400 hidden lg:block'>Tìm kiếm</h3>
+                <Input className='w-full md:w-[200px]' placeholder='Tìm theo tên bài viết' defaultValue={title} onChange={e=>setTitle(e.target.value) } />
                 <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-[200px] justify-start" >
+                        <Button variant="outline" className="w-full md:w-[200px] justify-start" >
                             <UserPenIcon size={14} /> {author ? <>{author.label} </> : <>Tác giả</>}
                         </Button>
                     </PopoverTrigger>
@@ -81,7 +86,7 @@ export default function PostSearchBar({categories = [] , authors = []}: { catego
                 </Popover>
                 <Popover open={openCate} onOpenChange={setOpenCate}>
                     <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-[200px] justify-start" >
+                        <Button variant="outline" className="w-full md:w-[200px] justify-start" >
                             <BookMarkedIcon size={14} />{cate ? <>{cate.label} </> : <> Danh mục</>}
                         </Button>
                     </PopoverTrigger>
