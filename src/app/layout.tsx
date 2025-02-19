@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import { Toaster } from '@/components/ui/toaster';
 import Footer from '@/components/Footer';
+import Head from "next/head";
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -22,7 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body
+    <Head>
+      <link rel="icon" href="/icon.png"/>
+    </Head>
+    <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
