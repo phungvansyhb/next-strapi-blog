@@ -4,10 +4,12 @@ import * as React from "react"
 import useEmblaCarousel, {
     type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import {ArrowLeft, ArrowRight} from "lucide-react"
+import {cn} from "@/lib/utils"
+import {Button} from "@/components/ui/button"
+import {EmblaCarouselType} from "embla-carousel";
+import {useCallback, useEffect, useState} from "react";
+import '../../styles/carousel.css'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -144,6 +146,7 @@ const Carousel = React.forwardRef<
                 >
                     {children}
                 </div>
+
             </CarouselContext.Provider>
         )
     }
@@ -153,8 +156,8 @@ Carousel.displayName = "Carousel"
 const CarouselContent = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-    const { carouselRef, orientation } = useCarousel()
+>(({className, ...props}, ref) => {
+    const {carouselRef, orientation} = useCarousel()
 
     return (
         <div ref={carouselRef} className="overflow-hidden">
@@ -175,8 +178,8 @@ CarouselContent.displayName = "CarouselContent"
 const CarouselItem = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-    const { orientation } = useCarousel()
+>(({className, ...props}, ref) => {
+    const {orientation} = useCarousel()
 
     return (
         <div
@@ -197,8 +200,8 @@ CarouselItem.displayName = "CarouselItem"
 const CarouselPrevious = React.forwardRef<
     HTMLButtonElement,
     React.ComponentProps<typeof Button>
->(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-    const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+>(({className, variant = "outline", size = "icon", ...props}, ref) => {
+    const {orientation, scrollPrev, canScrollPrev} = useCarousel()
 
     return (
         <Button
@@ -216,7 +219,7 @@ const CarouselPrevious = React.forwardRef<
             onClick={scrollPrev}
             {...props}
         >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4"/>
             <span className="sr-only">Previous slide</span>
         </Button>
     )
@@ -226,8 +229,8 @@ CarouselPrevious.displayName = "CarouselPrevious"
 const CarouselNext = React.forwardRef<
     HTMLButtonElement,
     React.ComponentProps<typeof Button>
->(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-    const { orientation, scrollNext, canScrollNext } = useCarousel()
+>(({className, variant = "outline", size = "icon", ...props}, ref) => {
+    const {orientation, scrollNext, canScrollNext} = useCarousel()
 
     return (
         <Button
@@ -245,12 +248,99 @@ const CarouselNext = React.forwardRef<
             onClick={scrollNext}
             {...props}
         >
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4"/>
             <span className="sr-only">Next slide</span>
         </Button>
     )
 })
 CarouselNext.displayName = "CarouselNext"
+CarouselNext.displayName = "CarouselNext"
+
+
+type UseDotButtonType = {
+    selectedIndex: number
+    scrollSnaps: number[]
+    onDotButtonClick: (index: number) => void
+}
+
+export const useDotButton = (
+    emblaApi: EmblaCarouselType | undefined,
+    onButtonClick?: (emblaApi: EmblaCarouselType) => void
+): UseDotButtonType => {
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+
+    const onDotButtonClick = useCallback(
+        (index: number) => {
+            if (!emblaApi) return
+            emblaApi.scrollTo(index)
+            if (onButtonClick) onButtonClick(emblaApi)
+        },
+        [emblaApi, onButtonClick]
+    )
+
+    const onInit = useCallback((emblaApi: EmblaCarouselType) => {
+        setScrollSnaps(emblaApi.scrollSnapList())
+    }, [])
+
+    const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+        setSelectedIndex(emblaApi.selectedScrollSnap())
+    }, [])
+
+    useEffect(() => {
+        if (!emblaApi) return
+        onInit(emblaApi)
+        onSelect(emblaApi)
+        emblaApi.on('reInit', onInit).on('reInit', onSelect).on('select', onSelect)
+    }, [emblaApi, onInit, onSelect])
+
+    return {
+        selectedIndex,
+        scrollSnaps,
+        onDotButtonClick
+    }
+}
+
+const CarouselDot = React.forwardRef<
+    HTMLButtonElement,
+    React.ComponentProps<typeof Button>
+>(({className, children, ...restProps}, ref) => {
+    const {orientation, scrollNext, canScrollNext, api} = useCarousel()
+
+    const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
+        const autoplay = emblaApi?.plugins()?.autoplay
+        if (!autoplay) return
+
+        const resetOrStop =
+            autoplay.options.stopOnInteraction === false
+                ? autoplay.reset
+                : autoplay.stop
+
+        resetOrStop()
+    }, [])
+
+    const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(
+        api,
+        onNavButtonClick
+    )
+    return (
+        <div className="embla__controls">
+            <div className="embla__dots">
+                {
+                    scrollSnaps.map((_, index) => (
+                        <button key={index} type="button" {...restProps} onClick={() => onDotButtonClick(index)}
+                                className={'embla__dot'.concat(
+                                    index === selectedIndex ? ' embla__dot--selected' : ''
+                                )}>
+                            {children}
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
+    )
+})
+CarouselDot.displayName = 'CarouselDot'
 
 export {
     type CarouselApi,
@@ -259,4 +349,5 @@ export {
     CarouselItem,
     CarouselPrevious,
     CarouselNext,
+    CarouselDot
 }

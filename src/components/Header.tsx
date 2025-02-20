@@ -137,7 +137,7 @@ export default function Header() {
                     <div className="flex w-full items-center justify-between md:w-auto">
                         <Link href="/" className="flex items-center space-x-2">
                               <span className="font-bold text-xl dark:text-white">
-                                LOGO
+                                SPMT
                               </span>
                         </Link>
                         <Sheet open={isOpen} onOpenChange={setIsOpen}>

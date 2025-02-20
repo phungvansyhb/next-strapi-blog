@@ -1,0 +1,45 @@
+.embla__controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: end;
+    gap: 1rem;
+    /*margin-top: 1.8rem;*/
+}
+.embla__dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+}
+.embla__dot {
+    -webkit-tap-highlight-color: rgba(49, 49, 49, 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.embla__dot:after {
+    box-shadow: inset 0 0 0 0.1rem rgb(234, 234, 234);
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    content: '';
+}
+.embla__dot--selected:after {
+    box-shadow: inset 0 0 0 0.15rem rgb(54, 49, 61);
+}

@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto flex flex-col items-center space-y-4 text-center">
         <Link href="/" className="flex items-center space-x-2">
           <div className="text-2xl font-bold text-gray-900 dark:text-white">
-            LOGO
+            SPMT
           </div>
         </Link>
         <nav className="flex flex-wrap justify-center gap-4">
