@@ -39,7 +39,7 @@ const DynamicPagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <nav className="flex justify-center items-center space-x-2 mt-8">
+    <nav className="flex justify-center items-center space-x-2 mt-8"   id='search'>
       <Button
         variant="outline"
         size="icon"

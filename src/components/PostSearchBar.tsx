@@ -48,7 +48,7 @@ export default function PostSearchBar({categories = [] , authors = []}: { catego
                 <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                         <Button variant="outline" className="w-full md:w-[200px] justify-start" >
-                            <UserPenIcon size={14} /> {author ? <>{author.label} </> : <>Tác giả</>}
+                            <UserPenIcon size={14} /> {author ? <>{author.label} </> : <span className='text-gray-400'>Tác giả</span>}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="p-0" side="bottom" align="start">
@@ -87,7 +87,7 @@ export default function PostSearchBar({categories = [] , authors = []}: { catego
                 <Popover open={openCate} onOpenChange={setOpenCate}>
                     <PopoverTrigger asChild>
                         <Button variant="outline" className="w-full md:w-[200px] justify-start" >
-                            <BookMarkedIcon size={14} />{cate ? <>{cate.label} </> : <> Danh mục</>}
+                            <BookMarkedIcon size={14} />{cate ? <>{cate.label} </> :  <span className='text-gray-400'> Danh mục</span>}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="p-0" side="bottom" align="start">

@@ -84,7 +84,7 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                         <h2 className="text-2xl font-semibold mb-6">Bài viết mới nhất</h2>
                         <div className='flex flex-col gap-6 md:max-h-[500px] overflow-y-auto'>
                             {latestPosts.map((post, index) => (
-                                <div className="p-1">
+                                <div className="p-1" key={post.id}>
                                     <Link href={`/article/${post.slug}`} key={post.id} className="group flex gap-2">
                                         <div
                                             className="relative shrink-0 grow-0 w-[80px] h-[80px] aspect-square mb-2 overflow-hidden rounded-md">

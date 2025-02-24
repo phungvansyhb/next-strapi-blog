@@ -18,7 +18,7 @@ export default function AppList({
         <section className="py-12 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-screen-lg">
                 {header && (
-                    <h2 className="text-3xl font-medium text-gray-900 dark:text-white mb-8 text-center">
+                    <h2 className="text-2xl font-semibold mb-6">
                         {header}
                     </h2>
                 )}

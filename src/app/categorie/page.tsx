@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import {Card, CardContent} from '@/components/ui/card';
 import {Badge} from '@/components/ui/badge';
 import NewsletterOptin from '@/components/NewsletterBox';
@@ -8,28 +7,23 @@ import {genSiteMetaData} from "@/constants/sitemetaData";
 import {getListCategory} from "@/service/categoryService";
 import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
 import {Category} from "@/lib/types";
-
+import LazyImage from "@/components/LazyImage";
 export const metadata: Metadata = genSiteMetaData('Danh mục')
 
-function RenderList({title, data}: { title: string, data: Category[] }) {
+function RenderList({type, data}: { type: 'app'|'post', data: Category[] }) {
     if (data.length === 0) return <></>
     return (
         <>
             <h3 className="text-lg font-semibold mb-4 dark:text-white ">
-                {title}
+                {type === 'app' ? "Danh mục ứng dụng" : "Danh mục bài viết"}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {data.map((category) => (
-                    <Link key={category.slug} href={`/danh-muc/${category.slug}`}>
+                    <Link key={category.slug} href={type === 'app' ? `/ung-dung?category=${category.slug}#search` : `/blog?category=${category.slug}#search`}>
                         <Card className="overflow-hidden border-none">
                             <div className="relative aspect-square">
-                                <Image
-                                    src={category.image}
-                                    alt={category.name}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    className="transition-transform duration-300 hover:scale-105"
-                                />
+                                <LazyImage src={category.image || '/404.png'} alt={category.name} objectFit='cover' className='aspect-square'  />
+
                                 <div
                                     className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 hover:bg-opacity-30"/>
                                 <CardContent
@@ -38,7 +32,7 @@ function RenderList({title, data}: { title: string, data: Category[] }) {
                                         {category.name}
                                     </h2>
                                     <Badge variant="secondary" className="bg-white text-black">
-                                        {category.count} {title.toLowerCase()}
+                                        {category.count} {type === 'app' ? ' ứng dụng' : ' bài viết'}
                                     </Badge>
                                 </CardContent>
                             </div>
@@ -66,9 +60,9 @@ export default async function CategoriesPage() {
                     cho
                     bạn một góc nhìn độc đáo về những chủ đề mà bạn đam mê.
                 </p>
-                <RenderList title={'Danh mục bài viết'} data={categoriesArt}/>
+                <RenderList type='post' data={categoriesArt}/>
                 <br/>
-                <RenderList title={'Danh mục ứng dụng'} data={categoriesApp}/>
+                <RenderList type='app' data={categoriesApp}/>
             </div>
             <NewsletterOptin/>
         </>

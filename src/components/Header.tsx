@@ -2,7 +2,15 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import {Calendar1Icon, ChevronDown, CircleDollarSign, Search} from 'lucide-react';
+import {
+    BackpackIcon,
+    Calendar1Icon,
+    ChevronDown,
+    CircleDollarSign,
+    CodesandboxIcon,
+    ComponentIcon,
+    Search
+} from 'lucide-react';
 import {useMediaQuery} from 'react-responsive';
 
 import {cn} from '@/lib/utils';
@@ -17,6 +25,7 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {usePathname} from "next/navigation";
+import {Link2Icon} from "@radix-ui/react-icons";
 
 const NavItems = React.forwardRef<
     HTMLDivElement,
@@ -77,7 +86,7 @@ NavItems.displayName = 'NavItems';
 export default function Header() {
     const [isOpen, setIsOpen] = React.useState(false);
     const isDesktop = useMediaQuery({query: '(min-width: 768px)'});
-    const linkClassName = 'text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2'
+    const linkClassName = 'inline-flex gap-1 items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2'
     React.useEffect(() => {
         if (isDesktop) {
             setIsOpen(false);
@@ -91,20 +100,23 @@ export default function Header() {
                     <div
                         className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
                         <Link
-                            href="/"
-                            className={linkClassName}
-                        >
-                            Trang chủ
-                        </Link>
-                        <Link
                             href="/ung-dung"
                             className={cn(linkClassName, {"font-bold underline":pathName === '/ung-dung'})}
                         >
-                            Phần mềm
+                            <CodesandboxIcon size={16}/> Phần mềm hữu ích
+                        </Link>
+                        <Link
+                            href="/khoa-hoc"
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/ung-dung'})}
+                        >
+                            <BackpackIcon size={16}/>
+                            Khoá học free
                         </Link>
                         <DropdownMenu>
                             <DropdownMenuTrigger>
-                                <div className={cn(linkClassName + " flex gap-2 items-center", {"font-bold underline":pathName === '/lich-am'}) }>Tiện ích <ChevronDown size={14}/></div>
+                                <div className={cn(linkClassName + " flex gap-2 items-center", {"font-bold underline":pathName === '/lich-am'}) }>
+                                    <Link2Icon /> Tiện ích <ChevronDown size={14}/>
+                                </div>
 
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className='w-56'>

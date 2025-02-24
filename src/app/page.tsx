@@ -8,8 +8,6 @@ import {appInfo, genSiteMetaData} from "@/constants/sitemetaData";
 export const metadata: Metadata = genSiteMetaData('Trang chủ')
 
 export default async function Home() {
-    const posts = await getListPost({})
-    const allPosts = convertRawPostsToPosts(posts.data)
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "WebPage",
@@ -64,7 +62,6 @@ export default async function Home() {
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd, null, 2)}}
             />
             <NewsletterOptin/>
-            <PostList posts={allPosts}/>
         </>
     );
 }
