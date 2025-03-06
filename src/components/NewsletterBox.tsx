@@ -1,16 +1,22 @@
 'use client'
-import {useActionState} from "react"
+import {useActionState, useRef} from "react"
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import {toast} from "@/hooks/use-toast"
 import {Loader2Icon} from "lucide-react";
 import {subcriberEmail} from "@/service/subcriber";
 import {ToastAction} from "@/components/ui/toast";
-
+import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 export default function NewsletterOption() {
+
+    const fireController = useRef<any>()
+
     const [state, dispatch, isPending] = useActionState<{email : string },FormData>(async(state, payload) => {
         const isSuccess = await subcriberEmail(payload.get('email') as string)
         if(isSuccess){
+            if(fireController.current){
+                fireController.current?.shoot()
+            }
             toast({
                 title:"Đăng ký thành công",
                 description : "Cảm ơn bạn, bạn sẽ nhận được thông báo khi có tin tức mới nhất",
@@ -26,7 +32,11 @@ export default function NewsletterOption() {
         }
         return state
     }, {email: ''})
-    
+
+
+    const onInitHandler = ({ conductor } : any) => {
+        fireController.current = conductor;
+    };
     return (
         <section className="max-w-screen-lg mx-auto">
             <div className="container mx-auto max-w-screen-lg px-4 py-8 lg:py-6 flex justify-center items-center">
@@ -48,8 +58,10 @@ export default function NewsletterOption() {
                             {isPending && <Loader2Icon className="animate-spin"/>}
                             Đăng ký
                         </Button>
+                        <Fireworks onInit={onInitHandler}/>
                     </form>
                 </div>
+
             </div>
         </section>
     )
