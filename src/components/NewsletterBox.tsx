@@ -1,6 +1,6 @@
 'use client'
 import {useActionState, useRef} from "react"
-import {Button} from "@/components/ui/button"
+import {Button} from "@/components/ui/moving-border"
 import {Input} from "@/components/ui/input"
 import {toast} from "@/hooks/use-toast"
 import {Loader2Icon} from "lucide-react";
@@ -38,11 +38,11 @@ export default function NewsletterOption() {
         fireController.current = conductor;
     };
     return (
-        <section className="max-w-screen-lg mx-auto">
+        <section className="max-w-screen-lg mx-auto z-10">
             <div className="container mx-auto max-w-screen-lg px-4 py-8 lg:py-6 flex justify-center items-center">
                 <div className="w-full max-w-xl text-center">
 
-                    <p className="mb-6 text-sm text-gray-600  dark:text-gray-400">
+                    <p className="mb-6 text-sm text-white font-bold">
                         Đăng ký nhận bản tin của chúng tôi để nhận các bài viết mới nhất qua email
                     </p>
                     <form action={dispatch}
@@ -52,9 +52,10 @@ export default function NewsletterOption() {
                             type="email"
                             placeholder="Email của bạn"
                             required
-                            className="w-full"
+                            className="w-full z-10 text-white"
                         />
-                        <Button type="submit" className="w-full sm:w-auto" disabled={isPending}>
+                        <Button type="submit"
+                                className="p-1 border-neutral-200  w-full sm:w-auto" disabled={isPending}>
                             {isPending && <Loader2Icon className="animate-spin"/>}
                             Đăng ký
                         </Button>

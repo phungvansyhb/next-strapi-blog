@@ -103,14 +103,14 @@ export default function Header() {
                             href="/ung-dung"
                             className={cn(linkClassName, {"font-bold underline":pathName === '/ung-dung'})}
                         >
-                            <CodesandboxIcon size={16}/> Phần mềm hữu ích
+                            <CodesandboxIcon size={16}/> Phần mềm
                         </Link>
                         <Link
                             href="/khoa-hoc"
                             className={cn(linkClassName, {"font-bold underline":pathName === '/ung-dung'})}
                         >
                             <BackpackIcon size={16}/>
-                            Khoá học free
+                            Khoá học
                         </Link>
                         <DropdownMenu>
                             <DropdownMenuTrigger>
