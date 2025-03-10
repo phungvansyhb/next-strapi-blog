@@ -1,5 +1,5 @@
 import xml2json from '@hendt/xml2json'
-import {PriceGold} from "@/service/rawTypes";
+import {PriceGold} from "@/typeDefs/rawTypes";
 import {GoogleGenerativeAI} from "@google/generative-ai";
 
 export async function getGoldPriceByDoji() : Promise<PriceGold>{

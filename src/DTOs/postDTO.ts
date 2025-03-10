@@ -1,4 +1,4 @@
-import {RawArticle, RawPost} from "@/service/rawTypes";
+import {RawArticle, RawPost} from "@/typeDefs/rawTypes";
 import {Article, Post} from "@/lib/types";
 import  readingTime from 'reading-time'
 

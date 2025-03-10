@@ -3,11 +3,11 @@ import ArticlePageContent from './Content';
 import {relatedPosts} from '@/constants/posts';
 import {Article, Category, Post} from '@/lib/types';
 import {getListCategory} from "@/service/categoryService";
-import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
+import {convertRawCategoriesToCategories} from "@/DTOs/categoryDTO";
 import {getDetailArticle, getListCommentBySlug} from "@/service/postService";
-import {convertRawArticleToArticle} from "@/service/postDTO";
+import {convertRawArticleToArticle} from "@/DTOs/postDTO";
 import {appInfo} from "@/constants/sitemetaData";
-import {Comment, Pagination, RawPost} from "@/service/rawTypes";
+import {Comment, Pagination, RawPost} from "@/typeDefs/rawTypes";
 
 type Props = {
     params: Promise<{ slug: string }>;

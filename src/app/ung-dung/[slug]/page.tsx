@@ -2,11 +2,11 @@ import {Metadata} from 'next';
 import appDetailPageContent from './Content';
 import {AppDetail, Category} from '@/lib/types';
 import {getListCategory} from "@/service/categoryService";
-import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
+import {convertRawCategoriesToCategories} from "@/DTOs/categoryDTO";
 import {appInfo} from "@/constants/sitemetaData";
-import {Comment, Pagination} from "@/service/rawTypes";
+import {Comment, Pagination} from "@/typeDefs/rawTypes";
 import {getDetailApp, getListAppCommentBySlug} from "@/service/appService";
-import {convertRawAppDetailToAppDetail} from "@/service/appDTO";
+import {convertRawAppDetailToAppDetail} from "@/DTOs/appDTO";
 import AppPage from "./Content";
 
 type Props = {

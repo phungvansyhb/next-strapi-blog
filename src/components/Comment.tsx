@@ -1,5 +1,5 @@
 import React from 'react';
-import {type Comment} from "@/service/rawTypes";
+import {type Comment} from "@/typeDefs/rawTypes";
 import {DateFormatUtil, Dayjs} from "@/lib/utils";
 
 type Props = {

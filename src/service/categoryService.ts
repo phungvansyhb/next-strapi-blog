@@ -1,4 +1,4 @@
-import {Pagination, RawCate, RawPost} from "@/service/rawTypes";
+import {Pagination, RawCate, RawPost} from "@/typeDefs/rawTypes";
 
 export async function getListCategory(): Promise<{data : RawCate[]}> {
     return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/api/summary-category',

@@ -4,6 +4,7 @@ export function genSiteMetaData(pageName : string): Metadata{
   return {
     metadataBase: new URL(appInfo.siteURL),
     title: pageName+ ` | ${appInfo.siteName}`,
+
     description: 'Website chuyên tin tức nổi bật, chia sẻ phần mềm hay, các tool tiện ích.\n Xem ngày, giờ hoàng đạo.\n Xem tỷ giá ngoại tệ, giá vàng',
     keywords: 'software, tiện ích, blog, xem ngày hoàng đạo',
     robots: 'index, follow',

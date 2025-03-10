@@ -5,21 +5,21 @@ import NewsletterOptin from '@/components/NewsletterBox';
 import {Metadata} from 'next';
 import {genSiteMetaData} from "@/constants/sitemetaData";
 import {getListCategory} from "@/service/categoryService";
-import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
+import {convertRawCategoriesToCategories} from "@/DTOs/categoryDTO";
 import {Category} from "@/lib/types";
 import LazyImage from "@/components/LazyImage";
 export const metadata: Metadata = genSiteMetaData('Danh mục')
 
-function RenderList({type, data}: { type: 'app'|'post', data: Category[] }) {
+function RenderList({type, data}: { type: 'app'|'course', data: Category[] }) {
     if (data.length === 0) return <></>
     return (
         <>
             <h3 className="text-lg font-semibold mb-4 dark:text-white ">
-                {type === 'app' ? "Danh mục ứng dụng" : "Danh mục bài viết"}
+                {type === 'app' ? "Danh mục ứng dụng" : "Danh mục khoá học"}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {data.map((category) => (
-                    <Link key={category.slug} href={type === 'app' ? `/ung-dung?category=${category.slug}#search` : `/blog?category=${category.slug}#search`}>
+                    <Link key={category.slug} href={type === 'app' ? `/ung-dung?category=${category.slug}#search` : `/khoa-hoc?category=${category.slug}#search`}>
                         <Card className="overflow-hidden border-none">
                             <div className="relative aspect-square">
                                 <LazyImage src={category.image || '/404.png'} alt={category.name} objectFit='cover' className='aspect-square'  />
@@ -32,7 +32,7 @@ function RenderList({type, data}: { type: 'app'|'post', data: Category[] }) {
                                         {category.name}
                                     </h2>
                                     <Badge variant="secondary" className="bg-white text-black">
-                                        {category.count} {type === 'app' ? ' ứng dụng' : ' bài viết'}
+                                        {category.count} {type === 'app' ? ' ứng dụng' : ' khoá học'}
                                     </Badge>
                                 </CardContent>
                             </div>
@@ -47,7 +47,7 @@ function RenderList({type, data}: { type: 'app'|'post', data: Category[] }) {
 
 export default async function CategoriesPage() {
     const categoriesRaw = await getListCategory()
-    const categoriesArt = convertRawCategoriesToCategories(categoriesRaw.data, 'article')
+    const categoriesCourse = convertRawCategoriesToCategories(categoriesRaw.data, 'course')
     const categoriesApp = convertRawCategoriesToCategories(categoriesRaw.data, 'app')
     return (
         <>
@@ -60,7 +60,7 @@ export default async function CategoriesPage() {
                     cho
                     bạn một góc nhìn độc đáo về những chủ đề mà bạn đam mê.
                 </p>
-                <RenderList type='post' data={categoriesArt}/>
+                <RenderList type='course' data={categoriesCourse}/>
                 <br/>
                 <RenderList type='app' data={categoriesApp}/>
             </div>

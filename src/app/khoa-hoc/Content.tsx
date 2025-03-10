@@ -2,36 +2,32 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import PostList from '@/components/PostList';
+import CourseList from '@/components/CourseList';
 import DynamicPagination from '@/components/Pagination';
-import {Author, Category, Post} from "@/lib/types";
+import { Category, Course} from "@/lib/types";
 import {Pagination} from "@/typeDefs/rawTypes";
-import {DateFormatUtil, Dayjs} from "@/lib/utils";
 import {useRouter} from "next/navigation";
 import {
     Carousel,
     CarouselContent,
     CarouselDot,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
 
 
 type Props = {
-    popularPosts: Post[],
-    latestPosts: Post[],
-    allPost: {
-        data: Post[],
+    popularCourses: Course[],
+    latestCourses: Course[],
+    allCourse: {
+        data: Course[],
         pagination: Pagination
     },
-    fetchAllPost: Function,
+    fetchAllCourse: Function,
     categories : Category[]
-    authors : Author[]
 }
 
-export default function Content({popularPosts, latestPosts, allPost, fetchAllPost, categories , authors}: Props) {
+export default function Content({popularCourses, latestCourses, allCourse, fetchAllCourse, categories }: Props) {
     const router = useRouter()
     return (
         <div >
@@ -48,21 +44,21 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                             }),
                         ]}>
                             <CarouselContent className="-ml-1">
-                                {popularPosts.map((post, index) => (
+                                {popularCourses.map((Course, index) => (
                                     <CarouselItem key={index} className="pl-1">
                                         <div className="p-1 w-full rounded-md">
-                                            <Link href={`/article/${post.slug}`} key={post.id}
+                                            <Link href={`/article/${Course.slug}`} key={Course.id}
                                                   className="flex flex-col group rounded-md">
                                                 <div className="relative w-full aspect-video md:aspect-video mb-4 overflow-hidden rounded-md ">
                                                     <Image
-                                                        src={post.imageUrl}
-                                                        alt={post.title}
+                                                        src={Course.imageUrl}
+                                                        alt={Course.title}
                                                         layout="fill"
                                                         objectFit="cover"
                                                         className="transition-transform duration-300 group-hover:scale-105 brightness-75"
                                                     />
                                                     <h3 className="absolute text-white text-medium font-semibold bottom-0 left-6 mb-4 backdrop-brightness-125">
-                                                        {post.title}
+                                                        {Course.title}
                                                     </h3>
                                                 </div>
 
@@ -83,14 +79,14 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                     <div >
                         <h2 className="text-2xl font-semibold mb-6">Bài viết mới nhất</h2>
                         <div className='flex flex-col gap-6 md:max-h-[500px] overflow-y-auto'>
-                            {latestPosts.map((post, index) => (
-                                <div className="p-1" key={post.id}>
-                                    <Link href={`/article/${post.slug}`} key={post.id} className="group flex gap-2">
+                            {latestCourses.map((Course, index) => (
+                                <div className="p-1" key={Course.id}>
+                                    <Link href={`/article/${Course.slug}`} key={Course.id} className="group flex gap-2">
                                         <div
                                             className="relative shrink-0 grow-0 w-[80px] h-[80px] aspect-square mb-2 overflow-hidden rounded-md">
                                             <Image
-                                                src={post.cover.fileUrl}
-                                                alt={post.title}
+                                                src={Course.cover.fileUrl}
+                                                alt={Course.title}
                                                 layout="fill"
                                                 objectFit="cover"
                                                 className="transition-transform duration-300 group-hover:scale-105"
@@ -98,12 +94,11 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                                         </div>
                                         <div className='flex flex-col justify-between'>
                                             <h3 className="text-xs font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">
-                                                {post.title}
+                                                {Course.title}
                                             </h3>
                                             <div
                                                 className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 my-2">
-                                                <span>#{post.category}</span>
-                                                <span>{post.readTime}</span>
+                                                <span>#{Course.category}</span>
                                             </div>
                                         </div>
 
@@ -116,14 +111,14 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
             </div>
 
             <section>
-                <PostList posts={allPost.data} authors={authors} categories={categories}
-                          header={'Tất cả các bài viết'}/>
+                <CourseList courses={allCourse.data} categories={categories}
+                          header={'Tất cả các khóa học'}/>
                 <DynamicPagination
-                    currentPage={allPost.pagination.page}
-                    totalPages={allPost.pagination.pageCount}
+                    currentPage={allCourse.pagination.page}
+                    totalPages={allCourse.pagination.pageCount}
                     onPageChange={(page) => {
-                        router.push(`/blog?page=${page}`)
-                        fetchAllPost()
+                        router.push(`/khoa-hoc?page=${page}`)
+                        fetchAllCourse()
                     }}
                 />
             </section>

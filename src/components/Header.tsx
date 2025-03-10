@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import {
-    BackpackIcon,
+    BackpackIcon, BookCheckIcon,
     Calendar1Icon,
     ChevronDown,
     CircleDollarSign,
@@ -68,13 +68,13 @@ const NavItems = React.forwardRef<
             </Link>
             <Link
                 href="/categorie"
-                className={cn(linkClassName, { "font-bold":pathName === '/categorie' })}
+                className={cn(linkClassName, { "font-bold":pathName === '/danh-muc' })}
             >
                 Categories
             </Link>
             <Link
                 href="/search"
-                className={cn(linkClassName, { "font-bold":pathName === '/search' })}
+                className={cn(linkClassName, { "font-bold":pathName === '/tim-kiem' })}
             >
                 Tìm kiếm
             </Link>
@@ -112,38 +112,7 @@ export default function Header() {
                             <BackpackIcon size={16}/>
                             Khoá học
                         </Link>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger>
-                                <div className={cn(linkClassName + " flex gap-2 items-center", {"font-bold underline":pathName === '/lich-am'}) }>
-                                    <Link2Icon /> Tiện ích <ChevronDown size={14}/>
-                                </div>
 
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className='w-56'>
-                                <DropdownMenuLabel>Cập nhật hàng ngày</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>
-                                    <Calendar1Icon/>
-                                    <Link
-                                        href="/lich-am"
-
-                                    >
-                                        Xem lịch âm
-                                    </Link>
-                                </DropdownMenuItem>
-
-                                {/*<DropdownMenuItem>*/}
-                                {/*    <CircleDollarSign/>*/}
-                                {/*    <Link*/}
-                                {/*        href="/gia-vang"*/}
-
-                                {/*    >*/}
-                                {/*        Giá vàng hôm nay*/}
-                                {/*    </Link>*/}
-                                {/*</DropdownMenuItem>*/}
-
-                            </DropdownMenuContent>
-                        </DropdownMenu>
 
                     </div>
                     <div className="flex w-full items-center justify-between md:w-auto">
@@ -189,23 +158,49 @@ export default function Header() {
                     <div
                         className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
                         <Link
-                            href="/blog"
-                            className={cn(linkClassName, {"font-bold underline":pathName === '/blog'})}
+                            href="/danh-muc"
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/danh-muc'})}
                         >
-                            Blog
+                            <BookCheckIcon size={15}/> Categories
                         </Link>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <div className={cn(linkClassName + " flex gap-2 items-center", {"font-bold underline":pathName === '/lich-am'}) }>
+                                    <Link2Icon /> Tiện ích <ChevronDown size={14}/>
+                                </div>
+
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className='w-56'>
+                                <DropdownMenuLabel>Cập nhật hàng ngày</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Calendar1Icon/>
+                                    <Link
+                                        href="/lich-am"
+
+                                    >
+                                        Xem lịch âm
+                                    </Link>
+                                </DropdownMenuItem>
+
+                                {/*<DropdownMenuItem>*/}
+                                {/*    <CircleDollarSign/>*/}
+                                {/*    <Link*/}
+                                {/*        href="/gia-vang"*/}
+
+                                {/*    >*/}
+                                {/*        Giá vàng hôm nay*/}
+                                {/*    </Link>*/}
+                                {/*</DropdownMenuItem>*/}
+
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                         <Link
-                            href="/categorie"
-                            className={cn(linkClassName, {"font-bold underline":pathName === '/categorie'})}
-                        >
-                            Categories
-                        </Link>
-                        <Link
-                            href="/search"
-                            className={cn(linkClassName + " flex items-center gap-1", {"font-bold underline":pathName === '/search'})}
+                            href="/tim-kiem"
+                            className={cn(linkClassName + " flex items-center gap-1", {"font-bold underline":pathName === '/tim-kiem'})}
                         >
                               <span>
-                                <Search className="h-4 w-4"/>
+                                <Search size={15}/>
                               </span>
                             Tìm kiếm
                         </Link>

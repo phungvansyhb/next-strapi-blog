@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import DynamicPagination from '@/components/Pagination';
 import {App, Author, Category} from "@/lib/types";
-import {Pagination} from "@/service/rawTypes";
+import {Pagination} from "@/typeDefs/rawTypes";
 import {useRouter} from "next/navigation";
 import AppList from "@/components/AppList";
 

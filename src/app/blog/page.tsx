@@ -2,12 +2,12 @@ import NewsletterOptin from '@/components/NewsletterBox';
 import Content from './Content';
 import {Author, Category, PageProps, Post} from "@/lib/types";
 import {getListLatestPost, getListPopularPost, getListPost} from "@/service/postService";
-import {convertRawPostsToPosts} from "@/service/postDTO";
-import {Pagination} from "@/service/rawTypes";
+import {convertRawPostsToPosts} from "@/DTOs/postDTO";
+import {Pagination} from "@/typeDefs/rawTypes";
 import {Metadata} from "next";
 import {genSiteMetaData} from "@/constants/sitemetaData";
 import {getListCategory} from "@/service/categoryService";
-import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
+import {convertRawCategoriesToCategories} from "@/DTOs/categoryDTO";
 import {getListAuthor} from "@/service/postService";
 
 export const metadata: Metadata = genSiteMetaData('blog')

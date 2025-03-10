@@ -1,4 +1,4 @@
-import {Pagination, RawArticle, RawPost, Comment, RawAuthor} from "@/typeDefs/rawTypes";
+import {Pagination, RawCourse, Comment} from "@/typeDefs/rawTypes";
 import qs from 'qs';
 
 const API_URL = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -25,7 +25,7 @@ const fetchApi = async (url: string, options: any = {}) => {
     }
 };
 
-export async function getListPost({
+export async function getListCourse({
                                       title,
                                       author,
                                       category,
@@ -33,30 +33,23 @@ export async function getListPost({
     title?: string;
     author?: string;
     category?: string;
-}): Promise<{ data: RawPost[]; meta: { pagination: Pagination } }> {
+}): Promise<{ data: RawCourse[]; meta: { pagination: Pagination } }> {
     const query = qs.stringify({
-        populate: ['cover', 'category', 'author', 'author.avatar'],
-        select: ['documentId', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        populate: ['cover', 'category'],
+        select: ['documentId', 'name','description', 'slug', 'publishedAt'],
         filters: {
             name: title ? { $contains: title } : undefined,
-            author: author ? { name: { $contains: author } } : undefined,
             category: category ? { slug: { $contains: category } } : undefined,
         },
     });
-    return fetchApi('/api/articles?'+ query );
+    return fetchApi('/api/courses?'+ query );
 }
 
-export async function getDetailArticle(slug: string): Promise<RawArticle> {
+export async function getDetailArticle(slug: string): Promise<RawCourse> {
     const query = qs.stringify({
         populate: {
-            author: {
-                populate: 'avatar'
-            },
             category: {
                 populate: 'cover'
-            },
-            related_article: {
-                populate: '*'
             },
             comment: {
                 populate: '*'
@@ -81,13 +74,13 @@ export async function getDetailArticle(slug: string): Promise<RawArticle> {
             }
         }
     });
-    return fetchApi('/api/find-art-by-slug?'+  query );
+    return fetchApi('/api/find-course-by-slug?'+  query );
 }
 
-export async function getListLatestPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
+export async function getListLatestCourse(): Promise<{ data: RawCourse[], meta: { pagination: Pagination } }> {
     const query = qs.stringify({
-        populate: ['cover', 'category', 'author', 'author.avatar'],
-        select: ['id', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        populate: ['cover', 'category'],
+        select: ['id', 'name','description', 'slug', 'publishedAt'],
         sort: {
             publishedAt: 'desc'
         },
@@ -95,13 +88,13 @@ export async function getListLatestPost(): Promise<{ data: RawPost[], meta: { pa
             limit: 4
         }
     });
-    return fetchApi('/api/articles?'+  query );
+    return fetchApi('/api/courses?'+  query );
 }
 
-export async function getListPopularPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
+export async function getListPopularCourse(): Promise<{ data: RawCourse[], meta: { pagination: Pagination } }> {
     const query = qs.stringify({
-        populate: ['cover', 'category', 'author', 'author.avatar'],
-        select: ['id', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        populate: ['cover', 'category'],
+        select: ['id', 'name','description', 'slug', 'publishedAt'],
         sort: {
             viewCount: 'desc'
         },
@@ -109,7 +102,7 @@ export async function getListPopularPost(): Promise<{ data: RawPost[], meta: { p
             limit: 4
         }
     });
-    return fetchApi('/api/articles?'+ query );
+    return fetchApi('/api/courses?'+ query );
 }
 
 export type CreateComment = {
@@ -146,11 +139,7 @@ export async function getListCommentBySlug(slug: string): Promise<{
 
 export async function createComment(data: CreateComment) {
     return fetchApi('/api/comments', {
-        method: 'POST',
+        method: 'Post',
         body: JSON.stringify({ data }),
     });
-}
-
-export async function getListAuthor(): Promise<{ data: RawAuthor[], meta: { pagination: Pagination } }> {
-    return fetchApi('/api/authors');
 }

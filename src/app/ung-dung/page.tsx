@@ -1,16 +1,16 @@
 import NewsletterOptin from '@/components/NewsletterBox';
 import Content from './Content';
 import {App, Author, Category, PageProps} from "@/lib/types";
-import {Pagination} from "@/service/rawTypes";
+import {Pagination} from "@/typeDefs/rawTypes";
 import {Metadata} from "next";
 import {genSiteMetaData} from "@/constants/sitemetaData";
 import {getListApps, getListLatestApp, getListPopularApp} from "@/service/appService";
-import {convertRawAppsToApps} from "@/service/appDTO";
+import {convertRawAppsToApps} from "@/DTOs/appDTO";
 import {getListCategory} from "@/service/categoryService";
-import {convertRawCategoriesToCategories} from "@/service/categoryDTO";
+import {convertRawCategoriesToCategories} from "@/DTOs/categoryDTO";
 import {getListAuthor} from "@/service/postService";
 
-export const metadata: Metadata = genSiteMetaData('blog')
+export const metadata: Metadata = genSiteMetaData('Ứng dụng')
 
 /*TODO : fetch pagination*/
 async function fetchApp({title , author , category}:{title? : string, author?:string , category? : string}): Promise<{data : App[] , pagination : Pagination}> {

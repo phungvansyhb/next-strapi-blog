@@ -10,17 +10,8 @@ import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import qs from 'qs'
 type Options = { value: string, label: string }
 
-// const authors = [
-//     {label: 'Phùng Văn Sỹ', value: '1'},
-//     {label: 'Nguyễn Mai trang', value: '2'}
-// ]
-//
-// const categories = [
-//     {label: 'bài viết ẩm thực', value: 'bai-viet-am-thuc'},
-//     {label: 'bài viết văn hóa', value: 'bai-viet-van-hoa'}
-// ]
 
-export default function PostSearchBar({categories = [] , authors = []}: { categories: Options[], authors: Options[] }) {
+export default function PostSearchBar({categories = [] , authors = [] , removeAuthor = false}: {removeAuthor? : boolean , categories: Options[], authors?: Options[] }) {
     const searchParams = useSearchParams()
 
     const [title, setTitle] = useState(searchParams.get('title')||'')
@@ -45,7 +36,7 @@ export default function PostSearchBar({categories = [] , authors = []}: { catego
             <div className='flex-grow flex flex-wrap gap-4 items-end'>
                 <h3 className='text-slate-400 hidden lg:block'>Tìm kiếm</h3>
                 <Input className='w-full md:w-[200px]' placeholder='Tìm theo tên bài viết' defaultValue={title} onChange={e=>setTitle(e.target.value) } />
-                <Popover open={open} onOpenChange={setOpen}>
+                {!removeAuthor && <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                         <Button variant="outline" className="w-full md:w-[200px] justify-start" >
                             <UserPenIcon size={14} /> {author ? <>{author.label} </> : <span className='text-gray-400'>Tác giả</span>}
@@ -83,7 +74,7 @@ export default function PostSearchBar({categories = [] , authors = []}: { catego
                             </CommandList>
                         </Command>
                     </PopoverContent>
-                </Popover>
+                </Popover>}
                 <Popover open={openCate} onOpenChange={setOpenCate}>
                     <PopoverTrigger asChild>
                         <Button variant="outline" className="w-full md:w-[200px] justify-start" >

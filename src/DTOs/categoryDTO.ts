@@ -1,5 +1,5 @@
 import {Category} from "@/lib/types";
-import {RawCate} from "@/service/rawTypes";
+import {RawCate} from "@/typeDefs/rawTypes";
 
 export function convertRawCategoryToCategory(rawCate: RawCate): Category {
     if (!rawCate) throw Error("require parameter type RawCate")
@@ -11,7 +11,7 @@ export function convertRawCategoryToCategory(rawCate: RawCate): Category {
     }
 }
 
-export function convertRawCategoriesToCategories(rawCaties: RawCate[], type: 'article' | 'app'): Category[] {
+export function convertRawCategoriesToCategories(rawCaties: RawCate[], type: 'article' | 'app'|'course'): Category[] {
     if (!rawCaties) return []
     return rawCaties.filter(item => item.type === type).map(item => convertRawCategoryToCategory(item))
 }

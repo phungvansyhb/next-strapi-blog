@@ -1,4 +1,4 @@
-import {Comment, Pagination, RawAppDetail, RawPost} from "@/service/rawTypes";
+import {Comment, Pagination, RawAppDetail, RawPost} from "@/typeDefs/rawTypes";
 import qs from 'qs';
 
 const API_URL = process.env.NEXT_PUBLIC_SERVER_URL;

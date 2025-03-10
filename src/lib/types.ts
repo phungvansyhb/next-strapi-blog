@@ -1,4 +1,4 @@
-import { Comment, SEO} from "@/service/rawTypes";
+import { Comment, SEO} from "@/typeDefs/rawTypes";
 
 export interface Author {
   name: string;
@@ -92,6 +92,36 @@ export interface Article {
   viewCount : number
 }
 
+
+export interface Course {
+  id : number;
+  title: string;
+  slug : string ;
+  description: string;
+  category: string;
+  author: string;
+  cover : Media;
+  imageUrl: string;
+  createdAt : string;
+  modifiedAt : string;
+  // outline: string;
+  // seo : SEO
+}
+
+export interface CourseDetail {
+  id : number;
+  title: string;
+  slug : string ;
+  description: string;
+  category: string;
+  author: string;
+  cover : Media;
+  imageUrl: string;
+  createdAt : string;
+  modifiedAt : string;
+  outline: string;
+  seo : SEO
+}
 export type PageProps = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

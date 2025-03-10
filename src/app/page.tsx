@@ -49,7 +49,7 @@ export default async function Home() {
                     "@type": "ListItem",
                     "position": 3,
                     "name": "Category",
-                    "item": appInfo.siteURL + '/categorie'
+                    "item": appInfo.siteURL + '/danh-muc'
                 },
 
             ]

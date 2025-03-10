@@ -16,7 +16,7 @@ import rehypeRaw from "rehype-raw";
 import {DateFormatUtil, Dayjs} from "@/lib/utils";
 import Comment from "@/components/Comment";
 import CreateCommentForm from "@/components/CreateCommentForm";
-import {Pagination} from "@/service/rawTypes";
+import {Pagination} from "@/typeDefs/rawTypes";
 import DynamicPagination from "@/components/Pagination";
 import {
     FacebookIcon,
