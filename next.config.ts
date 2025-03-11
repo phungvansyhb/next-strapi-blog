@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
       },
       {
+        protocol: 'http',
+        hostname: '47.84.42.206:1337',
+      },
+      {
         protocol: 'https',
         hostname: 'cdn.pixabay.com',
       },
