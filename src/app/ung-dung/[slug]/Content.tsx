@@ -63,7 +63,7 @@ export default function AppPage({
                             alt={appDetail.title}
                             layout="fill"
                             objectFit="cover"
-                            className="brightness-50 object-center"
+                            className="brightness-50 object-center object-scale-down"
                         />
                     </div>
                     <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 max-w-screen-lg mx-auto">

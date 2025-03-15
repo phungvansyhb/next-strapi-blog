@@ -107,7 +107,7 @@ export default function Header() {
                         </Link>
                         <Link
                             href="/khoa-hoc"
-                            className={cn(linkClassName, {"font-bold underline":pathName === '/ung-dung'})}
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/khoa-hoc'})}
                         >
                             <BackpackIcon size={16}/>
                             Khoá học
