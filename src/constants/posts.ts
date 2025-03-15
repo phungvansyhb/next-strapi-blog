@@ -104,34 +104,25 @@ export const popularPosts: Post[] = [
     slug: 'artcle-1',
     id: 1,
     title: "L'impact de l'IA sur l'avenir du travail",
-    excerpt:
-      "Explorez comment l'intelligence artificielle transforme les industries et redéfinit les compétences nécessaires pour le futur marché de l'emploi.",
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2019/08/17/16/11/art-4412523_1280.jpg',
+    imageUrl: 'https://cdn.pixabay.com/photo/2019/08/17/16/11/art-4412523_1280.jpg',
     date: '15 Mai 2024',
     category: 'Technologie',
     author: {
       name: 'Marie Curie',
       avatar: 'https://i.pravatar.cc/150?img=5',
+      altText: ''
     },
     readTime: '8 min',
-  },
-  {
-    slug: 'artcle-2',
-    id: 2,
-    title: "Le minimalisme : plus qu'un style de vie",
-    excerpt:
-      "Découvrez comment le minimalisme peut transformer votre espace de vie et votre état d'esprit, menant à une vie plus épanouie et moins stressante.",
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2021/08/11/16/06/mountain-6538890_1280.jpg',
-    date: '20 Mai 2024',
-    category: 'Style de vie',
-    author: {
-      name: 'Jean Dupont',
-      avatar: 'https://i.pravatar.cc/150?img=8',
+    description: '',
+    cover: {
+      altText : '',
+      fileUrl : '',
+      height : 120,
+      width : 120
     },
-    readTime: '6 min',
-  },
+    createdAt: '',
+    modifiedAt: ''
+  }
 ];
 
 export const recentPosts: Post[] = [
@@ -139,64 +130,38 @@ export const recentPosts: Post[] = [
     slug: 'artcle-3',
     id: 3,
     title: "La révolution de l'énergie solaire",
-    excerpt:
-      "Comment les dernières avancées en matière de panneaux solaires transforment notre approche de l'énergie renouvelable.",
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2023/06/22/17/32/park-8081967_1280.jpg',
+
+    imageUrl: 'https://cdn.pixabay.com/photo/2023/06/22/17/32/park-8081967_1280.jpg',
     date: '1 Juin 2024',
     category: 'Environnement',
     author: {
       name: 'Sophia Green',
       avatar: 'https://i.pravatar.cc/150?img=9',
+      altText: ''
     },
     readTime: '7 min',
-  },
-  {
-    slug: 'artcle-4',
-    id: 4,
-    title: "L'art de la méditation en pleine conscience",
-    excerpt:
-      'Apprenez les techniques de base pour intégrer la méditation dans votre routine quotidienne et améliorer votre bien-être mental.',
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2018/01/28/13/24/portrait-3113651_1280.jpg',
-    date: '5 Juin 2024',
-    category: 'Bien-être',
-    author: {
-      name: 'Alex Zen',
-      avatar: 'https://i.pravatar.cc/150?img=12',
+    description: '',
+    cover: {
+      altText : '',
+      fileUrl : '',
+      height : 120,
+      width : 120
     },
-    readTime: '5 min',
+    createdAt: '',
+    modifiedAt: ''
   },
-  {
-    slug: 'artcle-5',
-    id: 5,
-    title: 'Les secrets de la cuisine moléculaire',
-    excerpt:
-      "Plongez dans le monde fascinant de la cuisine moléculaire et découvrez comment la science transforme l'art culinaire.",
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2024/08/08/10/50/abstract-8954170_1280.jpg',
-    date: '10 Juin 2024',
-    category: 'Gastronomie',
-    author: {
-      name: 'Chef Étoile',
-      avatar: 'https://i.pravatar.cc/150?img=20',
-    },
-    readTime: '9 min',
-  },
+
 ];
 
-export const article: Article = {
+export const article = {
   title: "L'impact de l'IA sur l'avenir du travail",
   date: '15 Mai 2024',
   readTime: '8 min',
   category: 'Technologie',
   author: {
     name: 'Marie Curie',
-    position: 'Chercheuse en IA',
     avatar: 'https://i.pravatar.cc/300?img=1',
-    twitter: 'https://twitter.com/mariecurie',
-    linkedin: 'https://linkedin.com/in/mariecurie',
-    github: 'https://github.com/mariecurie',
+    altText : ''
   },
   imageUrl:
     'https://cdn.pixabay.com/photo/2016/05/05/11/22/computer-1373684_1280.jpg',
@@ -261,51 +226,27 @@ export const relatedPosts: Post[] = [
   {
     id: 1,
     title: "Le futur de l'apprentissage automatique",
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2024/07/08/21/06/ai-generated-8882067_1280.jpg',
+    imageUrl: 'https://cdn.pixabay.com/photo/2024/07/08/21/06/ai-generated-8882067_1280.jpg',
     category: 'Technologie',
     date: '15 Mai 2024',
     author: {
       name: 'Marie Curie',
       avatar: 'https://i.pravatar.cc/150?img=5',
+      altText: ''
     },
     readTime: '8 min',
     slug: 'article-1',
-    excerpt:
-      "Découvrez comment le minimalisme peut transformer votre espace de vie et votre état d'esprit, menant à une vie plus épanouie et moins stressante.",
-  },
-  {
-    id: 2,
-    title: 'Éthique et IA : les enjeux à venir',
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2023/08/16/10/21/ai-generated-8193804_1280.jpg',
-    category: 'Société',
-    date: '15 Mai 2024',
-    author: {
-      name: 'Marie Curie',
-      avatar: 'https://i.pravatar.cc/150?img=5',
+    description: '',
+    cover: {
+      altText : '',
+      fileUrl : '',
+      height : 120,
+      width : 120
     },
-    readTime: '8 min',
-    slug: 'article-2',
-    excerpt:
-      "Découvrez comment le minimalisme peut transformer votre espace de vie et votre état d'esprit, menant à une vie plus épanouie et moins stressante.",
+    createdAt: '',
+    modifiedAt: ''
   },
-  {
-    id: 3,
-    title: "L'IA dans la santé : révolution médicale",
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2016/01/13/21/24/abstract-1138967_1280.jpg',
-    category: 'Santé',
-    date: '15 Mai 2024',
-    author: {
-      name: 'Marie Curie',
-      avatar: 'https://i.pravatar.cc/150?img=5',
-    },
-    readTime: '8 min',
-    slug: 'article-3',
-    excerpt:
-      "Découvrez comment le minimalisme peut transformer votre espace de vie et votre état d'esprit, menant à une vie plus épanouie et moins stressante.",
-  },
+
 ];
 
 export const categories: Category[] = [
