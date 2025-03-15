@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { allPosts } from '@/constants/posts';
 import SearchPageContent from './Content';
 import type { Metadata } from 'next';
 import {genSiteMetaData} from "@/constants/sitemetaData";
@@ -24,19 +23,11 @@ export default async function SearchPage({
 }) {
   const { q: query } = await searchParams;
 
-  const initialResults = query
-    ? allPosts.filter(
-        (post) =>
-          post.title.toLowerCase().includes((query as string).toLowerCase()) ||
-          post.excerpt.toLowerCase().includes((query as string).toLowerCase())
-      )
-    : [];
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <SearchPageContent
         initialQuery={query as string}
-        initialResults={initialResults}
+        initialResults={[]}
       />
     </Suspense>
   );

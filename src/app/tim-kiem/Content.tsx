@@ -8,7 +8,6 @@ import { Search } from 'lucide-react';
 import PostCard from '@/components/PostCard';
 import { Post } from '@/lib/types';
 import DynamicPagination from '@/components/Pagination';
-import { allPosts } from '@/constants/posts';
 
 interface SearchPageContentProps {
   initialQuery: string;
@@ -33,12 +32,7 @@ export default function SearchPageContent({
   }, [searchParams]);
 
   const performSearch = (term: string) => {
-    const results = allPosts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(term.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(term.toLowerCase())
-    );
-    setSearchResults(results);
+
   };
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
