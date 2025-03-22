@@ -40,7 +40,8 @@ async function fetchAuthors(): Promise<Author[]> {
         id: c.id,
         name: c.attributes.name,
         avatar: '',
-        altText: ''
+        altText: '',
+        description : ''
 
     }))
 }

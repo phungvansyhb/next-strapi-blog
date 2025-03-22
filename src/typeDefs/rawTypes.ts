@@ -105,6 +105,7 @@ const rawPostData = {
                     "createdAt": "2025-02-11T07:00:46.658Z",
                     "updatedAt": "2025-02-11T07:00:49.601Z",
                     "publishedAt": "2025-02-11T07:00:49.597Z",
+                    "description": "description",
                     "avatar": {
                         "data": {
                             "id": 4,
@@ -768,6 +769,7 @@ const rawArticle = {
         "id": 1,
         "name": "Phùng Văn Sỹ",
         "email": "phungvansyhb@gmail.com",
+        "description":"description",
         "createdAt": "2025-02-11T07:00:46.658Z",
         "updatedAt": "2025-02-12T03:19:21.527Z",
         "publishedAt": "2025-02-11T07:00:49.597Z",
@@ -1054,7 +1056,7 @@ const rawArticle = {
             "metaViewport": "width=device-width, initial-scale=1.0",
             "canonicalURL": "currentURL"
         }, {
-            "__type": "api::article.article",
+            "__type": "api::bai-viet.bai-viet",
             "id": 2,
             "name": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
             "content": "<p>&nbsp; Lễ hội Vật truyền thống đình làng thôn Quảng Yên là nét văn hóa phi vật thể của xã Phượng Sơn để gắn kết cộng đồng, tạo dựng không gian văn hoá trang trọng, tưng bừng, náo nhiệt. Lễ hội trở thành nơi Nhân dân trở về cội nguồn dân tộc, tưởng nhớ công ơn những người đi trước, cầu mong những điều tốt lành, bình an đến với mỗi người. Đây là một lễ hội dân gian truyền thống có từ lâu đời. Được diễn ra từ ngày 9 đến ngày 11 tháng Giêng hàng năm, thu hút các cụ bô lão, thanh niên trai tráng và các cháu nhi đồng trong và ngoài địa phương tham gia.</p><h2>Kết bài</h2><p>Sau keo vật thờ, các keo vật của lễ hội chính thức diễn ra. Tại lễ hội Vật truyền thống đình làng Quảng Yên năm nay dự kiến đón hơn 200 đô vật đến từ các câu lạc bộ trong huyện, các huyện bạn và các tỉnh thành như : Bắc Giang, Bắc Ninh, các câu lạc bộ Quân đội, Công an…</p><p>&nbsp; &nbsp; Theo thể thức thi đấu, các đô vật đến đăng ký tham gia Hội vật đều phải thi đấu từ các giải lèo thường, sau khi dành phần thắng mới được vào thi đấu các đầu lèo giải, sau đó tiến hành giữ và phá các đầu lèo. Khi thắng các đầu lèo, đô vật có quyền thi đấu giữ và phá các giải Nhất, Nhì, Ba.</p><p>&nbsp; &nbsp; Kết thúc giải, ban tổ chức sẽ trao giải nhất, nhì, ba dành cho nam, 1 giải dành cho nữ và 2 giải thiếu niên. Trong đó có 1 giải thiếu niên và giải Ba dành riêng cho các đô vận người thôn Quảng Yên. Dự kiến phần thưởng của giải nhất là 20.000.000 đồng.</p><p>&nbsp; &nbsp; Hội vật truyền thống làng Quảng Yên được tổ chức vào dịp đầu Xuân nhằm gìn giữ, phát huy những giá trị văn hóa truyền thống tốt đẹp; đồng thời phát hiện, bồi dưỡng tài năng cho bộ môn vật của huyện. Thông qua lễ hội thể hiện tinh thần thượng võ và là hình thức cổ vũ tinh thần, rèn luyện sức khỏe để xây dựng, bảo vệ quê hương, đất nước.</p>",
@@ -1496,7 +1498,7 @@ const rawAppDetail = {
             "metaViewport": "width=device-width, initial-scale=1.0",
             "canonicalURL": "currentURL"
         }, {
-            "__type": "api::article.article",
+            "__type": "api::bai-viet.bai-viet",
             "id": 2,
             "name": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
             "content": "<p>&nbsp; Lễ hội Vật truyền thống đình làng thôn Quảng Yên là nét văn hóa phi vật thể của xã Phượng Sơn để gắn kết cộng đồng, tạo dựng không gian văn hoá trang trọng, tưng bừng, náo nhiệt. Lễ hội trở thành nơi Nhân dân trở về cội nguồn dân tộc, tưởng nhớ công ơn những người đi trước, cầu mong những điều tốt lành, bình an đến với mỗi người. Đây là một lễ hội dân gian truyền thống có từ lâu đời. Được diễn ra từ ngày 9 đến ngày 11 tháng Giêng hàng năm, thu hút các cụ bô lão, thanh niên trai tráng và các cháu nhi đồng trong và ngoài địa phương tham gia.</p><h2>Kết bài</h2><p>Sau keo vật thờ, các keo vật của lễ hội chính thức diễn ra. Tại lễ hội Vật truyền thống đình làng Quảng Yên năm nay dự kiến đón hơn 200 đô vật đến từ các câu lạc bộ trong huyện, các huyện bạn và các tỉnh thành như : Bắc Giang, Bắc Ninh, các câu lạc bộ Quân đội, Công an…</p><p>&nbsp; &nbsp; Theo thể thức thi đấu, các đô vật đến đăng ký tham gia Hội vật đều phải thi đấu từ các giải lèo thường, sau khi dành phần thắng mới được vào thi đấu các đầu lèo giải, sau đó tiến hành giữ và phá các đầu lèo. Khi thắng các đầu lèo, đô vật có quyền thi đấu giữ và phá các giải Nhất, Nhì, Ba.</p><p>&nbsp; &nbsp; Kết thúc giải, ban tổ chức sẽ trao giải nhất, nhì, ba dành cho nam, 1 giải dành cho nữ và 2 giải thiếu niên. Trong đó có 1 giải thiếu niên và giải Ba dành riêng cho các đô vận người thôn Quảng Yên. Dự kiến phần thưởng của giải nhất là 20.000.000 đồng.</p><p>&nbsp; &nbsp; Hội vật truyền thống làng Quảng Yên được tổ chức vào dịp đầu Xuân nhằm gìn giữ, phát huy những giá trị văn hóa truyền thống tốt đẹp; đồng thời phát hiện, bồi dưỡng tài năng cho bộ môn vật của huyện. Thông qua lễ hội thể hiện tinh thần thượng võ và là hình thức cổ vũ tinh thần, rèn luyện sức khỏe để xây dựng, bảo vệ quê hương, đất nước.</p>",
@@ -1938,7 +1940,7 @@ const rawCourseDetail = {
             "metaViewport": "width=device-width, initial-scale=1.0",
             "canonicalURL": "currentURL"
         }, {
-            "__type": "api::article.article",
+            "__type": "api::bai-viet.bai-viet",
             "id": 2,
             "name": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
             "content": "<p>&nbsp; Lễ hội Vật truyền thống đình làng thôn Quảng Yên là nét văn hóa phi vật thể của xã Phượng Sơn để gắn kết cộng đồng, tạo dựng không gian văn hoá trang trọng, tưng bừng, náo nhiệt. Lễ hội trở thành nơi Nhân dân trở về cội nguồn dân tộc, tưởng nhớ công ơn những người đi trước, cầu mong những điều tốt lành, bình an đến với mỗi người. Đây là một lễ hội dân gian truyền thống có từ lâu đời. Được diễn ra từ ngày 9 đến ngày 11 tháng Giêng hàng năm, thu hút các cụ bô lão, thanh niên trai tráng và các cháu nhi đồng trong và ngoài địa phương tham gia.</p><h2>Kết bài</h2><p>Sau keo vật thờ, các keo vật của lễ hội chính thức diễn ra. Tại lễ hội Vật truyền thống đình làng Quảng Yên năm nay dự kiến đón hơn 200 đô vật đến từ các câu lạc bộ trong huyện, các huyện bạn và các tỉnh thành như : Bắc Giang, Bắc Ninh, các câu lạc bộ Quân đội, Công an…</p><p>&nbsp; &nbsp; Theo thể thức thi đấu, các đô vật đến đăng ký tham gia Hội vật đều phải thi đấu từ các giải lèo thường, sau khi dành phần thắng mới được vào thi đấu các đầu lèo giải, sau đó tiến hành giữ và phá các đầu lèo. Khi thắng các đầu lèo, đô vật có quyền thi đấu giữ và phá các giải Nhất, Nhì, Ba.</p><p>&nbsp; &nbsp; Kết thúc giải, ban tổ chức sẽ trao giải nhất, nhì, ba dành cho nam, 1 giải dành cho nữ và 2 giải thiếu niên. Trong đó có 1 giải thiếu niên và giải Ba dành riêng cho các đô vận người thôn Quảng Yên. Dự kiến phần thưởng của giải nhất là 20.000.000 đồng.</p><p>&nbsp; &nbsp; Hội vật truyền thống làng Quảng Yên được tổ chức vào dịp đầu Xuân nhằm gìn giữ, phát huy những giá trị văn hóa truyền thống tốt đẹp; đồng thời phát hiện, bồi dưỡng tài năng cho bộ môn vật của huyện. Thông qua lễ hội thể hiện tinh thần thượng võ và là hình thức cổ vũ tinh thần, rèn luyện sức khỏe để xây dựng, bảo vệ quê hương, đất nước.</p>",
@@ -2309,7 +2311,7 @@ const rawAuthor = {
                 "metaViewport": "width=device-width, initial-scale=1.0",
                 "canonicalURL": "currentURL"
             }, {
-                "__type": "api::article.article",
+                "__type": "api::bai-viet.bai-viet",
                 "id": 2,
                 "name": "Rộn ràng Giải Vật truyền thống thôn Quảng Yên Xuân Ất Tỵ",
                 "content": "<p>&nbsp; Lễ hội Vật truyền thống đình làng thôn Quảng Yên là nét văn hóa phi vật thể của xã Phượng Sơn để gắn kết cộng đồng, tạo dựng không gian văn hoá trang trọng, tưng bừng, náo nhiệt. Lễ hội trở thành nơi Nhân dân trở về cội nguồn dân tộc, tưởng nhớ công ơn những người đi trước, cầu mong những điều tốt lành, bình an đến với mỗi người. Đây là một lễ hội dân gian truyền thống có từ lâu đời. Được diễn ra từ ngày 9 đến ngày 11 tháng Giêng hàng năm, thu hút các cụ bô lão, thanh niên trai tráng và các cháu nhi đồng trong và ngoài địa phương tham gia.</p><h2>Kết bài</h2><p>Sau keo vật thờ, các keo vật của lễ hội chính thức diễn ra. Tại lễ hội Vật truyền thống đình làng Quảng Yên năm nay dự kiến đón hơn 200 đô vật đến từ các câu lạc bộ trong huyện, các huyện bạn và các tỉnh thành như : Bắc Giang, Bắc Ninh, các câu lạc bộ Quân đội, Công an…</p><p>&nbsp; &nbsp; Theo thể thức thi đấu, các đô vật đến đăng ký tham gia Hội vật đều phải thi đấu từ các giải lèo thường, sau khi dành phần thắng mới được vào thi đấu các đầu lèo giải, sau đó tiến hành giữ và phá các đầu lèo. Khi thắng các đầu lèo, đô vật có quyền thi đấu giữ và phá các giải Nhất, Nhì, Ba.</p><p>&nbsp; &nbsp; Kết thúc giải, ban tổ chức sẽ trao giải nhất, nhì, ba dành cho nam, 1 giải dành cho nữ và 2 giải thiếu niên. Trong đó có 1 giải thiếu niên và giải Ba dành riêng cho các đô vận người thôn Quảng Yên. Dự kiến phần thưởng của giải nhất là 20.000.000 đồng.</p><p>&nbsp; &nbsp; Hội vật truyền thống làng Quảng Yên được tổ chức vào dịp đầu Xuân nhằm gìn giữ, phát huy những giá trị văn hóa truyền thống tốt đẹp; đồng thời phát hiện, bồi dưỡng tài năng cho bộ môn vật của huyện. Thông qua lễ hội thể hiện tinh thần thượng võ và là hình thức cổ vũ tinh thần, rèn luyện sức khỏe để xây dựng, bảo vệ quê hương, đất nước.</p>",

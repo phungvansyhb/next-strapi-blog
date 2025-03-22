@@ -7,7 +7,8 @@ export function convertRawCategoryToCategory(rawCate: RawCate): Category {
         name: rawCate.name,
         slug: rawCate.slug,
         count: rawCate.numberArticles,
-        image: rawCate?.cover?.formats?.medium?.url ? process.env.NEXT_PUBLIC_SERVER_URL + rawCate?.cover?.formats?.medium?.url : ''
+        image: rawCate?.cover?.formats?.medium?.url ? process.env.NEXT_PUBLIC_SERVER_URL + rawCate?.cover?.formats?.medium?.url :
+            process.env.NEXT_PUBLIC_SERVER_URL + rawCate?.cover?.url
     }
 }
 

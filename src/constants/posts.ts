@@ -235,7 +235,7 @@ export const relatedPosts: Post[] = [
       altText: ''
     },
     readTime: '8 min',
-    slug: 'article-1',
+    slug: 'bai-viet-1',
     description: '',
     cover: {
       altText : '',

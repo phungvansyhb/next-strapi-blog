@@ -47,7 +47,7 @@ export default function Content({popularCourses, latestCourses, allCourse, fetch
                                 {popularCourses.map((Course, index) => (
                                     <CarouselItem key={index} className="pl-1">
                                         <div className="p-1 w-full rounded-md">
-                                            <Link href={`/article/${Course.slug}`} key={Course.id}
+                                            <Link href={`/bai-viet/${Course.slug}`} key={Course.id}
                                                   className="flex flex-col group rounded-md">
                                                 <div className="relative w-full aspect-video md:aspect-video mb-4 overflow-hidden rounded-md ">
                                                     <Image
@@ -81,7 +81,7 @@ export default function Content({popularCourses, latestCourses, allCourse, fetch
                         <div className='flex flex-col gap-6 md:max-h-[500px] overflow-y-auto'>
                             {latestCourses.map((Course, index) => (
                                 <div className="p-1" key={Course.id}>
-                                    <Link href={`/article/${Course.slug}`} key={Course.id} className="group flex gap-2">
+                                    <Link href={`/bai-viet/${Course.slug}`} key={Course.id} className="group flex gap-2">
                                         <div
                                             className="relative shrink-0 grow-0 w-[80px] h-[80px] aspect-square mb-2 overflow-hidden rounded-md">
                                             <Image

@@ -54,12 +54,12 @@ const NavItems = React.forwardRef<
             >
                 Xem lịch âm
             </Link>
-            {/*<Link*/}
-            {/*    href="/gia-vang"*/}
-            {/*    className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"*/}
-            {/*>*/}
-            {/*    Giá vàng*/}
-            {/*</Link>*/}
+            <Link
+                href="/phan-mem"
+                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
+            >
+                Phần mềm
+            </Link>
             <Link
                 href="/blog"
                 className={cn(linkClassName, { "font-bold":pathName === '/blog' })}
@@ -106,11 +106,11 @@ export default function Header() {
                             <CodesandboxIcon size={16}/> Phần mềm
                         </Link>
                         <Link
-                            href="/khoa-hoc"
-                            className={cn(linkClassName, {"font-bold underline":pathName === '/khoa-hoc'})}
+                            href="/blog"
+                            className={cn(linkClassName, {"font-bold underline":pathName === '/blog'})}
                         >
                             <BackpackIcon size={16}/>
-                            Khoá học
+                            Blog
                         </Link>
 
 

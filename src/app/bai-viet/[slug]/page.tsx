@@ -46,7 +46,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
         applicationName: appInfo.siteName,
         referrer: "origin",
         alternates: {
-            canonical: appInfo.siteURL + '/article/' + article.slug,
+            canonical: appInfo.siteURL + '/bai-viet/' + article.slug,
         },
         robots: seoMeta.metaRobots,
         authors: {
@@ -93,7 +93,7 @@ export default async function ArticlePage({params}: Props) {
         "@type": "NewsArticle",
         "headline": article.title,
         "description": article.description,
-        // "image": article.imageUrl,
+        // "image": bai-viet.imageUrl,
         "image": [
             {
                 "@type": "ImageObject",

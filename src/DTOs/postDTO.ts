@@ -8,17 +8,18 @@ export function convertRawPostToPost(rawPost : RawPost):Post{
         id : rawPost.id,
         author : {
             name : rawPost.attributes.author?.data?.attributes?.name,
-            avatar : process.env.NEXT_PUBLIC_SERVER_URL+ rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.url || '',
-            altText : rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.alternativeText
+            avatar : process.env.NEXT_PUBLIC_SERVER_URL+ rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.formats.thumbnail?.url || '',
+            altText : rawPost.attributes.author?.data?.attributes?.avatar?.data?.attributes?.alternativeText,
+            description : rawPost.attributes.author.data.attributes.description
         },
         title : rawPost.attributes.name,
         slug : rawPost.attributes.slug,
         date : rawPost.attributes.publishedAt,
         description : rawPost.attributes.description,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL + (rawPost.attributes.cover?.data?.attributes?.formats?.large?.url || rawPost.attributes.cover?.data?.attributes?.url),
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL + (rawPost.attributes.cover?.data?.attributes?.formats?.large?.url || rawPost.attributes.cover?.data?.attributes?.url || ''),
         cover : {
             altText : rawPost.attributes.cover?.data?.attributes?.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.attributes.cover?.data?.attributes?.formats?.large?.url  || rawPost.attributes.cover?.data?.attributes?.url),
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.attributes.cover?.data?.attributes?.formats?.large?.url  || rawPost.attributes.cover?.data?.attributes?.url || ''),
             width : rawPost.attributes.cover?.data?.attributes?.width,
             height : rawPost.attributes.cover?.data?.attributes?.height,
         },
@@ -38,17 +39,18 @@ export function convertRawArticleToArticle(rawPost: RawArticle):Article{
         id : rawPost.id,
         author : {
             name : rawPost.author.name,
-            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.author.avatar.url,
-            altText : rawPost.author.avatar.alternativeText
+            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.author.avatar.formats.thumbnail.url || '',
+            altText : rawPost.author.avatar.alternativeText,
+            description : rawPost.author.description
         },
         description : rawPost.description,
         title : rawPost.name,
         slug : rawPost.slug,
         date :  rawPost.publishedAt,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url,
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url || '',
         cover : {
             altText : rawPost.cover.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.cover.formats.medium.url || rawPost.cover.url ),
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.cover.formats.medium.url || rawPost.cover.url || '' ),
             width : rawPost.cover.width,
             height : rawPost.cover.height,
         },

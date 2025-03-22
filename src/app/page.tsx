@@ -106,7 +106,7 @@ export default async function Home() {
                     <ContainerScroll
                         titleComponent={<div className='md:hidden'>
                             <h2 className="text-4xl md:text-[3.5rem] font-bold mt-1 leading-none text-pretty">
-                                Khóa học <ColourfulText text=" chất lượng" />
+                                Bài viết <ColourfulText text=" chuyên sâu" />
                             </h2>
                             <div className='pt-8'>
                                 AdPIXABAY, 와우회원은 로켓배송 전 상품 무료배송 오늘주문 내일도착!

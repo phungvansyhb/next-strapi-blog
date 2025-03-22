@@ -3,7 +3,8 @@ import { Comment, SEO} from "@/typeDefs/rawTypes";
 export interface Author {
   name: string;
   avatar: string;
-  altText:string
+  altText:string;
+  description : string;
 }
 export interface Media{
   fileUrl : string ,

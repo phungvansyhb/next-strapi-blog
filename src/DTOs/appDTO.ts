@@ -33,10 +33,10 @@ export function convertRawAppDetailToAppDetail(rawPost : RawAppDetail):AppDetail
         title : rawPost.name,
         slug : rawPost.slug,
         date :  rawPost.publishedAt,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url,
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url || '',
         cover : {
             altText : rawPost.cover.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.cover.formats.medium?.url || rawPost.cover.url ),
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.cover.formats.medium?.url || rawPost.cover.url || ''),
             width : rawPost.cover.width,
             height : rawPost.cover.height,
         },

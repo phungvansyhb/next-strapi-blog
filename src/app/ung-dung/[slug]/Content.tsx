@@ -28,6 +28,7 @@ import {
     TwitterIcon,
     TwitterShareButton,
 } from 'next-share'
+import LazyImage from "@/components/LazyImage";
 
 interface appDetailPageContentProps {
     appDetail: AppDetail;
@@ -58,12 +59,11 @@ export default function AppPage({
             <div className="">
                 <div className="relative w-full h-[50vh] mb-8">
                     <div className="absolute inset-0">
-                        <Image
+                        <LazyImage
+                            objectFit='cover'
                             src={appDetail.imageUrl}
                             alt={appDetail.title}
-                            layout="fill"
-                            objectFit="cover"
-                            className="brightness-50 object-center object-scale-down"
+                            className="object-cover brightness-50 object-center "
                         />
                     </div>
                     <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 max-w-screen-lg mx-auto">
@@ -91,26 +91,26 @@ export default function AppPage({
                             <div className='flex gap-2 items-center mb-4 justify-end'>
                                 <h3 className='text-slate-400'>Chia sẻ </h3>
                                 <FacebookShareButton
-                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /ung-dung/ + appDetail.slug}
                                     quote={appDetail.title}
                                     hashtag={appDetail.seo.keywords}
                                 >
                                     <FacebookIcon size={32} round/>
                                 </FacebookShareButton>
                                 <TelegramShareButton
-                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /ung-dung/ + appDetail.slug}
                                     title={appDetail.title}
                                 >
                                     <TelegramIcon size={32} round/>
                                 </TelegramShareButton>
                                 <TwitterShareButton
-                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /ung-dung/ + appDetail.slug}
                                     title={appDetail.title}
                                 >
                                     <TwitterIcon size={32} round/>
                                 </TwitterShareButton>
                                 <LinkedinShareButton
-                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /appDetail/ + appDetail.slug}>
+                                    url={process.env.NEXT_PUBLIC_SITE_URL! + /ung-dung/ + appDetail.slug}>
                                     <LinkedinIcon size={32} round/>
                                 </LinkedinShareButton>
 
@@ -164,7 +164,7 @@ export default function AppPage({
                                            totalPages={comments.meta.pagination.pageCount}
                                            onPageChange={(page) => {
                                                if (page !== comments.meta.pagination.page) {
-                                                   router.push(`/appDetail/${appDetail.slug}?pageComment=${page}`)
+                                                   router.push(`/ung-dung/${appDetail.slug}?pageComment=${page}`)
                                                }
                                            }}/>
                         <CreateCommentForm articleId={appDetail.id} type='app'/>

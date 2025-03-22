@@ -29,6 +29,7 @@ import {
     TwitterIcon,
     TwitterShareButton,
 } from 'next-share'
+import LazyImage from "@/components/LazyImage";
 
 interface ArticlePageContentProps {
     article: Article;
@@ -59,10 +60,9 @@ export default function ArticlePage({
             <div className="">
                 <div className="relative w-full h-[50vh] mb-8">
                     <div className="absolute inset-0">
-                        <Image
+                        <LazyImage
                             src={article.imageUrl}
                             alt={article.title}
-                            layout="fill"
                             objectFit="cover"
                             className="brightness-50 object-center"
                         />
@@ -90,25 +90,25 @@ export default function ArticlePage({
                         <div className='flex gap-2 items-center mb-4 justify-end'>
                             <h3 className='text-slate-400'>Chia sẻ </h3>
                             <FacebookShareButton
-                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
+                                url={process.env.NEXT_PUBLIC_SITE_URL! + /bai-viet/ + article.slug}
                                 quote={article.title}
                                 hashtag={article.seo.keywords}
                             >
                                 <FacebookIcon size={32} round/>
                             </FacebookShareButton>
                             <TelegramShareButton
-                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
+                                url={process.env.NEXT_PUBLIC_SITE_URL! + /bai-viet/ + article.slug}
                                 title={article.title}
                             >
                                 <TelegramIcon size={32} round/>
                             </TelegramShareButton>
                             <TwitterShareButton
-                                url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}
+                                url={process.env.NEXT_PUBLIC_SITE_URL! + /bai-viet/ + article.slug}
                                 title={article.title}
                             >
                                 <TwitterIcon size={32} round/>
                             </TwitterShareButton>
-                            <LinkedinShareButton url={process.env.NEXT_PUBLIC_SITE_URL! + /article/ + article.slug}>
+                            <LinkedinShareButton url={process.env.NEXT_PUBLIC_SITE_URL! + /bai-viet/ + article.slug}>
                                 <LinkedinIcon size={32} round />
                             </LinkedinShareButton>
 
@@ -143,7 +143,7 @@ export default function ArticlePage({
                             </ReactMarkdown>
                         </article>
                         <div className="mt-12 pt-8 border-t border-border">
-                            <div className="flex items-center space-x-4">
+                            <div className="flex items-start space-x-4">
                                 <Avatar className="h-16 w-16">
                                     <AvatarImage
                                         src={article.author.avatar}
@@ -187,6 +187,8 @@ export default function ArticlePage({
                                             <span className="sr-only">Email</span>
                                         </Link>
                                     </div>
+
+                                    <div className='mt-4 text-sm text-slate-600'>{article.author.description}</div>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +200,7 @@ export default function ArticlePage({
                                            totalPages={comments.meta.pagination.pageCount}
                                            onPageChange={(page) => {
                                                if (page !== comments.meta.pagination.page) {
-                                                   router.push(`/article/${article.slug}?pageComment=${page}`)
+                                                   router.push(`/bai-viet/${article.slug}?pageComment=${page}`)
                                                }
                                            }}/>
                         <CreateCommentForm articleId={article.id}/>
@@ -234,15 +236,14 @@ export default function ArticlePage({
                                 <div className="space-y-4">
                                     {article.related_post.map((post) => (
                                         <Link
-                                            href={`/article/${post.slug}`}
+                                            href={`/bai-viet/${post.slug}`}
                                             key={post.slug}
                                             className="flex items-center space-x-4 group"
                                         >
                                             <div className="relative w-16 h-16 flex-shrink-0">
-                                                <Image
+                                                <LazyImage
                                                     src={post.cover.url || ''}
                                                     alt={post.cover.alternativeText!}
-                                                    fill
                                                     objectFit="cover"
                                                     className="rounded-md"
                                                 />

@@ -1,22 +1,19 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import PostList from '@/components/PostList';
 import DynamicPagination from '@/components/Pagination';
 import {Author, Category, Post} from "@/lib/types";
 import {Pagination} from "@/typeDefs/rawTypes";
-import {DateFormatUtil, Dayjs} from "@/lib/utils";
 import {useRouter} from "next/navigation";
 import {
     Carousel,
     CarouselContent,
     CarouselDot,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
+import LazyImage from "@/components/LazyImage";
 
 
 type Props = {
@@ -51,15 +48,14 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                                 {popularPosts.map((post, index) => (
                                     <CarouselItem key={index} className="pl-1">
                                         <div className="p-1 w-full rounded-md">
-                                            <Link href={`/article/${post.slug}`} key={post.id}
+                                            <Link href={`/bai-viet/${post.slug}`} key={post.id}
                                                   className="flex flex-col group rounded-md">
                                                 <div className="relative w-full aspect-video md:aspect-video mb-4 overflow-hidden rounded-md ">
-                                                    <Image
+                                                    <LazyImage
+                                                        objectFit='cover'
                                                         src={post.imageUrl}
                                                         alt={post.title}
-                                                        layout="fill"
-                                                        objectFit="cover"
-                                                        className="transition-transform duration-300 group-hover:scale-105 brightness-75"
+                                                        className="object-cover rounded-md transition-transform duration-300 group-hover:scale-105 brightness-75"
                                                     />
                                                     <h3 className="absolute text-white text-medium font-semibold bottom-0 left-6 mb-4 backdrop-brightness-125">
                                                         {post.title}
@@ -85,15 +81,14 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                         <div className='flex flex-col gap-6 md:max-h-[500px] overflow-y-auto'>
                             {latestPosts.map((post, index) => (
                                 <div className="p-1" key={post.id}>
-                                    <Link href={`/article/${post.slug}`} key={post.id} className="group flex gap-2">
+                                    <Link href={`/bai-viet/${post.slug}`} key={post.id} className="group flex gap-2">
                                         <div
                                             className="relative shrink-0 grow-0 w-[80px] h-[80px] aspect-square mb-2 overflow-hidden rounded-md">
-                                            <Image
+                                            <LazyImage
+                                                objectFit='cover'
                                                 src={post.cover.fileUrl}
                                                 alt={post.title}
-                                                layout="fill"
-                                                objectFit="cover"
-                                                className="transition-transform duration-300 group-hover:scale-105"
+                                                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                                             />
                                         </div>
                                         <div className='flex flex-col justify-between'>

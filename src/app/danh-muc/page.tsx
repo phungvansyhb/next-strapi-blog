@@ -10,12 +10,12 @@ import {Category} from "@/lib/types";
 import LazyImage from "@/components/LazyImage";
 export const metadata: Metadata = genSiteMetaData('Danh mục')
 
-function RenderList({type, data}: { type: 'app'|'course', data: Category[] }) {
+function RenderList({type, data}: { type: 'app'|'article', data: Category[] }) {
     if (data.length === 0) return <></>
     return (
         <>
             <h3 className="text-lg font-semibold mb-4 dark:text-white ">
-                {type === 'app' ? "Danh mục ứng dụng" : "Danh mục khoá học"}
+                {type === 'app' ? "Danh mục ứng dụng" : "Danh mục bài viết "}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {data.map((category) => (
@@ -23,7 +23,6 @@ function RenderList({type, data}: { type: 'app'|'course', data: Category[] }) {
                         <Card className="overflow-hidden border-none">
                             <div className="relative aspect-square">
                                 <LazyImage src={category.image || '/404.png'} alt={category.name} objectFit='cover' className='aspect-square'  />
-
                                 <div
                                     className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 hover:bg-opacity-30"/>
                                 <CardContent
@@ -32,7 +31,7 @@ function RenderList({type, data}: { type: 'app'|'course', data: Category[] }) {
                                         {category.name}
                                     </h2>
                                     <Badge variant="secondary" className="bg-white text-black">
-                                        {category.count} {type === 'app' ? ' ứng dụng' : ' khoá học'}
+                                        {category.count} {type === 'app' ? ' ứng dụng' : ' bài viết'}
                                     </Badge>
                                 </CardContent>
                             </div>
@@ -47,7 +46,7 @@ function RenderList({type, data}: { type: 'app'|'course', data: Category[] }) {
 
 export default async function CategoriesPage() {
     const categoriesRaw = await getListCategory()
-    const categoriesCourse = convertRawCategoriesToCategories(categoriesRaw.data, 'course')
+    const categoriesBlog = convertRawCategoriesToCategories(categoriesRaw.data, 'article')
     const categoriesApp = convertRawCategoriesToCategories(categoriesRaw.data, 'app')
     return (
         <>
@@ -60,7 +59,7 @@ export default async function CategoriesPage() {
                     cho
                     bạn một góc nhìn độc đáo về những chủ đề mà bạn đam mê.
                 </p>
-                <RenderList type='course' data={categoriesCourse}/>
+                <RenderList type='article' data={categoriesBlog}/>
                 <br/>
                 <RenderList type='app' data={categoriesApp}/>
             </div>

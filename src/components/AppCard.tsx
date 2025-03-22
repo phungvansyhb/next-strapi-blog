@@ -3,15 +3,16 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import {Dayjs} from "@/lib/utils";
+import LazyImage from "@/components/LazyImage";
 const AppCard = ({ app }: { app: App }) => {
   return (
     <article className="flex flex-col">
       <Link href={`/ung-dung/${app.slug}`} className="block">
         <div className="relative w-full h-[300px] aspect-auto lg:h-auto lg:aspect-square">
-          <Image
+          <LazyImage
             src={app.imageUrl}
             alt={app.title}
-            fill
+            objectFit='cover'
             className="transition-transform duration-200 ease-in-out hover:scale-[1.02] w-full h-[300px] object-contain object-center lg:aspect-square rounded-md"
           />
         </div>
