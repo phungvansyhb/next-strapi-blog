@@ -110,7 +110,8 @@ export const popularPosts: Post[] = [
     author: {
       name: 'Marie Curie',
       avatar: 'https://i.pravatar.cc/150?img=5',
-      altText: ''
+      altText: '',
+      description : ''
     },
     readTime: '8 min',
     description: '',
@@ -137,7 +138,8 @@ export const recentPosts: Post[] = [
     author: {
       name: 'Sophia Green',
       avatar: 'https://i.pravatar.cc/150?img=9',
-      altText: ''
+      altText: '',
+      description : ''
     },
     readTime: '7 min',
     description: '',
@@ -232,7 +234,8 @@ export const relatedPosts: Post[] = [
     author: {
       name: 'Marie Curie',
       avatar: 'https://i.pravatar.cc/150?img=5',
-      altText: ''
+      altText: '',
+      description : ''
     },
     readTime: '8 min',
     slug: 'bai-viet-1',
