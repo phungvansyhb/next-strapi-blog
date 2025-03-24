@@ -1,5 +1,6 @@
 import {Pagination, RawArticle, RawPost, Comment, RawAuthor} from "@/typeDefs/rawTypes";
 import qs from 'qs';
+import {PAGE_SIZE} from "@/constants/app";
 
 const API_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 const API_TOKEN = process.env.NEXT_PUBLIC_SERVER_TOKEN;
@@ -29,10 +30,12 @@ export async function getListPost({
                                       title,
                                       author,
                                       category,
+                                      page = 0
                                   }: {
     title?: string;
     author?: string;
     category?: string;
+    page?: number
 }): Promise<{ data: RawPost[]; meta: { pagination: Pagination } }> {
     const query = qs.stringify({
         populate: ['cover', 'category', 'author', 'author.avatar'],
@@ -42,8 +45,12 @@ export async function getListPost({
             author: author ? { name: { $contains: author } } : undefined,
             category: category ? { slug: { $contains: category } } : undefined,
         },
+        pagination : {
+            page : page ,
+            pageSize : PAGE_SIZE
+        }
     });
-    return fetchApi('/api/articles?'+ query );
+    return fetchApi('/api/articles?'+ query , {next : {tag : "posts"}}  );
 }
 
 export async function getDetailArticle(slug: string): Promise<RawArticle> {
@@ -141,7 +148,7 @@ export async function getListCommentBySlug(slug: string): Promise<{
             createdAt: 'desc'
         }
     });
-    return fetchApi('/api/comments?'+ query );
+    return fetchApi('/api/comments?'+ query , { next: { tag: "comments" }} );
 }
 
 export async function createComment(data: CreateComment) {

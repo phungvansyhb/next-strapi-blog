@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
 import LazyImage from "@/components/LazyImage";
+import {revalidateTag} from "next/cache";
+import revalidatePost from "@/actions/postAction";
 
 
 type Props = {
@@ -116,9 +118,9 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
                 <DynamicPagination
                     currentPage={allPost.pagination.page}
                     totalPages={allPost.pagination.pageCount}
-                    onPageChange={(page) => {
-                        router.push(`/blog?page=${page}`)
-                        fetchAllPost()
+                    onPageChange={ async (page) => {
+                        await revalidatePost()
+                        router.push(`/blog?page=${page}` , {scroll: false})
                     }}
                 />
             </section>

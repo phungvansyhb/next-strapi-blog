@@ -60,11 +60,11 @@ export default function ArticlePage({
             <div className="">
                 <div className="relative w-full h-[50vh] mb-8">
                     <div className="absolute inset-0">
-                        <LazyImage
+                        <img
                             src={article.imageUrl}
                             alt={article.title}
-                            objectFit="cover"
-                            className="brightness-50 object-center"
+                            // objectFit="cover"
+                            className="brightness-50 w-full h-full object-cover object-center"
                         />
                     </div>
                     <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 max-w-screen-lg mx-auto">
@@ -266,7 +266,7 @@ export default function ArticlePage({
                                 <div className="space-y-2">
                                     {categories.map((category) => (
                                         <Link
-                                            href={`/danh-muc/${category.name.toLowerCase()}`}
+                                            href={`/blog?category=${category.name.toLowerCase()}`}
                                             key={category.name}
                                             className="flex justify-between items-center group"
                                         >

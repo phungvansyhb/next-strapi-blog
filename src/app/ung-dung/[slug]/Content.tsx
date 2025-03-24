@@ -198,7 +198,7 @@ export default function AppPage({
                                 <div className="space-y-2">
                                     {categories.map((category) => (
                                         <Link
-                                            href={`/danh-muc/${category.name.toLowerCase()}`}
+                                            href={`/ung-dung?category=${category.name.toLowerCase()}`}
                                             key={category.name}
                                             className="flex justify-between items-center group"
                                         >

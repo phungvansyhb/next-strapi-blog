@@ -13,9 +13,19 @@ import {getListAuthor} from "@/service/postService";
 export const metadata: Metadata = genSiteMetaData('blog')
 
 /*TODO : fetch pagination*/
-async function fetchArticle({title , author , category}:{title? : string, author?:string , category? : string}): Promise<{ data: Post[], pagination: Pagination }> {
+async function fetchArticle(params: {
+    title?: string,
+    author?: string,
+    category?: string,
+    page?: number
+}): Promise<{ data: Post[], pagination: Pagination }> {
     'use server'
-    const rawPosts = await getListPost({title, author, category})
+
+    const rawPosts = await getListPost({
+        title : params.title || '',
+        author : params.author || '',
+        category : params.category || '',
+        page : params.page || 0})
     return {data: convertRawPostsToPosts(rawPosts.data), pagination: rawPosts.meta.pagination}
 }
 
@@ -41,18 +51,23 @@ async function fetchAuthors(): Promise<Author[]> {
         name: c.attributes.name,
         avatar: '',
         altText: '',
-        description : ''
+        description: ''
 
     }))
 }
 
-export default async function BlogPage({params , searchParams} : PageProps) {
+export default async function BlogPage({params, searchParams}: PageProps) {
     const searchParamsObj = await searchParams
 
     const [latestPosts, popularPosts, posts, categories, authors] = await Promise.all([
         fetchLatestArticle(),
         fetchPopularArticle(),
-        fetchArticle({title : searchParamsObj['title'] as string , category : searchParamsObj['category'] as string , author : searchParamsObj['author'] as string}),
+        fetchArticle({
+            title: searchParamsObj['title'] as string ,
+            category: searchParamsObj['category'] as string ,
+            author: searchParamsObj['author'] as string ,
+            page: +(searchParamsObj['page'] as string)
+        }),
         fetchCategories(),
         fetchAuthors()
     ]);
