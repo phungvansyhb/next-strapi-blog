@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, {Suspense, useState} from 'react';
 import Link from 'next/link';
 import PostList from '@/components/PostList';
 import DynamicPagination from '@/components/Pagination';
@@ -16,6 +16,7 @@ import Autoplay from "embla-carousel-autoplay"
 import LazyImage from "@/components/LazyImage";
 import {revalidateTag} from "next/cache";
 import revalidatePost from "@/actions/postAction";
+import {useServerAction} from "@/hooks/useServerAction";
 
 
 type Props = {
@@ -32,6 +33,7 @@ type Props = {
 
 export default function Content({popularPosts, latestPosts, allPost, fetchAllPost, categories , authors}: Props) {
     const router = useRouter()
+
     return (
         <div >
             <div className="grid grid-cols-4 gap-4 max-w-screen-lg mx-auto">
@@ -113,8 +115,8 @@ export default function Content({popularPosts, latestPosts, allPost, fetchAllPos
             </div>
 
             <section>
-                <PostList posts={allPost.data} authors={authors} categories={categories}
-                          header={'Tất cả các bài viết'}/>
+               <PostList posts={allPost.data} authors={authors} categories={categories}
+                header={'Tất cả các bài viết'}/>
                 <DynamicPagination
                     currentPage={allPost.pagination.page}
                     totalPages={allPost.pagination.pageCount}

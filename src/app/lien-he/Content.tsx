@@ -8,15 +8,16 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import {appInfo} from "@/constants/sitemetaData";
 
 const formSchema = z.object({
   name: z
     .string()
-    .min(2, { message: 'Le nom doit contenir au moins 2 caractères' }),
-  email: z.string().email({ message: 'Adresse e-mail invalide' }),
+    .min(2, { message: 'Vui lòng nhập tối thiếu 2 ký tự' }),
+  email: z.string().email({ message: 'Vui lòng nhập đúng địa chỉ email ' }),
   message: z
     .string()
-    .min(10, { message: 'Le message doit contenir au moins 10 caractères' }),
+    .min(10, { message: 'Vui lòng nhập tối thiếu 10 ký tự' }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -37,15 +38,14 @@ export default function ContactPageContent() {
       // Ici, vous ajouteriez la logique pour envoyer le message
       console.log('Formulaire soumis:', data);
       toast({
-        title: 'Message envoyé',
-        description: 'Nous vous répondrons dans les plus brefs délais.',
+        title: 'Tin nhắn đã được gửi đi',
+        description: 'Chúng tôi sẽ phản hồi lại bạn sớm nhất có thể',
       });
       reset();
     } catch (error) {
-      console.log((error as Error).message);
       toast({
-        title: 'Erreur',
-        description: "Une erreur est survenue lors de l'envoi du message.",
+        title: 'Đã xảy ra lỗi',
+        description: "Đã xảy ra lỗi trong quá trình gửi tin nhắn",
         variant: 'destructive',
       });
     }
@@ -54,8 +54,8 @@ export default function ContactPageContent() {
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-md mx-auto">
-        <h1 className="text-xl font-medium text-gray-900 dark:text-white mb-8 text-center">
-          Contactez-nous
+        <h1 className="text-4xl text-center font-semibold mb-6">
+          Liên hệ với chúng tôi
         </h1>
         <div className="flex flex-col sm:flex-row sm:space-x-8 lg:items-center">
           <form
@@ -67,7 +67,7 @@ export default function ContactPageContent() {
                 htmlFor="name"
                 className="block text-sm text-gray-700 dark:text-gray-300 mb-1"
               >
-                Nom
+                Bạn là
               </label>
               <Input id="name" {...register('name')} className="w-full" />
               {errors.name && (
@@ -100,7 +100,7 @@ export default function ContactPageContent() {
                 htmlFor="message"
                 className="block text-sm text-gray-700 dark:text-gray-300 mb-1"
               >
-                Message
+                Lời nhắn
               </label>
               <Textarea
                 id="message"
@@ -115,35 +115,33 @@ export default function ContactPageContent() {
               )}
             </div>
             <Button type="submit" className="w-full">
-              Envoyer
+              Gửi
             </Button>
           </form>
           <div className="w-full sm:w-2/5 text-sm font-light text-gray-600 dark:text-gray-400 mb-8 sm:mb-0 order-1 sm:order-2">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-              Informations
+              Thông tin liên hệ
             </h2>
             <p className="mb-6 text-sm">
-              Notre équipe est à votre disposition pour répondre à toutes vos
-              questions. N&apos;hésitez pas à nous contacter, nous nous efforçons de
-              répondre dans les plus brefs délais.
+              Đội ngũ của chúng tôi luôn sẵn sàng trả lời tất cả các câu hỏi của bạn. Đừng ngần ngại liên hệ với chúng tôi, chúng tôi sẽ cố gắng trả lời trong thời gian sớm nhất.
             </p>
             <div className="space-y-4">
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-gray-400" />
                 <a
-                  href="mailto:contact@gederooney.com"
+                  href={`mailto:${appInfo.email}`}
                   className="hover:underline"
                 >
-                  contact@gederooney.com
+                  {appInfo.email}
                 </a>
               </div>
               <div className="flex items-center">
                 <MapPin className="w-5 h-5 mr-3 text-gray-400" />
-                <p>Paris, France</p>
+                <p>{appInfo.location}</p>
               </div>
               <div className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-gray-400" />
-                <p>+33 1 23 45 67 89</p>
+                <p>{appInfo.phone}</p>
               </div>
             </div>
           </div>

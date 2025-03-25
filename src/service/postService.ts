@@ -11,6 +11,7 @@ if (!API_URL || !API_TOKEN) {
 
 const headers = {
     Authorization: `Bearer ${API_TOKEN}`,
+    "Content-Type": 'application/json'
 };
 
 const fetchApi = async (url: string, options: any = {}) => {
@@ -155,6 +156,7 @@ export async function createComment(data: CreateComment) {
     return fetchApi('/api/comments', {
         method: 'POST',
         body: JSON.stringify({ data }),
+
     });
 }
 

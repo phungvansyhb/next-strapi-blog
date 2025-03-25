@@ -30,6 +30,7 @@ function CreateCommentForm({articleId, type = 'post'}: { articleId: number, type
                 app: {connect: [articleId]}
             })
         } else {
+            console.log("run herer")
             await createComment({
                 authorName: payload.get('authorName') as string,
                 content: payload.get('content') as string,
@@ -56,8 +57,8 @@ function CreateCommentForm({articleId, type = 'post'}: { articleId: number, type
                         <Input placeholder="Số điện thoại" name='phone' id='phone'/>
                     </div>
                     <div className='col-span-2 lg:col-span-1'>
-                        <label htmlFor='email'>Email</label>
-                        <Input placeholder="Nhập email" name='email' id='email' type='email'/>
+                        <label htmlFor='email'>Email *</label>
+                        <Input placeholder="Nhập email" required name='email' id='email' type='email'/>
                     </div>
                 </div>
                 <div>

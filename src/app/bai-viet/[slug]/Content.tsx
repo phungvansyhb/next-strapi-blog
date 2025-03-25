@@ -109,7 +109,7 @@ export default function ArticlePage({
                                 <TwitterIcon size={32} round/>
                             </TwitterShareButton>
                             <LinkedinShareButton url={process.env.NEXT_PUBLIC_SITE_URL! + /bai-viet/ + article.slug}>
-                                <LinkedinIcon size={32} round />
+                                <LinkedinIcon size={32} round/>
                             </LinkedinShareButton>
 
                         </div>
@@ -203,7 +203,7 @@ export default function ArticlePage({
                                                    router.push(`/bai-viet/${article.slug}?pageComment=${page}`)
                                                }
                                            }}/>
-                        <CreateCommentForm articleId={article.id}/>
+                        <CreateCommentForm articleId={article.id} type='post'/>
                     </div>
 
                     {/* Sidebar */}
@@ -266,7 +266,7 @@ export default function ArticlePage({
                                 <div className="space-y-2">
                                     {categories.map((category) => (
                                         <Link
-                                            href={`/blog?category=${category.name.toLowerCase()}`}
+                                            href={`/blog?category=${category.slug}`}
                                             key={category.name}
                                             className="flex justify-between items-center group"
                                         >

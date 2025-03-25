@@ -5,8 +5,8 @@ import {appInfo} from "@/constants/sitemetaData";
 const footerLinks = [
   { name: 'Trang chủ', href: '/' },
   { name: 'Phần mềm', href: '/ung-dung' },
-  { name: 'Khoá học', href: '/khoa-hoc' },
-  { name: 'Danh mục', href: '/danh-mục' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Danh mục', href: '/danh-muc' },
   { name: 'Liên hệ', href: '/lien-he' },
   { name: 'Điều khoản & dịch vụ', href: '/dieu-khoan-dich-vu' },
 ];
@@ -32,7 +32,7 @@ export default function Footer() {
           ))}
         </nav>
         <div className="text-xs text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} {appInfo.siteURL}. All rights reserved.
+          © {new Date().getFullYear()} {appInfo.siteURL}. Đã đăng ký bản quyền
         </div>
       </div>
     </footer>

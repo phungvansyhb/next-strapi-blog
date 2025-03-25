@@ -4,7 +4,6 @@ export function genSiteMetaData(pageName : string): Metadata{
   return {
     metadataBase: new URL(appInfo.siteURL),
     title: pageName+ ` | ${appInfo.siteName}`,
-
     description: 'Website chuyên tin tức nổi bật, chia sẻ phần mềm hay, các tool tiện ích.\n Xem ngày, giờ hoàng đạo.\n Xem tỷ giá ngoại tệ, giá vàng',
     keywords: 'software, tiện ích, blog, xem ngày hoàng đạo',
     robots: 'index, follow',
@@ -30,8 +29,9 @@ export function genSiteMetaData(pageName : string): Metadata{
 };
 
 export const appInfo ={
-  email : 'phungvansyhb@gmail.com',
-  facebook : '',
-  siteName : 'Web tiện ích',
+  email : 'Phungvansyhb@gmail.com',
+  location : 'Mỹ Đình 1, Nam Từ Liêm, Hà Nội',
+  phone : '+84 389 444 315',
+  siteName : process.env.NEXT_PUBLIC_SITE_NAME,
   siteURL : process.env.NEXT_PUBLIC_SITE_URL || 'https://webtienich.com'
 }

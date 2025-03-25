@@ -47,18 +47,11 @@ const NavItems = React.forwardRef<
             >
                 Ứng dụng
             </Link>
-
             <Link
-                href="/lich-am"
-                className={cn(linkClassName, { "font-bold":pathName === '/lich-am' })}
-            >
-                Xem lịch âm
-            </Link>
-            <Link
-                href="/phan-mem"
+                href="/blog"
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
             >
-                Phần mềm
+                Blog
             </Link>
             <Link
                 href="/blog"
@@ -67,13 +60,19 @@ const NavItems = React.forwardRef<
                 Blog
             </Link>
             <Link
-                href="/categorie"
+                href="/danh-muc"
                 className={cn(linkClassName, { "font-bold":pathName === '/danh-muc' })}
             >
-                Categories
+                Danh muc
             </Link>
             <Link
-                href="/search"
+                href="/lich-am"
+                className={cn(linkClassName, { "font-bold":pathName === '/lich-am' })}
+            >
+                Xem lịch âm
+            </Link>
+            <Link
+                href="/tim-kiem"
                 className={cn(linkClassName, { "font-bold":pathName === '/tim-kiem' })}
             >
                 Tìm kiếm
