@@ -4,9 +4,49 @@ import {appInfo, genSiteMetaData} from "@/constants/sitemetaData";
 import {ContainerScroll} from "@/components/ui/container-scroll-animation";
 import {Boxes} from "@/components/ui/background-boxes";
 import {ColourfulText} from "@/components/ui/colourful-text";
+import {getListCategory} from "@/service/categoryService";
+import {convertRawCategoriesToCategories} from "@/DTOs/categoryDTO";
+import {Category} from "@/lib/types";
+import Link from "next/link";
+import {Card, CardContent} from "@/components/ui/card";
+import LazyImage from "@/components/LazyImage";
+import {Badge} from "@/components/ui/badge";
 
 export const metadata: Metadata = genSiteMetaData('Trang chủ')
 
+function RenderList({type, data}: { type: 'app'|'article', data: Category[] }) {
+    if (data.length === 0) return <></>
+    return (
+        <>
+            <h3 className="text-lg font-semibold mb-4 dark:text-white ">
+                {type === 'app' ? "Danh mục ứng dụng" : "Danh mục bài viết "}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {data.map((category) => (
+                    <Link key={category.slug} href={type === 'app' ? `/ung-dung?category=${category.slug}#search` : `/khoa-hoc?category=${category.slug}#search`}>
+                        <Card className="overflow-hidden border-none">
+                            <div className="relative aspect-square">
+                                <LazyImage src={category.image || '/404.png'} alt={category.name} objectFit='cover' className='aspect-square'  />
+                                <div
+                                    className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 hover:bg-opacity-30"/>
+                                <CardContent
+                                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                                    <h2 className="text-xl font-semibold mb-2 text-white">
+                                        {category.name}
+                                    </h2>
+                                    <Badge variant="secondary" className="bg-white text-black">
+                                        {category.count} {type === 'app' ? ' ứng dụng' : ' bài viết'}
+                                    </Badge>
+                                </CardContent>
+                            </div>
+                        </Card>
+                    </Link>
+                ))}
+            </div>
+        </>
+
+    )
+}
 export default async function Home() {
     const jsonLd = {
         "@context": "https://schema.org",
@@ -55,6 +95,9 @@ export default async function Home() {
             ]
         },
     }
+    const categoriesRaw = await getListCategory()
+    const categoriesBlog = convertRawCategoriesToCategories(categoriesRaw.data, 'article')
+    const categoriesApp = convertRawCategoriesToCategories(categoriesRaw.data, 'app')
     return (
         <>
             <script
@@ -62,78 +105,22 @@ export default async function Home() {
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd, null, 2)}}
             />
             <div
-                className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center ">
-                <div
-                    className="absolute inset-0 w-full h-full bg-slate-900 z-1 [mask-image:radial-gradient(transparent,white)] pointer-events-none"/>
-                <Boxes/>
+                className="py-8 relative w-full overflow-hidden flex flex-col items-center justify-center ">
                 <NewsletterOptin/>
             </div>
-                <div className='grid grid-cols-5 max-w-screen-lg mx-auto'>
-                <div className='col-span-2 hidden md:block self-center'>
-                    <h2 className="text-4xl md:text-[3.5rem] font-bold mt-1 leading-none text-pretty">
-                        Phần mềm {'\n'} <ColourfulText text="độc đáo" />
+                <div className="max-w-screen-lg mx-auto px-4 py-8">
+                    <h2 className="text-3xl mb-2 font-bold text-gray-900 dark:text-white text-center">
+                        Danh mục
                     </h2>
-                    <div className='pt-8'>
-                        AdPIXABAY, 와우회원은 로켓배송 전 상품 무료배송 오늘주문 내일도착!
-                        꼭 필요한 제품은 로켓배송으로 빠르게, 정기배송으로 더 저렴하게
-                    </div>
+                    <p className="text-center text-sm mb-8 max-w-2xl mx-auto">
+                        Khám phá bộ sưu tập các bài viết, phần mềm được tổ chức cẩn thận theo chủ đề. Mỗi danh mục mang đến
+                        cho
+                        bạn một góc nhìn độc đáo về những chủ đề mà bạn đam mê.
+                    </p>
+                    <RenderList type='article' data={categoriesBlog}/>
+                    <br/>
+                    <RenderList type='app' data={categoriesApp}/>
                 </div>
-                <div className='col-span-5 md:col-span-3'>
-                    <ContainerScroll
-                        titleComponent={<div className='md:hidden'>
-                            <h2 className="text-4xl md:text-[3.5rem] font-bold mt-1 leading-none text-pretty">
-                                Phần mềm {'\n'} <ColourfulText text="độc đáo"/>
-                            </h2>
-                            <div className='pt-8'>
-                                AdPIXABAY, 와우회원은 로켓배송 전 상품 무료배송 오늘주문 내일도착!
-                                꼭 필요한 제품은 로켓배송으로 빠르게, 정기배송으로 더 저렴하게
-                            </div>
-                        </div>}
-                    >
-                        <img
-                            src={`/linear.webp`}
-                            alt="hero"
-                            height={720}
-                            width={1400}
-                            className="mx-auto rounded-2xl object-cover h-full object-left-top"
-                            draggable={false}
-                        />
-                    </ContainerScroll>
-                </div>
-            </div>
-                <div className='grid grid-cols-5 max-w-screen-lg mx-auto'>
-                <div className='col-span-5 md:col-span-3'>
-                    <ContainerScroll
-                        titleComponent={<div className='md:hidden'>
-                            <h2 className="text-4xl md:text-[3.5rem] font-bold mt-1 leading-none text-pretty">
-                                Bài viết <ColourfulText text=" chuyên sâu" />
-                            </h2>
-                            <div className='pt-8'>
-                                AdPIXABAY, 와우회원은 로켓배송 전 상품 무료배송 오늘주문 내일도착!
-                                꼭 필요한 제품은 로켓배송으로 빠르게, 정기배송으로 더 저렴하게
-                            </div>
-                        </div>}
-                    >
-                        <img
-                            src={`/course.jpg`}
-                            alt="hero"
-                            height={720}
-                            width={1400}
-                            className="mx-auto rounded-2xl object-cover h-full object-left-top"
-                            draggable={false}
-                        />
-                    </ContainerScroll>
-                </div>
-                <div className='col-span-2 hidden md:block self-center'>
-                    <h2 className="text-4xl md:text-[3.5rem] font-bold mt-1 leading-none text-pretty">
-                        Khóa học <ColourfulText text=" chất lượng"/>
-                    </h2>
-                    <div className='pt-8'>
-                        AdPIXABAY, 와우회원은 로켓배송 전 상품 무료배송 오늘주문 내일도착!
-                        꼭 필요한 제품은 로켓배송으로 빠르게, 정기배송으로 더 저렴하게
-                    </div>
-                </div>
-            </div>
 
         </>
     );

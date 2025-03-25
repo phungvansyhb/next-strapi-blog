@@ -42,7 +42,7 @@ export default function NewsletterOption() {
             <div className="container mx-auto max-w-screen-lg px-4 py-8 lg:py-6 flex justify-center items-center">
                 <div className="w-full max-w-xl text-center">
 
-                    <p className="mb-6 text-sm text-white font-bold">
+                    <p className="mb-6 text-sm font-medium">
                         Đăng ký nhận bản tin của chúng tôi để nhận các bài viết mới nhất qua email
                     </p>
                     <form action={dispatch}

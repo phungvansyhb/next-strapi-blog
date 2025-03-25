@@ -6,7 +6,6 @@ const footerLinks = [
   { name: 'Trang chủ', href: '/' },
   { name: 'Phần mềm', href: '/ung-dung' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Danh mục', href: '/danh-muc' },
   { name: 'Liên hệ', href: '/lien-he' },
   { name: 'Điều khoản & dịch vụ', href: '/dieu-khoan-dich-vu' },
 ];

@@ -49,22 +49,11 @@ const NavItems = React.forwardRef<
             </Link>
             <Link
                 href="/blog"
-                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-5 py-2"
-            >
-                Blog
-            </Link>
-            <Link
-                href="/blog"
                 className={cn(linkClassName, { "font-bold":pathName === '/blog' })}
             >
                 Blog
             </Link>
-            <Link
-                href="/danh-muc"
-                className={cn(linkClassName, { "font-bold":pathName === '/danh-muc' })}
-            >
-                Danh muc
-            </Link>
+
             <Link
                 href="/lich-am"
                 className={cn(linkClassName, { "font-bold":pathName === '/lich-am' })}
@@ -156,12 +145,7 @@ export default function Header() {
                     </div>
                     <div
                         className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
-                        <Link
-                            href="/danh-muc"
-                            className={cn(linkClassName, {"font-bold underline":pathName === '/danh-muc'})}
-                        >
-                            <BookCheckIcon size={15}/> Categories
-                        </Link>
+
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <div className={cn(linkClassName + " flex gap-2 items-center", {"font-bold underline":pathName === '/lich-am'}) }>
