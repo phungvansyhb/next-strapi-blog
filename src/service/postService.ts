@@ -1,6 +1,6 @@
-import {Pagination, RawArticle, RawPost, Comment, RawAuthor} from "@/typeDefs/rawTypes";
+import { Pagination, RawArticle, RawPost, Comment, RawAuthor } from "@/typeDefs/rawTypes";
 import qs from 'qs';
-import {PAGE_SIZE} from "@/constants/app";
+import { PAGE_SIZE } from "@/constants/app";
 
 const API_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 const API_TOKEN = process.env.NEXT_PUBLIC_SERVER_TOKEN;
@@ -28,11 +28,11 @@ const fetchApi = async (url: string, options: any = {}) => {
 };
 
 export async function getListPost({
-                                      title,
-                                      author,
-                                      category,
-                                      page = 0
-                                  }: {
+    title,
+    author,
+    category,
+    page = 0
+}: {
     title?: string;
     author?: string;
     category?: string;
@@ -40,18 +40,19 @@ export async function getListPost({
 }): Promise<{ data: RawPost[]; meta: { pagination: Pagination } }> {
     const query = qs.stringify({
         populate: ['cover', 'category', 'author', 'author.avatar'],
-        select: ['documentId', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        select: ['documentId', 'name', 'description', 'slug', 'publishedAt', 'readingTime'],
         filters: {
             name: title ? { $contains: title } : undefined,
             author: author ? { name: { $contains: author } } : undefined,
             category: category ? { slug: { $contains: category } } : undefined,
         },
-        pagination : {
-            page : page ,
-            pageSize : PAGE_SIZE
-        }
+        pagination: {
+            page: page,
+            pageSize: PAGE_SIZE
+        },
+        sort: 'publishedAt:desc'
     });
-    return fetchApi('/api/articles?'+ query , {next : {tag : "posts"}}  );
+    return fetchApi('/api/articles?' + query, { next: { tag: "posts" } });
 }
 
 export async function getDetailArticle(slug: string): Promise<RawArticle> {
@@ -89,13 +90,13 @@ export async function getDetailArticle(slug: string): Promise<RawArticle> {
             }
         }
     });
-    return fetchApi('/api/find-art-by-slug?'+  query );
+    return fetchApi('/api/find-art-by-slug?' + query);
 }
 
 export async function getListLatestPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
     const query = qs.stringify({
         populate: ['cover', 'category', 'author', 'author.avatar'],
-        select: ['id', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        select: ['id', 'name', 'description', 'slug', 'publishedAt', 'readingTime'],
         sort: {
             publishedAt: 'desc'
         },
@@ -103,13 +104,13 @@ export async function getListLatestPost(): Promise<{ data: RawPost[], meta: { pa
             limit: 4
         }
     });
-    return fetchApi('/api/articles?'+  query );
+    return fetchApi('/api/articles?' + query);
 }
 
 export async function getListPopularPost(): Promise<{ data: RawPost[], meta: { pagination: Pagination } }> {
     const query = qs.stringify({
         populate: ['cover', 'category', 'author', 'author.avatar'],
-        select: ['id', 'name','description', 'slug', 'publishedAt', 'readingTime'],
+        select: ['id', 'name', 'description', 'slug', 'publishedAt', 'readingTime'],
         sort: {
             viewCount: 'desc'
         },
@@ -117,7 +118,7 @@ export async function getListPopularPost(): Promise<{ data: RawPost[], meta: { p
             limit: 4
         }
     });
-    return fetchApi('/api/articles?'+ query );
+    return fetchApi('/api/articles?' + query);
 }
 
 export type CreateComment = {
@@ -149,7 +150,7 @@ export async function getListCommentBySlug(slug: string): Promise<{
             createdAt: 'desc'
         }
     });
-    return fetchApi('/api/comments?'+ query , { next: { tag: "comments" }} );
+    return fetchApi('/api/comments?' + query, { next: { tag: "comments" } });
 }
 
 export async function createComment(data: CreateComment) {

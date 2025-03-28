@@ -39,7 +39,7 @@ export function convertRawArticleToArticle(rawPost: RawArticle):Article{
         id : rawPost.id,
         author : {
             name : rawPost.author.name,
-            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.author.avatar.formats.thumbnail.url || '',
+            avatar : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.author.avatar.formats.thumbnail?.url || '',
             altText : rawPost.author.avatar.alternativeText,
             description : rawPost.author.description
         },
@@ -47,10 +47,10 @@ export function convertRawArticleToArticle(rawPost: RawArticle):Article{
         title : rawPost.name,
         slug : rawPost.slug,
         date :  rawPost.publishedAt,
-        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover.url || '',
+        imageUrl : process.env.NEXT_PUBLIC_SERVER_URL+rawPost.cover?.url || '',
         cover : {
             altText : rawPost.cover.alternativeText,
-            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.cover.formats.medium.url || rawPost.cover.url || '' ),
+            fileUrl : process.env.NEXT_PUBLIC_SERVER_URL+ (rawPost.cover.formats.medium?.url || rawPost.cover?.url || '' ),
             width : rawPost.cover.width,
             height : rawPost.cover.height,
         },
@@ -58,7 +58,7 @@ export function convertRawArticleToArticle(rawPost: RawArticle):Article{
         readTime : readingTime(rawPost.content).text,
         content : rawPost.content,
         related_post : rawPost.related_article.map(item=>({...item, cover : {...item.cover , url : process.env.NEXT_PUBLIC_SERVER_URL+
-                    (item.cover.formats.medium.url || item.cover.url)
+                    (item.cover.formats.medium?.url || item.cover.url)
         }})),
         seo : rawPost.seo,
         createdAt : rawPost.createdAt,
