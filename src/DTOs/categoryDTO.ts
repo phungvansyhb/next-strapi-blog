@@ -2,13 +2,13 @@ import { Category } from "@/lib/types";
 import { RawCate } from "@/typeDefs/rawTypes";
 
 export function convertRawCategoryToCategory(rawCate: RawCate): Category {
-
+    console.log(rawCate)
     if (!rawCate) throw Error("require parameter type RawCate")
     return {
         name: rawCate.name,
         slug: rawCate.slug,
         count: rawCate.numberArticles,
-        image: rawCate?.cover?.formats?.medium?.url ? process.env.NEXT_PUBLIC_SERVER_URL + rawCate?.cover?.formats?.medium?.url :
+        image: rawCate?.cover?.formats?.thumbnail?.url ? process.env.NEXT_PUBLIC_SERVER_URL + rawCate?.cover?.formats?.thumbnail?.url :
             process.env.NEXT_PUBLIC_SERVER_URL + rawCate?.cover?.url
     }
 }

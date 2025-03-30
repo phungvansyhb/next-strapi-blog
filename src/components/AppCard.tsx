@@ -10,6 +10,7 @@ const AppCard = ({ app }: { app: App }) => {
       <Link href={`/ung-dung/${app.slug}`} className="block">
         <div className="relative w-full h-[300px] aspect-auto lg:h-auto lg:aspect-square">
           <LazyImage
+            effect='opacity'
             src={app.imageUrl}
             alt={app.title}
             objectFit='cover'

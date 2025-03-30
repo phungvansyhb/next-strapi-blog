@@ -23,13 +23,14 @@ function RenderList({ type, data }: { type: 'app' | 'article'; data: Category[] 
 					<Link
 						key={category.slug}
 						href={
-							type === 'app'
-								? `/ung-dung?category=${category.slug}#search`
-								: `/khoa-hoc?category=${category.slug}#search`
+							type === 'article'
+								? `/blog?category=${category.slug}#search`
+								: `/ung-dung?category=${category.slug}#search`
 						}>
 						<Card className='overflow-hidden border-none'>
 							<div className='relative aspect-square'>
 								<LazyImage
+									effect='opacity'
 									src={category.image || '/404.png'}
 									alt={category.name}
 									objectFit='cover'
@@ -110,7 +111,6 @@ export default async function Home() {
 					position: 5,
 					name: 'Điều khoản sử dụng',
 					item: appInfo.siteURL + '/dieu-khoan-su-dung',
-					
 				},
 			],
 		},
