@@ -36,7 +36,6 @@ export default function ContactPageContent() {
   const onSubmit = async (data: FormData) => {
     try {
       // Ici, vous ajouteriez la logique pour envoyer le message
-      console.log('Formulaire soumis:', data);
       toast({
         title: 'Tin nhắn đã được gửi đi',
         description: 'Chúng tôi sẽ phản hồi lại bạn sớm nhất có thể',

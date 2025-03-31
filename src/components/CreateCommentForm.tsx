@@ -30,7 +30,6 @@ function CreateCommentForm({articleId, type = 'post'}: { articleId: number, type
                 app: {connect: [articleId]}
             })
         } else {
-            console.log("run herer")
             await createComment({
                 authorName: payload.get('authorName') as string,
                 content: payload.get('content') as string,

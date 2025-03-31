@@ -2,7 +2,6 @@ import { Category } from "@/lib/types";
 import { RawCate } from "@/typeDefs/rawTypes";
 
 export function convertRawCategoryToCategory(rawCate: RawCate): Category {
-    console.log(rawCate)
     if (!rawCate) throw Error("require parameter type RawCate")
     return {
         name: rawCate.name,

@@ -87,6 +87,7 @@ export default function Header() {
 				<div className='flex flex-wrap justify-between md:flex-nowrap md:gap-10'>
 					<div className='order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end'>
 						<Link
+							aria-label='Trang chủ'
 							href='/ung-dung'
 							className={cn(linkClassName, {
 								'font-bold underline': pathName === '/ung-dung',
@@ -94,6 +95,7 @@ export default function Header() {
 							<CodesandboxIcon size={16} /> Phần mềm
 						</Link>
 						<Link
+							aria-label='Blog'
 							href='/blog'
 							className={cn(linkClassName, {
 								'font-bold underline': pathName === '/blog',
@@ -104,6 +106,7 @@ export default function Header() {
 					</div>
 					<div className='flex w-full items-center justify-between md:w-auto'>
 						<Link
+							aria-label='Logo'	
 							href='/'
 							className='flex items-center space-x-2'>
 							<img
@@ -161,7 +164,6 @@ export default function Header() {
 									<Calendar1Icon />
 									<Link href='/lich-am'>Xem lịch âm</Link>
 								</DropdownMenuItem>
-
 								{/*<DropdownMenuItem>*/}
 								{/*    <CircleDollarSign/>*/}
 								{/*    <Link*/}
@@ -174,6 +176,7 @@ export default function Header() {
 							</DropdownMenuContent>
 						</DropdownMenu>
 						<Link
+							aria-label='Tìm kiếm'
 							href='/tim-kiem'
 							className={cn(linkClassName + ' flex items-center gap-1', {
 								'font-bold underline': pathName === '/tim-kiem',

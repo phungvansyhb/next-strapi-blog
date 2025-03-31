@@ -15,6 +15,7 @@ export default function Footer() {
 		<footer className='py-8 px-4 sm:px-6 lg:px-8'>
 			<div className='max-w-5xl mx-auto flex flex-col items-center space-y-4 text-center'>
 				<Link
+					aria-label='Trang chủ'
 					href='/'
 					className='flex items-center space-x-2'>
 					<img
